@@ -129,7 +129,7 @@ namespace ChildrenDeffenderForm
             {
                 //modifiedMovie.MovieName = "Módosított"; // FOR TEST
 
-                // Async + await kell ?
+                // Async + await kell ?s
                 // Mégse, nem ez volt a baj: A Name az rövidebb kell legyen ?????
                 await client.PutAsJsonAsync("http://localhost:3051/api/Movie/UpdateMovie", modifiedMovie);
 
