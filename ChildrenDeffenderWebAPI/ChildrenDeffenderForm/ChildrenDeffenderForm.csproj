@@ -61,6 +61,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormLogin.Designer.cs">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMovieChildren.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMovieChildren.Designer.cs">
+      <DependentUpon>FormMovieChildren.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormMoviesParent.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -100,6 +112,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormLogin.resx">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMovieChildren.resx">
+      <DependentUpon>FormMovieChildren.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormMoviesParent.resx">
       <DependentUpon>FormMoviesParent.cs</DependentUpon>
     </EmbeddedResource>

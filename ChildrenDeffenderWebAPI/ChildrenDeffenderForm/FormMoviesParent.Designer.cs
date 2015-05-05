@@ -102,7 +102,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(835, 366);
+            this.ClientSize = new System.Drawing.Size(848, 341);
             this.Controls.Add(this.textBoxMovieName);
             this.Controls.Add(this.textBoxMovieID);
             this.Controls.Add(this.labelMovieName);
@@ -112,6 +112,7 @@
             this.Controls.Add(this.dataGridViewMovies);
             this.Name = "FormMovieParent";
             this.Text = "ChildrenDeffender - Parent - Movie";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FormMovieParent_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMovies)).EndInit();
             this.ResumeLayout(false);

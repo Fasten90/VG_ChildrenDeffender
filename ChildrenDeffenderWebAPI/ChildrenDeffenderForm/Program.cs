@@ -18,7 +18,7 @@ namespace ChildrenDeffenderForm
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormMovieParent());
+            Application.Run(new FormLogin());
         }
 
 
