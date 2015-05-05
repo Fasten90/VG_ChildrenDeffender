@@ -1,0 +1,280 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ChildrenDeffenderModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="CategoryName" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="CategoryNameEnglish" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="IndexImage">
+          <Key>
+            <PropertyRef Name="IndexImageID" />
+          </Key>
+          <Property Name="IndexImageID" Type="int" Nullable="false" />
+          <Property Name="IndexImageName" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="Type" Type="nchar" MaxLength="10" />
+          <Property Name="SizeX" Type="smallint" />
+          <Property Name="SizeY" Type="smallint" />
+          <Property Name="IsTransparency" Type="bit" />
+          <Property Name="Version" Type="smallint" />
+          <Property Name="DateAdded" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Movie">
+          <Key>
+            <PropertyRef Name="MovieID" />
+          </Key>
+          <Property Name="MovieID" Type="int" Nullable="false" />
+          <Property Name="MovieName" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="IndexImageID" Type="int" />
+          <Property Name="MovieLink" Type="nchar" MaxLength="50" />
+          <Property Name="LinkType" Type="nchar" MaxLength="10" />
+          <Property Name="SoundID" Type="int" />
+          <Property Name="Language" Type="nchar" MaxLength="3" />
+          <Property Name="NameEnglish" Type="nchar" MaxLength="20" />
+          <Property Name="FavID" Type="int" />
+          <Property Name="NextID" Type="int" />
+          <Property Name="IsContinueable" Type="bit" />
+          <Property Name="IsFirst" Type="bit" />
+          <Property Name="IsVisible" Type="bit" />
+          <Property Name="CategoryID" Type="int" />
+          <Property Name="Category" Type="nchar" MaxLength="10" />
+          <Property Name="MinAge" Type="smallint" Nullable="false" />
+          <Property Name="ManyViews" Type="int" Nullable="false" />
+          <Property Name="DateLastView" Type="datetime" />
+          <Property Name="DateAdded" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sound">
+          <Key>
+            <PropertyRef Name="SoundID" />
+          </Key>
+          <Property Name="SoundID" Type="int" Nullable="false" />
+          <Property Name="SoundName" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="Link" Type="nchar" MaxLength="30" />
+          <Property Name="Length" Type="time" Precision="7" />
+          <Property Name="Language" Type="nchar" MaxLength="3" />
+          <Property Name="FileType" Type="nchar" MaxLength="3" />
+          <Property Name="Version" Type="smallint" />
+          <Property Name="DateAdded" Type="datetime" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="IndexImageID" Type="int" />
+          <Property Name="ProfilType" Type="nchar" MaxLength="10" />
+          <Property Name="HasPassword" Type="bit" />
+          <Property Name="Age" Type="smallint" />
+          <Property Name="Sex" Type="nchar" MaxLength="10" />
+          <Property Name="ManyLogged" Type="int" />
+          <Property Name="DateLastLogged" Type="datetime" />
+          <Property Name="DateAdded" Type="datetime" />
+        </EntityType>
+        <EntityContainer Name="ChildrenDeffenderModelStoreContainer">
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IndexImage" EntityType="Self.IndexImage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Movie" EntityType="Self.Movie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sound" EntityType="Self.Sound" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ChildrenDeffenderModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="Int32" Nullable="false" />
+          <Property Name="CategoryName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="CategoryNameEnglish" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="IndexImage">
+          <Key>
+            <PropertyRef Name="IndexImageID" />
+          </Key>
+          <Property Name="IndexImageID" Type="Int32" Nullable="false" />
+          <Property Name="IndexImageName" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="SizeX" Type="Int16" />
+          <Property Name="SizeY" Type="Int16" />
+          <Property Name="IsTransparency" Type="Boolean" />
+          <Property Name="Version" Type="Int16" />
+          <Property Name="DateAdded" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Movie">
+          <Key>
+            <PropertyRef Name="MovieID" />
+          </Key>
+          <Property Name="MovieID" Type="Int32" Nullable="false" />
+          <Property Name="MovieName" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="IndexImageID" Type="Int32" />
+          <Property Name="MovieLink" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="LinkType" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="SoundID" Type="Int32" />
+          <Property Name="Language" Type="String" MaxLength="3" FixedLength="true" Unicode="true" />
+          <Property Name="NameEnglish" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="FavID" Type="Int32" />
+          <Property Name="NextID" Type="Int32" />
+          <Property Name="IsContinueable" Type="Boolean" />
+          <Property Name="IsFirst" Type="Boolean" />
+          <Property Name="IsVisible" Type="Boolean" />
+          <Property Name="CategoryID" Type="Int32" />
+          <Property Name="Category" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="MinAge" Type="Int16" Nullable="false" />
+          <Property Name="ManyViews" Type="Int32" Nullable="false" />
+          <Property Name="DateLastView" Type="DateTime" Precision="3" />
+          <Property Name="DateAdded" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Sound">
+          <Key>
+            <PropertyRef Name="SoundID" />
+          </Key>
+          <Property Name="SoundID" Type="Int32" Nullable="false" />
+          <Property Name="SoundName" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Link" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="Length" Type="Time" Precision="7" />
+          <Property Name="Language" Type="String" MaxLength="3" FixedLength="true" Unicode="true" />
+          <Property Name="FileType" Type="String" MaxLength="3" FixedLength="true" Unicode="true" />
+          <Property Name="Version" Type="Int16" />
+          <Property Name="DateAdded" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="IndexImageID" Type="Int32" />
+          <Property Name="ProfilType" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="HasPassword" Type="Boolean" />
+          <Property Name="Age" Type="Int16" />
+          <Property Name="Sex" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ManyLogged" Type="Int32" />
+          <Property Name="DateLastLogged" Type="DateTime" Precision="3" />
+          <Property Name="DateAdded" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="ChildrenDeffenderEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Category" EntityType="Self.Category" />
+          <EntitySet Name="IndexImage" EntityType="Self.IndexImage" />
+          <EntitySet Name="Movie" EntityType="Self.Movie" />
+          <EntitySet Name="Sound" EntityType="Self.Sound" />
+          <EntitySet Name="User" EntityType="Self.User" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ChildrenDeffenderModelStoreContainer" CdmEntityContainer="ChildrenDeffenderEntities">
+          <EntitySetMapping Name="Category">
+            <EntityTypeMapping TypeName="ChildrenDeffenderModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="CategoryNameEnglish" ColumnName="CategoryNameEnglish" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IndexImage">
+            <EntityTypeMapping TypeName="ChildrenDeffenderModel.IndexImage">
+              <MappingFragment StoreEntitySet="IndexImage">
+                <ScalarProperty Name="IndexImageID" ColumnName="IndexImageID" />
+                <ScalarProperty Name="IndexImageName" ColumnName="IndexImageName" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="SizeX" ColumnName="SizeX" />
+                <ScalarProperty Name="SizeY" ColumnName="SizeY" />
+                <ScalarProperty Name="IsTransparency" ColumnName="IsTransparency" />
+                <ScalarProperty Name="Version" ColumnName="Version" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Movie">
+            <EntityTypeMapping TypeName="ChildrenDeffenderModel.Movie">
+              <MappingFragment StoreEntitySet="Movie">
+                <ScalarProperty Name="MovieID" ColumnName="MovieID" />
+                <ScalarProperty Name="MovieName" ColumnName="MovieName" />
+                <ScalarProperty Name="IndexImageID" ColumnName="IndexImageID" />
+                <ScalarProperty Name="MovieLink" ColumnName="MovieLink" />
+                <ScalarProperty Name="LinkType" ColumnName="LinkType" />
+                <ScalarProperty Name="SoundID" ColumnName="SoundID" />
+                <ScalarProperty Name="Language" ColumnName="Language" />
+                <ScalarProperty Name="NameEnglish" ColumnName="NameEnglish" />
+                <ScalarProperty Name="FavID" ColumnName="FavID" />
+                <ScalarProperty Name="NextID" ColumnName="NextID" />
+                <ScalarProperty Name="IsContinueable" ColumnName="IsContinueable" />
+                <ScalarProperty Name="IsFirst" ColumnName="IsFirst" />
+                <ScalarProperty Name="IsVisible" ColumnName="IsVisible" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="MinAge" ColumnName="MinAge" />
+                <ScalarProperty Name="ManyViews" ColumnName="ManyViews" />
+                <ScalarProperty Name="DateLastView" ColumnName="DateLastView" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sound">
+            <EntityTypeMapping TypeName="ChildrenDeffenderModel.Sound">
+              <MappingFragment StoreEntitySet="Sound">
+                <ScalarProperty Name="SoundID" ColumnName="SoundID" />
+                <ScalarProperty Name="SoundName" ColumnName="SoundName" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="Length" ColumnName="Length" />
+                <ScalarProperty Name="Language" ColumnName="Language" />
+                <ScalarProperty Name="FileType" ColumnName="FileType" />
+                <ScalarProperty Name="Version" ColumnName="Version" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="ChildrenDeffenderModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="IndexImageID" ColumnName="IndexImageID" />
+                <ScalarProperty Name="ProfilType" ColumnName="ProfilType" />
+                <ScalarProperty Name="HasPassword" ColumnName="HasPassword" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="ManyLogged" ColumnName="ManyLogged" />
+                <ScalarProperty Name="DateLastLogged" ColumnName="DateLastLogged" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
