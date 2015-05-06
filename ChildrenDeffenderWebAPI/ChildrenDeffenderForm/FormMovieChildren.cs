@@ -140,15 +140,14 @@ namespace ChildrenDeffenderForm
             {
                 // Lekérdezés
                 var resp = await client.GetAsync("http://localhost:3051/api/IndexImage");
-
                 var indeximages = await resp.Content.ReadAsAsync<List<IndexImage>>();
-
+                //indeximages.  // TODO: csak a movie jellegűeket?
                 ChildrenIndexImages = indeximages;
-                //
+                // End of Lekérdezés
+
 
                 // ListView-be berakás
                 String IndexImageFilePath = @"D:\Minden\Gabika dolgai\ChildrenDeffender\Images\";
-
                 foreach (var item in ChildrenIndexImages)
                 {
                     String path = IndexImageFilePath + item.IndexImageName;
@@ -157,7 +156,7 @@ namespace ChildrenDeffenderForm
                     listViewMovie.ImageIndex = item.IndexImageID;
                     listViewMoviesForChildren.Items.Add(listViewMovie);
                 }
-                //
+                // end of ListView
                 
             }
 
