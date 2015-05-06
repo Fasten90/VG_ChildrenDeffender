@@ -35,8 +35,8 @@
             // 
             // imageListMoviesForChildren
             // 
-            this.imageListMoviesForChildren.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.imageListMoviesForChildren.ImageSize = new System.Drawing.Size(64, 64);
+            this.imageListMoviesForChildren.ColorDepth = System.Windows.Forms.ColorDepth.Depth24Bit;
+            this.imageListMoviesForChildren.ImageSize = new System.Drawing.Size(128, 128);
             this.imageListMoviesForChildren.TransparentColor = System.Drawing.Color.Gray;
             // 
             // listViewMoviesForChildren

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -156,6 +157,26 @@ namespace ChildrenDeffenderForm
                 var movie = resp.Content.ReadAsAsync<Movie>().Result;
                 return movie;
             }
+        }
+
+
+        private void ReadDirForIndexImages()
+        {
+            ImageList imageListMoviesForParent = new ImageList();
+            ListView listViewMoviesForParent = new ListView();
+
+            // READ DIR images
+
+            string[] filePaths = Directory.GetFiles(@"D:\Minden\Gabika dolgai\ChildrenDeffender\Images\");
+
+            for (int i=0; i<filePaths.Length; i++)
+            {
+                imageListMoviesForParent.Images.Add(Image.FromFile(filePaths[i]));
+                ListViewItem listViewMovie = new ListViewItem();
+                listViewMovie.ImageIndex = i;
+                listViewMoviesForParent.Items.Add(listViewMovie);
+            }
+
         }
 
 

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -14,6 +15,10 @@ namespace ChildrenDeffenderForm
 {
     public partial class FormMovieChildren : Form
     {
+
+        List<IndexImage> ChildrenIndexImages;
+        List<Movie> ChildrenMovies;
+
         public FormMovieChildren()
         {
             InitializeComponent();
@@ -23,10 +28,79 @@ namespace ChildrenDeffenderForm
 
         private void FormMovieChildren_Load(object sender, EventArgs e)
         {
-            //GetMoviesForChildren();
-            imageListMoviesForChildren.Images.Add(Image.FromFile("D:\\Minden\\Gabika dolgai\\ChildrenDeffender\\Images\\image1.bmp"));
-            listViewMoviesForChildren.Refresh();
+
+            GetIndexImagesForChildren();
+            GetMoviesForChildren();
+
+            //
             /*
+            // GOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOODDDDDDDDDDDDDDDDDDDD
+            imageListMoviesForChildren.Images.Add(Image.FromFile("c:\\Images\\image1.bmp"));      
+            //imageListMoviesForChildren.Images.Add(Bitmap.FromFile("c:\\Images\\image1.bmp"));
+
+            //this.listViewMoviesForChildren.View = View.LargeIcon;
+            //this.listViewMoviesForChildren.LargeImageList = this.imageListMoviesForChildren;
+            
+            ListViewItem listViewMovie = new ListViewItem();
+            listViewMovie.ImageIndex = 0;
+            listViewMovie.Text = "Test";
+            listViewMoviesForChildren.Items.Add(listViewMovie);
+            //*/
+
+
+
+            // GOOOOOOOOOOOOOOOOODDDDDDDDDDDDDDDDDDD
+            // READ DIR images
+            /*
+            string[] filePaths = Directory.GetFiles(@"D:\Minden\Gabika dolgai\ChildrenDeffender\Images\");
+
+            for (int i=0; i<filePaths.Length; i++)
+            {
+                imageListMoviesForChildren.Images.Add(Image.FromFile(filePaths[i]));
+                ListViewItem listViewMovie = new ListViewItem();
+                listViewMovie.ImageIndex = i;
+                listViewMoviesForChildren.Items.Add(listViewMovie);
+            }
+            */
+
+
+            /*
+            // NOT GOOD, a sleep nem jó benne, átrakva a lekérdező függvénybe
+            String IndexImageFilePath = @"D:\Minden\Gabika dolgai\ChildrenDeffender\Images\";
+            while (ChildrenIndexImages == null) System.Threading.Thread.Sleep(1000);
+            foreach ( var item in ChildrenIndexImages )
+            {
+                String path = IndexImageFilePath + item.IndexImageName;
+                imageListMoviesForChildren.Images.Add(Image.FromFile(path));
+                ListViewItem listViewMovie = new ListViewItem();
+                listViewMovie.ImageIndex = item.IndexImageID;
+                listViewMoviesForChildren.Items.Add(listViewMovie);
+            }
+            */
+
+
+
+            /*
+            // TEST CODE - DO NOT USE
+            this.listView1.View = View.LargeIcon;
+            this.imageList1.ImageSize = new Size(32, 32);
+            this.listView1.LargeImageList = this.imageList1;        // OK
+
+            //or
+            //this.listView1.View = View.SmallIcon;
+            //this.listView1.SmallImageList = this.imageList1;
+
+            for (int j = 0; j < this.imageList1.Images.Count; j++)
+            {
+                ListViewItem item = new ListViewItem();
+                item.ImageIndex = j;
+                this.listView1.Items.Add(item);
+            }
+            */
+
+
+            /*
+            // TEST CODE - DO NOT USE
                 ImageList il = new ImageList();
                 il.Images.Add("test1", Image.FromFile(@"c:\Documents\SharpDevelop Projects\learning2\learning2\Koala.jpg"));
 
@@ -42,6 +116,7 @@ namespace ChildrenDeffenderForm
                     listView1.Items.Add(lvi);
                 }
              */
+
         }
 
         private async void GetMoviesForChildren()
@@ -52,22 +127,43 @@ namespace ChildrenDeffenderForm
 
                 var movies = await resp.Content.ReadAsAsync<List<Movie>>();
 
-                //dataGridViewMovies.DataSource = movies;
-                //var resp = client.GetAsync(string.Format("http://localhost:3051/api/Movie/{0}", id)).Result;
-                //resp.EnsureSuccessStatusCode();
-                //var movie = resp.Content.ReadAsAsync<Movie>().Result;
-                //return movie;   // TODO: Ide érdemes breakpoint-ot tenni ... látni hogy mit kérdezett le
-
-                // TODO: itt kéne értékadás
-                //flowLayoutPanel.DataBindings = movies;
+                ChildrenMovies = movies;
             }
-
             
-            // TODO: kiszedni
-            imageListMoviesForChildren.Images.Add(Image.FromFile(@"D:\Minden\Gabika dolgai\ChildrenDeffender\Images\image1.bmp"));
         }
 
 
+
+        private async void GetIndexImagesForChildren()
+        {
+            using (var client = new HttpClient())
+            {
+                // Lekérdezés
+                var resp = await client.GetAsync("http://localhost:3051/api/IndexImage");
+
+                var indeximages = await resp.Content.ReadAsAsync<List<IndexImage>>();
+
+                ChildrenIndexImages = indeximages;
+                //
+
+                // ListView-be berakás
+                String IndexImageFilePath = @"D:\Minden\Gabika dolgai\ChildrenDeffender\Images\";
+
+                foreach (var item in ChildrenIndexImages)
+                {
+                    String path = IndexImageFilePath + item.IndexImageName;
+                    imageListMoviesForChildren.Images.Add(Image.FromFile(path));    // TODO: hiányzó képre exceptiont dob, lekezelni
+                    ListViewItem listViewMovie = new ListViewItem();
+                    listViewMovie.ImageIndex = item.IndexImageID;
+                    listViewMoviesForChildren.Items.Add(listViewMovie);
+                }
+                //
+                
+            }
+
+
+
+        }
 
         /*
         	private void Form1_Load(object sender, EventArgs e)
