@@ -47,6 +47,7 @@
             this.listViewMoviesForChildren.Size = new System.Drawing.Size(810, 271);
             this.listViewMoviesForChildren.TabIndex = 4;
             this.listViewMoviesForChildren.UseCompatibleStateImageBehavior = false;
+            this.listViewMoviesForChildren.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listViewMoviesForChildren_MouseDoubleClick);
             // 
             // FormMovieChildren
             // 

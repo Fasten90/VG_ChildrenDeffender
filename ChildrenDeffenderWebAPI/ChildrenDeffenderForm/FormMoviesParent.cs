@@ -15,6 +15,9 @@ namespace ChildrenDeffenderForm
 {
     public partial class FormMovieParent : Form
     {
+
+        public String ConfigMovieIndexImagesDir = @"d:\Minden\Gabika dolgai\BME\Google Drive\VG\ChildrenDeffender\Images\Movies\";
+
         public FormMovieParent()
         {
             InitializeComponent();
@@ -167,7 +170,8 @@ namespace ChildrenDeffenderForm
 
             // READ DIR images
 
-            string[] filePaths = Directory.GetFiles(@"D:\Minden\Gabika dolgai\ChildrenDeffender\Images\");
+            //string[] filePaths = Directory.GetFiles(@"D:\Minden\Gabika dolgai\ChildrenDeffender\Images\Movies\");
+            String[] filePaths = Directory.GetFiles(ConfigMovieIndexImagesDir);
 
             for (int i=0; i<filePaths.Length; i++)
             {
@@ -177,6 +181,29 @@ namespace ChildrenDeffenderForm
                 listViewMoviesForParent.Items.Add(listViewMovie);
             }
 
+            // TODO: lista mentése adatbázisba?
+        }
+
+        private void buttonIndexImageRefresh_Click(object sender, EventArgs e)
+        {
+            ReadDirForIndexImages();
+        }
+
+        private void buttonMovieIndexImagesDir_Click(object sender, EventArgs e)
+        {
+
+            // Folder Browser
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+            DialogResult result = fbd.ShowDialog();
+
+            ConfigMovieIndexImagesDir = fbd.SelectedPath;
+            //
+            //string[] files = Directory.GetFiles(fbd.SelectedPath);
+            //System.Windows.Forms.MessageBox.Show("Files found: " + files.Length.ToString(), "Message");
+            //
+
+
+            labelMovieIndexImagesDir.Text = fbd.SelectedPath;
         }
 
 

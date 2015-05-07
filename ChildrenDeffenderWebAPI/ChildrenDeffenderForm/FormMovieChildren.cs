@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -18,6 +19,7 @@ namespace ChildrenDeffenderForm
 
         List<IndexImage> ChildrenIndexImages;
         List<Movie> ChildrenMovies;
+        public String ConfigMovieIndexImagesDir = @"d:\Minden\Gabika dolgai\BME\Google Drive\VG\ChildrenDeffender\Images\Movies\";
 
         public FormMovieChildren()
         {
@@ -147,7 +149,7 @@ namespace ChildrenDeffenderForm
 
 
                 // ListView-be berakás
-                String IndexImageFilePath = @"D:\Minden\Gabika dolgai\ChildrenDeffender\Images\";
+                String IndexImageFilePath = ConfigMovieIndexImagesDir;
                 foreach (var item in ChildrenIndexImages)
                 {
                     String path = IndexImageFilePath + item.IndexImageName;
@@ -163,6 +165,79 @@ namespace ChildrenDeffenderForm
 
 
         }
+
+        private void listViewMoviesForChildren_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //ListViewItem items = new ListViewItem();
+            //items = listViewMoviesForChildren.SelectedItems();
+
+            //MessageBox.Show("Klikkeltél{0}"+items.ImageIndex.ToString());
+        }
+
+        private void listViewMoviesForChildren_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+
+            //ListViewItem items = new ListViewItem();
+            //items = listViewMoviesForChildren.SelectedItems;
+
+            ListViewItem listViewItem = new ListViewItem();
+            listViewItem = listViewMoviesForChildren.FocusedItem;
+
+            int imageID = listViewItem.ImageIndex;
+
+            //ChildrenMovies.Find()
+            foreach (var item in ChildrenMovies)
+            {
+                if (item.IndexImageID == imageID)
+                {
+                    ChildrenPlayMovie(item);
+                    break;
+                }
+            }
+
+
+
+            /*
+            DependencyObject obj = (DependencyObject)e.OriginalSource;
+
+            while (obj != null && obj != myListView)
+            {
+                if (obj.GetType() == typeof(ListViewItem))
+                {
+                    // Do something here
+                    MessageBox.Show("A ListViewItem was double clicked!");
+
+                    break;
+                }
+                obj = VisualTreeHelper.GetParent(obj);
+            }
+             * */
+         }
+
+         void ChildrenPlayMovie(Movie item)
+         {
+             String moviename = item.MovieLink.Trim();
+             String program = @"C:\Program Files (x86)\VideoLAN\VLC\vlc.exe";
+             String moviedir = @"D:\Minden\Mese\";
+
+             //Process secondProc = new Process();
+             // "parancs" "paraméter"
+             //secondProc.StartInfo.FileName = "\"" + program + "\"; //  \"" + moviedir + moviename + "\"";
+             //secondProc.Start();
+
+             //System.Diagnostics.Process.Start(@"C:\Program Files (x86)\VideoLAN\VLC\vlc.exe");
+             String command = program;
+             String argument = moviedir + moviename;
+             System.Diagnostics.Process.Start(command, argument);
+
+             //String command = "\"" + program + "\"";
+             //System.Diagnostics.Process.Start(command);
+
+             // JÓ: program
+             // NEM JÓ: "\"" + program + "\"; //  \"" + moviedir + moviename + "\""
+
+             // TODO: ManyVIews++
+         }
 
         /*
         	private void Form1_Load(object sender, EventArgs e)
