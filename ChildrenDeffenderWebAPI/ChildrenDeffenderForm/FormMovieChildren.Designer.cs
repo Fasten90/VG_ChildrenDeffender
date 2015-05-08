@@ -41,10 +41,11 @@
             // 
             // listViewMoviesForChildren
             // 
+            this.listViewMoviesForChildren.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listViewMoviesForChildren.LargeImageList = this.imageListMoviesForChildren;
-            this.listViewMoviesForChildren.Location = new System.Drawing.Point(12, 12);
+            this.listViewMoviesForChildren.Location = new System.Drawing.Point(0, 0);
             this.listViewMoviesForChildren.Name = "listViewMoviesForChildren";
-            this.listViewMoviesForChildren.Size = new System.Drawing.Size(810, 271);
+            this.listViewMoviesForChildren.Size = new System.Drawing.Size(834, 295);
             this.listViewMoviesForChildren.TabIndex = 4;
             this.listViewMoviesForChildren.UseCompatibleStateImageBehavior = false;
             this.listViewMoviesForChildren.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listViewMoviesForChildren_MouseDoubleClick);

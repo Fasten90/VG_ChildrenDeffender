@@ -79,6 +79,7 @@
     <Compile Include="FormMoviesParent.Designer.cs">
       <DependentUpon>FormMoviesParent.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Category.cs">
       <DependentUpon>MovieContext.tt</DependentUpon>
     </Compile>

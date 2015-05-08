@@ -62,6 +62,7 @@
             this.Name = "FormLogin";
             this.Text = "FormLogin";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.FormLogin_Load);
             this.ResumeLayout(false);
 
         }

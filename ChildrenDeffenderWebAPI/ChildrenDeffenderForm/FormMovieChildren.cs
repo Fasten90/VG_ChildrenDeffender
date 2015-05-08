@@ -20,6 +20,9 @@ namespace ChildrenDeffenderForm
         List<IndexImage> ChildrenIndexImages;
         List<Movie> ChildrenMovies;
         public String ConfigMovieIndexImagesDir = @"d:\Minden\Gabika dolgai\BME\Google Drive\VG\ChildrenDeffender\Images\Movies\";
+        public String ConfigMoviesDir = @"D:\Minden\Mese\";
+        public String ConfigMoviePlayer = @"C:\Program Files (x86)\VideoLAN\VLC\vlc.exe";
+
 
         public FormMovieChildren()
         {
@@ -217,8 +220,8 @@ namespace ChildrenDeffenderForm
          void ChildrenPlayMovie(Movie item)
          {
              String moviename = item.MovieLink.Trim();
-             String program = @"C:\Program Files (x86)\VideoLAN\VLC\vlc.exe";
-             String moviedir = @"D:\Minden\Mese\";
+             String program = ConfigMoviePlayer;
+             String moviedir = ConfigMoviesDir;
 
              //Process secondProc = new Process();
              // "parancs" "paraméter"
