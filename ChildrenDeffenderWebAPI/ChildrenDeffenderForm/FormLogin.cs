@@ -86,15 +86,17 @@ namespace ChildrenDeffenderForm
 
                 // ListView-be berakás
                 String IndexImageFilePath = ConfigUserImagesDir;
+                int i = 0;
                 foreach (var item in LoginUsers)
                 {
-                    /*
+                    ///*
                     String path = IndexImageFilePath + item.IndexImageName;
-                    imageListMoviesForChildren.Images.Add(Image.FromFile(path));    // TODO: hiányzó képre exceptiont dob, lekezelni
-                    ListViewItem listViewMovie = new ListViewItem();
-                    listViewMovie.ImageIndex = item.IndexImageID;
-                    listViewMoviesForChildren.Items.Add(listViewMovie);
-                    */
+                    imageListUsersForLogin.Images.Add(Image.FromFile(path));    // TODO: hiányzó képre exceptiont dob, lekezelni
+                    ListViewItem listViewItem = new ListViewItem();
+                    listViewItem.ImageIndex = i;
+                    listViewUsersForLogin.Items.Add(listViewItem);
+                    i++;
+                    //*/
                 }
                 // end of ListView
 
@@ -103,6 +105,52 @@ namespace ChildrenDeffenderForm
 
 
         }
+
+        private void listViewUsersForLogin_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+
+            ListViewItem listViewItem = new ListViewItem();
+            listViewItem = listViewUsersForLogin.FocusedItem;
+
+            int userID = listViewItem.ImageIndex;
+            // TODO: értelmesebben kinyerni az ID-t !!!!!!!!!!!!!!4
+
+
+            //ChildrenMovies.Find()
+            foreach (var item in LoginUsers)
+            {
+                if (item.UserID == userID)
+                {
+                    String profilType = item.ProfilType.Trim();
+                    if (profilType == "Child")
+                    {
+                        FormSwitchToChildrenForm();
+                        break;
+                    }
+                    else if (profilType == "Admin" || profilType == "Parent")
+                    {
+                        FormSwitchToParentForm();
+                        break;
+                    }
+                    
+                }
+            }
+
+        }
+
+        private void FormSwitchToChildrenForm ()
+        {
+            this.Hide();
+            FormMovieChildren form = new FormMovieChildren();
+            form.Show();
+        }
+        private void FormSwitchToParentForm ()
+        {
+            this.Hide();
+            FormMovieParent form = new FormMovieParent();
+            form.Show();
+        }
+
 
 
 

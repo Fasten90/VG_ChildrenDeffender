@@ -18,9 +18,6 @@ namespace ChildrenDeffenderWebAPI.Models
         public ChildrenDeffenderEntities()
             : base("name=ChildrenDeffenderEntities")
         {
-            // Web api 2 kód // KISZEDNI HA NEM JÓ
-            this.Configuration.LazyLoadingEnabled = false;
-            this.Configuration.ProxyCreationEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

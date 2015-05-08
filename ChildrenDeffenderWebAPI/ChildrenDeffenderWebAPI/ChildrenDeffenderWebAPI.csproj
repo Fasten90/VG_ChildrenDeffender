@@ -150,7 +150,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Category.cs">
-      <DependentUpon>DBContext.tt</DependentUpon>
+      <DependentUpon>ChildrenDeffenderModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ChildrenDeffenderModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -183,16 +183,16 @@
       <DependentUpon>DBContext.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\IndexImage.cs">
-      <DependentUpon>DBContext.tt</DependentUpon>
+      <DependentUpon>ChildrenDeffenderModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Movie.cs">
-      <DependentUpon>DBContext.tt</DependentUpon>
+      <DependentUpon>ChildrenDeffenderModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Sound.cs">
-      <DependentUpon>DBContext.tt</DependentUpon>
+      <DependentUpon>ChildrenDeffenderModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
-      <DependentUpon>DBContext.tt</DependentUpon>
+      <DependentUpon>ChildrenDeffenderModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

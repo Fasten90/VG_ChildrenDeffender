@@ -104,7 +104,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MovieContext.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Model\Moviecs.cs" />
     <Compile Include="Model\Sound.cs">
       <DependentUpon>MovieContext.tt</DependentUpon>
     </Compile>
