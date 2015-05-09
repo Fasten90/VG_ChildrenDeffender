@@ -77,6 +77,7 @@
           <Property Name="ManyLogged" Type="int" />
           <Property Name="DateLastLogged" Type="datetime" />
           <Property Name="DateAdded" Type="datetime" />
+          <Property Name="SoundFileName" Type="nchar" MaxLength="30" />
         </EntityType>
         <EntityContainer Name="ChildrenDeffenderModelStoreContainer">
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
@@ -161,6 +162,7 @@
           <Property Name="DateLastLogged" Type="DateTime" Precision="3" />
           <Property Name="DateAdded" Type="DateTime" Precision="3" />
           <Property Name="IndexImageName" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="SoundFileName" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityContainer Name="ChildrenDeffenderEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Category" EntityType="Self.Category" />
@@ -240,6 +242,7 @@
           <EntitySetMapping Name="User">
             <EntityTypeMapping TypeName="ChildrenDeffenderModel.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="SoundFileName" ColumnName="SoundFileName" />
                 <ScalarProperty Name="IndexImageName" ColumnName="IndexImageName" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />

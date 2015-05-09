@@ -29,40 +29,23 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.buttonLoginChildren = new System.Windows.Forms.Button();
-            this.buttonLoginParent = new System.Windows.Forms.Button();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormLogin));
             this.listViewUsersForLogin = new System.Windows.Forms.ListView();
             this.imageListUsersForLogin = new System.Windows.Forms.ImageList(this.components);
+            this.pictureBoxLoginExit = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLoginExit)).BeginInit();
             this.SuspendLayout();
-            // 
-            // buttonLoginChildren
-            // 
-            this.buttonLoginChildren.Location = new System.Drawing.Point(681, 54);
-            this.buttonLoginChildren.Name = "buttonLoginChildren";
-            this.buttonLoginChildren.Size = new System.Drawing.Size(75, 23);
-            this.buttonLoginChildren.TabIndex = 0;
-            this.buttonLoginChildren.Text = "Children";
-            this.buttonLoginChildren.UseVisualStyleBackColor = true;
-            this.buttonLoginChildren.Click += new System.EventHandler(this.buttonLoginChildren_Click);
-            // 
-            // buttonLoginParent
-            // 
-            this.buttonLoginParent.Location = new System.Drawing.Point(681, 83);
-            this.buttonLoginParent.Name = "buttonLoginParent";
-            this.buttonLoginParent.Size = new System.Drawing.Size(75, 23);
-            this.buttonLoginParent.TabIndex = 1;
-            this.buttonLoginParent.Text = "Parent";
-            this.buttonLoginParent.UseVisualStyleBackColor = true;
-            this.buttonLoginParent.Click += new System.EventHandler(this.buttonLoginParent_Click);
             // 
             // listViewUsersForLogin
             // 
+            this.listViewUsersForLogin.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listViewUsersForLogin.LargeImageList = this.imageListUsersForLogin;
-            this.listViewUsersForLogin.Location = new System.Drawing.Point(13, 13);
+            this.listViewUsersForLogin.Location = new System.Drawing.Point(0, 0);
             this.listViewUsersForLogin.Name = "listViewUsersForLogin";
-            this.listViewUsersForLogin.Size = new System.Drawing.Size(662, 337);
+            this.listViewUsersForLogin.Size = new System.Drawing.Size(784, 362);
             this.listViewUsersForLogin.TabIndex = 2;
             this.listViewUsersForLogin.UseCompatibleStateImageBehavior = false;
+            this.listViewUsersForLogin.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listViewUsersForLogin_MouseClick);
             this.listViewUsersForLogin.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listViewUsersForLogin_MouseDoubleClick);
             // 
             // imageListUsersForLogin
@@ -71,27 +54,42 @@
             this.imageListUsersForLogin.ImageSize = new System.Drawing.Size(128, 128);
             this.imageListUsersForLogin.TransparentColor = System.Drawing.Color.Transparent;
             // 
+            // pictureBoxLoginExit
+            // 
+            this.pictureBoxLoginExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBoxLoginExit.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxLoginExit.Image")));
+            this.pictureBoxLoginExit.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBoxLoginExit.InitialImage")));
+            this.pictureBoxLoginExit.Location = new System.Drawing.Point(644, 222);
+            this.pictureBoxLoginExit.MaximumSize = new System.Drawing.Size(128, 128);
+            this.pictureBoxLoginExit.MinimumSize = new System.Drawing.Size(128, 128);
+            this.pictureBoxLoginExit.Name = "pictureBoxLoginExit";
+            this.pictureBoxLoginExit.Size = new System.Drawing.Size(128, 128);
+            this.pictureBoxLoginExit.TabIndex = 3;
+            this.pictureBoxLoginExit.TabStop = false;
+            this.pictureBoxLoginExit.Click += new System.EventHandler(this.pictureBoxLoginExit_Click);
+            this.pictureBoxLoginExit.DoubleClick += new System.EventHandler(this.pictureBoxLoginExit_DoubleClick);
+            // 
             // FormLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 362);
+            this.Controls.Add(this.pictureBoxLoginExit);
             this.Controls.Add(this.listViewUsersForLogin);
-            this.Controls.Add(this.buttonLoginParent);
-            this.Controls.Add(this.buttonLoginChildren);
+            this.MinimumSize = new System.Drawing.Size(256, 128);
             this.Name = "FormLogin";
             this.Text = "FormLogin";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FormLogin_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLoginExit)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button buttonLoginChildren;
-        private System.Windows.Forms.Button buttonLoginParent;
         private System.Windows.Forms.ListView listViewUsersForLogin;
         private System.Windows.Forms.ImageList imageListUsersForLogin;
+        private System.Windows.Forms.PictureBox pictureBoxLoginExit;
     }
 }

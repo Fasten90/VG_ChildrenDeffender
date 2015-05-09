@@ -24,5 +24,6 @@ namespace ChildrenDeffenderForm.Model
         public Nullable<System.DateTime> DateLastLogged { get; set; }
         public Nullable<System.DateTime> DateAdded { get; set; }
         public string IndexImageName { get; set; }
+        public string SoundFileName { get; set; }
     }
 }

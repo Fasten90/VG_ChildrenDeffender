@@ -11,6 +11,9 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Vlc;
+using Vlc.DotNet.Forms;
+using Vlc.DotNet.Core;
 
 namespace ChildrenDeffenderForm
 {
@@ -19,14 +22,13 @@ namespace ChildrenDeffenderForm
 
         List<IndexImage> ChildrenIndexImages;
         List<Movie> ChildrenMovies;
-        public String ConfigMovieIndexImagesDir = @"d:\Minden\Gabika dolgai\BME\Google Drive\VG\ChildrenDeffender\Images\Movies\";
-        public String ConfigMoviesDir = @"D:\Minden\Mese\";
-        public String ConfigMoviePlayer = @"C:\Program Files (x86)\VideoLAN\VLC\vlc.exe";
+        ChildrenDeffenderConfig Config;
 
 
-        public FormMovieChildren()
+        public FormMovieChildren(ChildrenDeffenderConfig conf)
         {
             InitializeComponent();
+            this.Config = conf;
  
         }
 
@@ -36,6 +38,10 @@ namespace ChildrenDeffenderForm
 
             GetIndexImagesForChildren();
             GetMoviesForChildren();
+
+            // TODO: LOAD FROM XML
+            //LoadMoviesFromXml();
+            //SaveMoviesToXml();
 
             //
             /*
@@ -133,6 +139,11 @@ namespace ChildrenDeffenderForm
                 var movies = await resp.Content.ReadAsAsync<List<Movie>>();
 
                 ChildrenMovies = movies;
+
+
+                // TODO: SAVE TO XML
+                SaveMoviesToXml();
+
             }
             
         }
@@ -152,7 +163,7 @@ namespace ChildrenDeffenderForm
 
 
                 // ListView-be berakás
-                String IndexImageFilePath = ConfigMovieIndexImagesDir;
+                String IndexImageFilePath = Config.MovieIndexImagesDir;
                 foreach (var item in ChildrenIndexImages)
                 {
                     String path = IndexImageFilePath + item.IndexImageName;
@@ -220,8 +231,8 @@ namespace ChildrenDeffenderForm
          void ChildrenPlayMovie(Movie item)
          {
              String moviename = item.MovieLink.Trim();
-             String program = ConfigMoviePlayer;
-             String moviedir = ConfigMoviesDir;
+             String program = Config.MoviePlayer;
+             String moviedir = Config.MoviesDir;
 
              //Process secondProc = new Process();
              // "parancs" "paraméter"
@@ -233,6 +244,8 @@ namespace ChildrenDeffenderForm
              String argument = moviedir + moviename;
              System.Diagnostics.Process.Start(command, argument);
 
+
+
              //String command = "\"" + program + "\"";
              //System.Diagnostics.Process.Start(command);
 
@@ -240,7 +253,111 @@ namespace ChildrenDeffenderForm
              // NEM JÓ: "\"" + program + "\"; //  \"" + moviedir + moviename + "\""
 
              // TODO: ManyVIews++
+
+             /*
+             // TODO: VLC, megbízhatatlannak tűnik és hiányzik a példakódból is valami .... 
+             //Vlc.DotNet.Core.VlcMediaPlayer;
+             Application.EnableVisualStyles();
+             Application.SetCompatibleTextRenderingDefault(false);
+
+             VlcControl VlcContext = new VlcControl();
+             //Set libvlc.dll and libvlccore.dll directory path
+             VlcContext.LibVlcDllsPath = CommonStrings.LIBVLC_DLLS_PATH_DEFAULT_VALUE_AMD64;
+             //Set the vlc plugins directory path
+             VlcContext.LibVlcPluginsPath = CommonStrings.PLUGINS_PATH_DEFAULT_VALUE_AMD64;
+
+             //Set the startup options
+             VlcContext.StartupOptions.IgnoreConfig = true;
+             VlcContext.StartupOptions.LogOptions.LogInFile = true;
+             VlcContext.StartupOptions.LogOptions.ShowLoggerConsole = true;
+             VlcContext.StartupOptions.LogOptions.Verbosity = VlcLogOptions.Verbosities.Debug;
+
+             //Initialize the VlcContext
+             VlcContext.Initialize();
+
+             Application.Run(new Form1());
+
+             //Close the VlcContext
+             VlcContext.CloseAll(); 
+             */
          }
+
+         private void listViewMoviesForChildren_MouseClick(object sender, MouseEventArgs e)
+         {
+             //ListViewItem items = new ListViewItem();
+             //items = listViewMoviesForChildren.SelectedItems;
+
+             ListViewItem listViewItem = new ListViewItem();
+             listViewItem = listViewMoviesForChildren.FocusedItem;
+
+             int imageID = listViewItem.ImageIndex;
+
+             //ChildrenMovies.Find()
+             foreach (var item in ChildrenMovies)
+             {
+                 if (item.IndexImageID == imageID)
+                 {
+                     ChildrenPlayMovieSound(item);
+                     break;
+                 }
+             }
+         }
+
+
+         void ChildrenPlayMovieSound(Movie item)
+         {
+            String soundFileName = item.NameEnglish.Trim();
+            String soundDir = Config.MovieSoundsDir;
+            String format = Config.MovieSoundsFormat;
+
+
+            if (soundFileName != null)        // TODO - külön függvénybe !!!!!!!!!!!!!!!!!!
+            {
+                System.Media.SoundPlayer player = new System.Media.SoundPlayer(soundDir + soundFileName + format);
+                player.Play();
+            }
+
+         }
+
+        /*
+         void PlaySound(String sound)   // At Common class 
+         {
+
+             if (sound != null)        // TODO - külön függvénybe !!!!!!!!!!!!!!!!!!
+             {
+                 System.Media.SoundPlayer player = new System.Media.SoundPlayer(sound);
+                 player.Play();
+             }
+
+         }
+        */
+
+         private void pictureBoxBack_Click(object sender, EventArgs e)
+         {
+            // TODO: sound for back
+            Common.PlaySound(Config.SoundMenuBack);
+         }      
+
+         private void pictureBoxExit_Click(object sender, EventArgs e)
+         {
+             // TODO: sound for exit
+             Common.PlaySound(Config.SoundMenuExit);
+
+         }
+
+         private void pictureBoxExit_DoubleClick(object sender, EventArgs e)
+         {
+             Application.Exit();
+         }
+
+         private void pictureBoxBack_DoubleClick(object sender, EventArgs e)
+         {
+             this.Hide();
+             FormLogin form = new FormLogin();
+             form.Show();
+         }
+
+
 
         /*
         	private void Form1_Load(object sender, EventArgs e)
@@ -255,6 +372,40 @@ namespace ChildrenDeffenderForm
 	            }
 	        }
          */
+
+        private void LoadMoviesFromXml ()
+        {
+
+            // Then in some other function.
+            //Person person = XmlSerialization.ReadFromXmlFile<Person>("C:\person.txt");
+            //List<Person> people = XmlSerialization.ReadFromXmlFile<List<Person>>("C:\people.txt");
+            ChildrenMovies = XmlSerialization.ReadFromXmlFile<List<Movie>>("Movies.xml");
+
+        }
+
+        private void SaveMoviesToXml ()
+        {
+            // And then in some function.
+            //Person person = new Person() { Name = "Dan", Age = 30; HomeAddress = new Address() { StreetAddress = "123 My St", City = "Regina" }};
+            //List<Person> people = GetListOfPeople();
+            //XmlSerialization.WriteToXmlFile<Person>("C:\person.txt", person);
+            //XmlSerialization.WriteToXmlFile<List<People>>("C:\people.txt", people);
+            XmlSerialization.WriteToXmlFile<List<Movie>>("Movies.xml", ChildrenMovies);
+        }
+
+        private void timerFormMovieChildrenForDownload_Tick(object sender, EventArgs e)
+        {
+            Console.WriteLine("The 'timerFormMovieCHildrenForDownload' timer is has ended.");
+            if ( ChildrenMovies == null)
+            {
+                LoadMoviesFromXml();
+                Console.WriteLine("ChildrenMovies has been loaded from Movies.xml");
+            }
+            timerFormMovieChildrenForDownload.Enabled = false;
+            
+        }
+
+
 
 
     }

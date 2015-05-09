@@ -15,8 +15,17 @@ namespace ChildrenDeffenderForm
     public partial class FormLogin : Form
     {
 
-        List<User> LoginUsers;
-        String ConfigUserImagesDir = @"D:\Minden\Gabika dolgai\BME\Google Drive\VG\ChildrenDeffender\Images\Users\";
+        public List<User> LoginUsers;
+
+        public ChildrenDeffenderConfig Config;
+
+        //public ConfigHandler TheConfigHandler;
+
+        //public static ChildrenDeffenderConfig Config;
+
+        //public Config ChildrenDeffenderConfigs;
+
+
 
         public FormLogin()
         {
@@ -30,7 +39,7 @@ namespace ChildrenDeffenderForm
 
             // MEGOLDÁS 2 - új form és a régi elrejtése
             this.Hide();
-            FormMovieChildren form = new FormMovieChildren();
+            FormMovieChildren form = new FormMovieChildren(Config);
             form.Show();
 
 
@@ -56,7 +65,7 @@ namespace ChildrenDeffenderForm
         private void buttonLoginParent_Click(object sender, EventArgs e)
         {
             this.Hide();
-            FormMovieParent form = new FormMovieParent();
+            FormMovieParent form = new FormMovieParent(Config);
             form.Show();
 
             // Másik megoldás
@@ -69,6 +78,18 @@ namespace ChildrenDeffenderForm
         private void FormLogin_Load(object sender, EventArgs e)
         {
             GetUsersForLogin();
+
+            Config = new ChildrenDeffenderConfig();
+            ConfigHandler handler = new ConfigHandler();
+
+            if (!handler.LoadConfigsFromXML(Config))
+            {
+                MessageBox.Show("Hiányzó \"Config.xml\" fájl! Alapértelmezett config adatok betöltve és lementve.");
+                handler.SaveConfigsToXML(Config);
+            }
+
+            Common.PlaySound(Config.SoundMenuWelcome);
+             
         }
 
 
@@ -85,7 +106,7 @@ namespace ChildrenDeffenderForm
 
 
                 // ListView-be berakás
-                String IndexImageFilePath = ConfigUserImagesDir;
+                String IndexImageFilePath = Config.UserImagesDir;
                 int i = 0;
                 foreach (var item in LoginUsers)
                 {
@@ -141,14 +162,57 @@ namespace ChildrenDeffenderForm
         private void FormSwitchToChildrenForm ()
         {
             this.Hide();
-            FormMovieChildren form = new FormMovieChildren();
+            FormMovieChildren form = new FormMovieChildren(Config);
             form.Show();
         }
         private void FormSwitchToParentForm ()
         {
             this.Hide();
-            FormMovieParent form = new FormMovieParent();
+            FormMovieParent form = new FormMovieParent(Config);
             form.Show();
+        }
+
+        private void listViewUsersForLogin_MouseClick(object sender, MouseEventArgs e)
+        {
+
+            ListViewItem listViewItem = new ListViewItem();
+            listViewItem = listViewUsersForLogin.FocusedItem;
+
+            int userID = listViewItem.ImageIndex;
+            // TODO: értelmesebben kinyerni az ID-t !!!!!!!!!!!!!!
+
+
+            foreach (var item in LoginUsers)
+            {
+                if (item.UserID == userID)
+                {
+                    String soundFileDir = Config.UserSoundsDir;
+
+                    //String soundFileName = item.SoundFileName;    // TODO: sound paraméter vagy name paraméter?
+                    String soundFileName = item.UserName;
+
+                    if ( soundFileName != null )
+                    {
+                        soundFileName = soundFileName.Trim() + Config.UserSoundsFormat;
+                        System.Media.SoundPlayer player = new System.Media.SoundPlayer(soundFileDir + soundFileName);
+                        player.Play();
+                        break;
+                    }
+
+                }
+            }
+
+        }
+
+        private void pictureBoxLoginExit_Click(object sender, EventArgs e)
+        {
+            // TODO: Exit Sound
+            Common.PlaySound(Config.SoundMenuExit);
+        }
+
+        private void pictureBoxLoginExit_DoubleClick(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
 
 
