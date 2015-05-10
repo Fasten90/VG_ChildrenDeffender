@@ -57,7 +57,7 @@
             this.listViewMoviesForChildren.Location = new System.Drawing.Point(0, 0);
             this.listViewMoviesForChildren.Margin = new System.Windows.Forms.Padding(0);
             this.listViewMoviesForChildren.Name = "listViewMoviesForChildren";
-            this.listViewMoviesForChildren.Size = new System.Drawing.Size(834, 166);
+            this.listViewMoviesForChildren.Size = new System.Drawing.Size(834, 172);
             this.listViewMoviesForChildren.TabIndex = 4;
             this.listViewMoviesForChildren.UseCompatibleStateImageBehavior = false;
             this.listViewMoviesForChildren.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listViewMoviesForChildren_MouseClick);
@@ -122,7 +122,7 @@
             this.splitContainerChildrenMovie.Panel2.Controls.Add(this.pictureBoxBack);
             this.splitContainerChildrenMovie.Panel2MinSize = 128;
             this.splitContainerChildrenMovie.Size = new System.Drawing.Size(834, 310);
-            this.splitContainerChildrenMovie.SplitterDistance = 166;
+            this.splitContainerChildrenMovie.SplitterDistance = 172;
             this.splitContainerChildrenMovie.SplitterWidth = 1;
             this.splitContainerChildrenMovie.TabIndex = 7;
             // 

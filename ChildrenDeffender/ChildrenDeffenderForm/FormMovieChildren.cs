@@ -230,6 +230,26 @@ namespace ChildrenDeffenderForm
 
          void ChildrenPlayMovie(Movie item)
          {
+             String linkType = item.LinkType.Trim();
+
+             if (linkType == "local")
+             {
+                 Common.PlayLocalMovie(item, Config);
+             }
+             else if (linkType == "youtube")
+             {
+                 Common.PlayNetMovie(item, this);
+             }
+             else
+             {
+                 Common.PlayLocalMovie(item, Config);
+             }
+
+             // TODO: ManyVIews++
+
+
+            // PLAYING LOCAL MOVIE
+             /*
              String moviename = item.MovieLink.Trim();
              String program = Config.MoviePlayer;
              String moviedir = Config.MoviesDir;
@@ -243,16 +263,27 @@ namespace ChildrenDeffenderForm
              String command = program;
              String argument = moviedir + moviename;
              System.Diagnostics.Process.Start(command, argument);
+             */
 
 
 
+
+
+
+             // FOR TEST
              //String command = "\"" + program + "\"";
              //System.Diagnostics.Process.Start(command);
 
              // JÓ: program
              // NEM JÓ: "\"" + program + "\"; //  \"" + moviedir + moviename + "\""
 
-             // TODO: ManyVIews++
+             
+
+
+
+
+             // TODO:
+             // FOR VLC ..............
 
              /*
              // TODO: VLC, megbízhatatlannak tűnik és hiányzik a példakódból is valami .... 

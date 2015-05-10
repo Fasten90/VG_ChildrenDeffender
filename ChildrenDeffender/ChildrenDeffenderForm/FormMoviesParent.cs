@@ -238,7 +238,7 @@ namespace ChildrenDeffenderForm
         }
 
 
-        private void ReadDirForMovies()
+        private void ReadDirForUploadMovies()
         {
             String Dir = Config.MoviesDir;
 
@@ -264,7 +264,7 @@ namespace ChildrenDeffenderForm
                     //MovieName = "Micimackó",
                     //movies[i].MovieName = textBoxMovieName.Text,
                     //MovieLink = "C:\\",
-                    //LinkType = "local",
+                    movie.LinkType = "local";
                     //Language = "HU",
                     //NameEnglish = "Winnie the Pooh",
                     //Category = "állatos",
@@ -339,7 +339,7 @@ namespace ChildrenDeffenderForm
 
         private void buttonReadMovieDir_Click(object sender, EventArgs e)
         {
-            ReadDirForMovies();
+            ReadDirForUploadMovies();
         }
 
         private void buttonMovieRefresh_Click(object sender, EventArgs e)
@@ -437,7 +437,7 @@ namespace ChildrenDeffenderForm
             mciSendString("pause Som", null, 0, 0);
 
             String dir = Config.MovieSoundsDir;
-            String fileName =  dataGridViewMovies.CurrentRow.Cells["MovieName"].Value.ToString();
+            String fileName =  dataGridViewMovies.CurrentRow.Cells["NameEnglish"].Value.ToString().Trim();
             String format = Config.MovieSoundsFormat;
 
             SaveMCI(dir + fileName + format);
