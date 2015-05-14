@@ -76,7 +76,6 @@
             this.ClientSize = new System.Drawing.Size(784, 362);
             this.Controls.Add(this.pictureBoxLoginExit);
             this.Controls.Add(this.listViewUsersForLogin);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(256, 128);
             this.Name = "FormLogin";
             this.Text = "FormLogin";

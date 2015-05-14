@@ -57,9 +57,6 @@ namespace ChildrenDeffenderForm
 
                 // ListView-be berakás
                 String IndexImageFilePath = Config.MovieIndexImagesDir;
-                listViewIndexImagesForParent.Items.Clear(); // összes törlése
-                imageListIndexImagesForParent.Images.Clear();   // összes képecske törlécskéje faszom
-
                 foreach (var item in IndexImages)
                 {
                     String path = IndexImageFilePath + item.IndexImageName;
@@ -125,8 +122,7 @@ namespace ChildrenDeffenderForm
             {
                 //MovieID = 11,
                 //MovieID = int.Parse(textBoxMovieID.Text), // Good, but so MAX ID
-                MovieID = GetMovieMaxID() + 1,
-
+                MovieID = GetMaxID() + 1,
                 //MovieName = "Micimackó",
                 MovieName = textBoxMovieName.Text,
                 //MovieLink = "C:\\",
@@ -167,58 +163,18 @@ namespace ChildrenDeffenderForm
             Movie modifiedMovie = new Movie();
 
             // TODO: lecserélni majd valami objektumosabbra?
-
             modifiedMovie.MovieID = int.Parse(dataGridViewMovies.CurrentRow.Cells["MovieID"].Value.ToString());
 
             modifiedMovie.MovieName = dataGridViewMovies.CurrentRow.Cells["MovieName"].Value.ToString().Trim(); // végéről leszedi a white space-eket
 
-
-            // TODO: Lehet, hogy ezekre jobb lenne külön függvény...
-            //modifiedMovie.MovieLink = dataGridViewMovies.CurrentRow.Cells["MovieLink"].Value.ToString();
-            var value = dataGridViewMovies.CurrentRow.Cells["MovieLink"].Value;
-            if ( value!= null)
-            {
-                modifiedMovie.MovieLink = value.ToString().Trim();
-            }
-
-            var linktype = dataGridViewMovies.CurrentRow.Cells["LinkType"].Value;
-            if (linktype != null)
-            {
-                modifiedMovie.LinkType = linktype.ToString().Trim();
-            }
-            else
-            {
-                linktype = "";
-            }
-
-            //modifiedMovie.Language = dataGridViewMovies.CurrentRow.Cells["Language"].Value.ToString();
-            var language = dataGridViewMovies.CurrentRow.Cells["Language"].Value;
-            if (language != null)
-            {
-                modifiedMovie.Language = language.ToString().Trim();
-            }
-
-            //modifiedMovie.NameEnglish = dataGridViewMovies.CurrentRow.Cells["NameEnglish"].Value.ToString();
-            var nameEnglish = dataGridViewMovies.CurrentRow.Cells["NameEnglish"].Value;
-            if (nameEnglish != null)
-            {
-                modifiedMovie.NameEnglish = nameEnglish.ToString().Trim();
-            }
-
-
-            //modifiedMovie.Category = dataGridViewMovies.CurrentRow.Cells["Category"].Value.ToString();
-            var category = dataGridViewMovies.CurrentRow.Cells["Category"].Value;
-            if (category != null)
-            {
-                modifiedMovie.Category = category.ToString().Trim();
-            }
-
-
+            modifiedMovie.MovieLink = dataGridViewMovies.CurrentRow.Cells["MovieLink"].Value.ToString();
+            modifiedMovie.LinkType = dataGridViewMovies.CurrentRow.Cells["LinkType"].Value.ToString();
+            modifiedMovie.Language = dataGridViewMovies.CurrentRow.Cells["Language"].Value.ToString();
+            modifiedMovie.NameEnglish = dataGridViewMovies.CurrentRow.Cells["NameEnglish"].Value.ToString();
+            modifiedMovie.Category = dataGridViewMovies.CurrentRow.Cells["Category"].Value.ToString();
             modifiedMovie.MinAge = short.Parse(dataGridViewMovies.CurrentRow.Cells["MinAge"].Value.ToString());
             modifiedMovie.ManyViews  = int.Parse(dataGridViewMovies.CurrentRow.Cells["ManyViews"].Value.ToString());        
             modifiedMovie.DateAdded = DateTime.Parse(dataGridViewMovies.CurrentRow.Cells["DateAdded"].Value.ToString());
-
-            // MOVIE ÖSSZEÁLLÍTVA
 
 
             using (var client = new HttpClient())
@@ -304,7 +260,7 @@ namespace ChildrenDeffenderForm
                     movie.MovieName = movie.MovieLink;                                  // name = link ideiglenesen    
 
                     //MovieID = 11,
-                    movie.MovieID = GetMovieMaxID() + 1 + i;
+                    movie.MovieID = GetMaxID() + 1 + i;
                     //MovieName = "Micimackó",
                     //movies[i].MovieName = textBoxMovieName.Text,
                     //MovieLink = "C:\\",
@@ -391,7 +347,7 @@ namespace ChildrenDeffenderForm
             GetMovies();
         }
 
-        private int GetMovieMaxID()
+        private int GetMaxID()
         {
             int max = Movies.Max(t => t.MovieID);
 
@@ -528,114 +484,7 @@ namespace ChildrenDeffenderForm
 
         private void buttonAddIndexImage_Click(object sender, EventArgs e)
         {
-
             // TODO: Add Image
-            String fileName = null;
-            Stream myStream = null;
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
-
-
-            openFileDialog1.InitialDirectory = Config.MovieIndexImagesDir;
-            openFileDialog1.Filter = "jpg files (*.jpg)|*.jpg|All files (*.*)|*.*";
-            openFileDialog1.FilterIndex = 2;
-            openFileDialog1.RestoreDirectory = true;
-
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    if ((myStream = openFileDialog1.OpenFile()) != null)
-                    {
-                        using (myStream)
-                        {
-                            // Insert code to read the stream here.
-                        }
-                        //filePath = openFileDialog1.FileName;  // full path!!
-                        fileName = openFileDialog1.SafeFileName;
-
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
-                    return;
-                }
-            }
-
-            if (fileName != null)
-            {
-                // new IndexImage
-                var indexImage = new IndexImage
-                {
-                    IndexImageID = IndexImages.Max(t => t.IndexImageID) + 1,    // Max + 1
-                    IndexImageName = fileName,
-                    Type = "Movie",
-                    SizeX = 128,
-                    SizeY = 128,
-                    IsTransparency = false,
-                    Version = 1,
-                    DateAdded = DateTime.Now
-                };
-
-                UploadIndexImage(indexImage);
-
-            }
-
-        }
-
-
-        private async void UploadIndexImage ( IndexImage indexImage)
-        {
-            using (var client = new HttpClient())
-            {
-                // Post
-                await client.PostAsJsonAsync("http://localhost:3051/api/IndexImage", indexImage);
-
-                // Get
-                GetIndexImagesForParent();
-            }
-        }
-
-
-        private async void btMovieDelete_Click(object sender, EventArgs e)
-        {
-
-            int id;
-
-            id = int.Parse(dataGridViewMovies.CurrentRow.Cells["MovieID"].Value.ToString());
-
-            using (var client = new HttpClient())
-            {
-
-                await client.DeleteAsync(string.Format("http://localhost:3051/api/Movie/{0}", id));
-
-                //resp.EnsureSuccessStatusCode();
-                //var product = resp.Content.ReadAsAsync<Product>().Result;
-
-
-                // Succesful textbox
-                MessageBox.Show("Sikeres törlés");
-                Console.WriteLine("Movie: {0} has been deleted.",id);
-
-                // Refresh
-                GetMovies();
-                Console.WriteLine("Movies has been refreshed.");
-            }
-        }
-
-        private void listViewIndexImagesForParent_MouseClick(object sender, MouseEventArgs e)
-        {
-
-            ListViewItem listViewItem = new ListViewItem();
-            listViewItem = listViewIndexImagesForParent.FocusedItem;
-
-            int imageID = listViewItem.ImageIndex;
-
-            // az adott image kiírása
-
-            labelSelectedIndexImage.Visible = true;
-            labelSelectedIndexImage.Text = "IndexImageID: " + imageID.ToString();
-
 
         }
 

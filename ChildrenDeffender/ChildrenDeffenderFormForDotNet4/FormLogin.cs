@@ -82,13 +82,8 @@ namespace ChildrenDeffenderForm
             Config = new ChildrenDeffenderConfig();
             ConfigHandler handler = new ConfigHandler();
 
-            if (handler.LoadConfigsFromXML(Config))
-            {   // Ha sikerült betölteni a config fájlt
-                Console.WriteLine("Config.xml has been loaded.");
-            }
-            else
-            {   // Ha nem sikerült betölteni a config fájlt
-                Console.WriteLine("Cannot load Config.xml, loaded standard values.");
+            if (!handler.LoadConfigsFromXML(Config))
+            {
                 MessageBox.Show("Hiányzó \"Config.xml\" fájl! Alapértelmezett config adatok betöltve és lementve.");
                 handler.SaveConfigsToXML(Config);
             }

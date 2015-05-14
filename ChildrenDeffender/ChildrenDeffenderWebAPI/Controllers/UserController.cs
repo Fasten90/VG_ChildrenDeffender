@@ -20,7 +20,7 @@ namespace ChildrenDeffenderWebAPI.Controllers
 
             using (ChildrenDeffenderEntities context = new ChildrenDeffenderEntities())
             {
-                var items = new List<User>(context.User);
+                var items = new List<User>(context.User); // TODO: ITT EXCEPTION VAN, HA NINCS SZERVER
                 if (items == null)
                 {
                     return NotFound();

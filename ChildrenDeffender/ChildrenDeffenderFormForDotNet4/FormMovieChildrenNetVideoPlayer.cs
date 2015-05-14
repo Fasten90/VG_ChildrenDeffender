@@ -138,31 +138,6 @@ namespace ChildrenDeffenderForm
             // TODO:....
         }
 
-        private void FormMovieChildrenNetVideoPlayer_Load(object sender, EventArgs e)
-        {
-            // FOR FULL SCREEN
-
-            //this.TopMost = true;  // nem kell, tiltja az ALT+TAB-ot
-
-            // first, normal ??? after maximized... ?
-            this.WindowState = FormWindowState.Normal;
-
-            // minimize, maximize, close button hide
-           
-            this.FormBorderStyle = FormBorderStyle.None;
-
-            // max size
-            this.WindowState = FormWindowState.Maximized;
-
-            //Activate();
-
-            //this.Bounds = Screen.PrimaryScreen.;
-
-            //this.Bounds = Screen.PrimaryScreen.Bounds;
-
-            
-        }
-
 
     }
 }

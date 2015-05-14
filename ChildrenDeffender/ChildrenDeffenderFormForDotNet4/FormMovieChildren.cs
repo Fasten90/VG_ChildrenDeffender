@@ -11,9 +11,8 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Vlc;
-using Vlc.DotNet.Forms;
-using Vlc.DotNet.Core;
+
+
 
 namespace ChildrenDeffenderForm
 {
@@ -38,8 +37,6 @@ namespace ChildrenDeffenderForm
 
             GetIndexImagesForChildren();
             GetMoviesForChildren();
-
-
 
             // TODO: LOAD FROM XML
             //LoadMoviesFromXml();
@@ -132,7 +129,7 @@ namespace ChildrenDeffenderForm
 
         }
 
-        private async void GetMoviesForChildren()
+        private async void  GetMoviesForChildren()
         {
             using (var client = new HttpClient())
             {
@@ -144,7 +141,7 @@ namespace ChildrenDeffenderForm
 
                     ChildrenMovies = movies;
 
-                    SaveMoviesToXml();  // Lehet, hogy nem ide kéne tenni...
+                    SaveMoviesToXml();
 
                 }
                 catch (Exception e)
@@ -182,42 +179,30 @@ namespace ChildrenDeffenderForm
                     try
                     {
                         LoadIndexImagesFromXml();
-                        Console.WriteLine("IndexImages has been loaded from Movies.xml");
                     }
                     catch (Exception ex)
                     {
                         Console.WriteLine("LoadIndexImagesFromXml is failed.");
                     }
-                    
+                    Console.WriteLine("IndexImages has been loaded from Movies.xml");
                 }
- 
+
+                // ListView-be berakás
+                String IndexImageFilePath = Config.MovieIndexImagesDir;
+                foreach (var item in ChildrenIndexImages)
+                {
+                    String path = IndexImageFilePath + item.IndexImageName;
+                    imageListMoviesForChildren.Images.Add(Image.FromFile(path));    // TODO: hiányzó képre exceptiont dob, lekezelni
+                    ListViewItem listViewMovie = new ListViewItem();
+                    listViewMovie.ImageIndex = item.IndexImageID;
+                    listViewMoviesForChildren.Items.Add(listViewMovie);
+                }
+                // end of ListView
+                
             }
 
-            // Itt lehet sort...
-            // TODO: GOND: a listában való sorrendnél feltételezzük az = IndexImageID-t...
-            // így ha ez megváltozik, akkor más mese hangját játsszuk le, meg ID-je van mögötte....
-            // TODO: BUGFIX
-            //List<IndexImage> SortedList = ChildrenIndexImages.OrderBy(p => p.DateAdded).ToList();
-            //ChildrenIndexImages = SortedList;
 
 
-            LoadIndexImagesForChildren();
-
-        }
-
-        private void LoadIndexImagesForChildren()
-        {
-            // ListView-be berakás
-            String IndexImageFilePath = Config.MovieIndexImagesDir;
-            foreach (var item in ChildrenIndexImages)
-            {
-                String path = IndexImageFilePath + item.IndexImageName;
-                imageListMoviesForChildren.Images.Add(Image.FromFile(path));    // TODO: hiányzó képre exceptiont dob, lekezelni
-                ListViewItem listViewMovie = new ListViewItem();
-                listViewMovie.ImageIndex = item.IndexImageID;
-                listViewMoviesForChildren.Items.Add(listViewMovie);
-            }
-            // end of ListView
         }
 
         private void listViewMoviesForChildren_SelectedIndexChanged(object sender, EventArgs e)

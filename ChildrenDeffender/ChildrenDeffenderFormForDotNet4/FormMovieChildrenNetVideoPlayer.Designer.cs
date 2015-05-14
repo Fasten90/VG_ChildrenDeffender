@@ -40,7 +40,7 @@
             this.webBrowserForChildrenMovie.Location = new System.Drawing.Point(0, 0);
             this.webBrowserForChildrenMovie.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowserForChildrenMovie.Name = "webBrowserForChildrenMovie";
-            this.webBrowserForChildrenMovie.Size = new System.Drawing.Size(784, 474);
+            this.webBrowserForChildrenMovie.Size = new System.Drawing.Size(784, 362);
             this.webBrowserForChildrenMovie.TabIndex = 0;
             this.webBrowserForChildrenMovie.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowserForChildrenMovie_DocumentCompleted);
             this.webBrowserForChildrenMovie.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.webBrowserForChildrenMovie_PreviewKeyDown);
@@ -62,15 +62,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 474);
+            this.ClientSize = new System.Drawing.Size(784, 362);
             this.Controls.Add(this.pictureBoxNetBack);
             this.Controls.Add(this.webBrowserForChildrenMovie);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(512, 512);
             this.Name = "FormMovieChildrenNetVideoPlayer";
             this.Text = "FormMovieChildrenNetVideoPlayer";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.FormMovieChildrenNetVideoPlayer_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxNetBack)).EndInit();
             this.ResumeLayout(false);
 

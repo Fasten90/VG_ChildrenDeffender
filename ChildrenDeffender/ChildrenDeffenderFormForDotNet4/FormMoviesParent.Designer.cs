@@ -29,14 +29,16 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMovieParent));
             this.dataGridViewMovies = new System.Windows.Forms.DataGridView();
             this.btUpload = new System.Windows.Forms.Button();
             this.btModify = new System.Windows.Forms.Button();
+            this.labelMovieID = new System.Windows.Forms.Label();
             this.labelMovieName = new System.Windows.Forms.Label();
+            this.textBoxMovieID = new System.Windows.Forms.TextBox();
             this.textBoxMovieName = new System.Windows.Forms.TextBox();
             this.buttonIndexImageRefresh = new System.Windows.Forms.Button();
             this.labelMovieIndexImagesDir = new System.Windows.Forms.Label();
+            this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.buttonMovieIndexImagesDir = new System.Windows.Forms.Button();
             this.buttonBack = new System.Windows.Forms.Button();
             this.buttonReadMovieDir = new System.Windows.Forms.Button();
@@ -51,8 +53,6 @@
             this.buttonSoundSave = new System.Windows.Forms.Button();
             this.buttonSoundLoad = new System.Windows.Forms.Button();
             this.labelRecording = new System.Windows.Forms.Label();
-            this.btMovieDelete = new System.Windows.Forms.Button();
-            this.labelSelectedIndexImage = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMovies)).BeginInit();
             this.SuspendLayout();
             // 
@@ -68,7 +68,7 @@
             // 
             // btUpload
             // 
-            this.btUpload.Location = new System.Drawing.Point(12, 254);
+            this.btUpload.Location = new System.Drawing.Point(12, 225);
             this.btUpload.Name = "btUpload";
             this.btUpload.Size = new System.Drawing.Size(75, 23);
             this.btUpload.TabIndex = 1;
@@ -78,7 +78,7 @@
             // 
             // btModify
             // 
-            this.btModify.Location = new System.Drawing.Point(12, 225);
+            this.btModify.Location = new System.Drawing.Point(12, 254);
             this.btModify.Name = "btModify";
             this.btModify.Size = new System.Drawing.Size(75, 23);
             this.btModify.TabIndex = 2;
@@ -86,25 +86,41 @@
             this.btModify.UseVisualStyleBackColor = true;
             this.btModify.Click += new System.EventHandler(this.btModify_Click);
             // 
+            // labelMovieID
+            // 
+            this.labelMovieID.AutoSize = true;
+            this.labelMovieID.Location = new System.Drawing.Point(93, 230);
+            this.labelMovieID.Name = "labelMovieID";
+            this.labelMovieID.Size = new System.Drawing.Size(47, 13);
+            this.labelMovieID.TabIndex = 3;
+            this.labelMovieID.Text = "MovieID";
+            // 
             // labelMovieName
             // 
             this.labelMovieName.AutoSize = true;
-            this.labelMovieName.Location = new System.Drawing.Point(93, 259);
+            this.labelMovieName.Location = new System.Drawing.Point(197, 230);
             this.labelMovieName.Name = "labelMovieName";
             this.labelMovieName.Size = new System.Drawing.Size(64, 13);
             this.labelMovieName.TabIndex = 4;
             this.labelMovieName.Text = "MovieName";
             // 
+            // textBoxMovieID
+            // 
+            this.textBoxMovieID.Location = new System.Drawing.Point(146, 227);
+            this.textBoxMovieID.Name = "textBoxMovieID";
+            this.textBoxMovieID.Size = new System.Drawing.Size(45, 20);
+            this.textBoxMovieID.TabIndex = 5;
+            // 
             // textBoxMovieName
             // 
-            this.textBoxMovieName.Location = new System.Drawing.Point(163, 256);
+            this.textBoxMovieName.Location = new System.Drawing.Point(267, 228);
             this.textBoxMovieName.Name = "textBoxMovieName";
             this.textBoxMovieName.Size = new System.Drawing.Size(100, 20);
             this.textBoxMovieName.TabIndex = 6;
             // 
             // buttonIndexImageRefresh
             // 
-            this.buttonIndexImageRefresh.Location = new System.Drawing.Point(12, 283);
+            this.buttonIndexImageRefresh.Location = new System.Drawing.Point(12, 286);
             this.buttonIndexImageRefresh.Name = "buttonIndexImageRefresh";
             this.buttonIndexImageRefresh.Size = new System.Drawing.Size(127, 23);
             this.buttonIndexImageRefresh.TabIndex = 7;
@@ -115,7 +131,7 @@
             // labelMovieIndexImagesDir
             // 
             this.labelMovieIndexImagesDir.AutoSize = true;
-            this.labelMovieIndexImagesDir.Location = new System.Drawing.Point(314, 288);
+            this.labelMovieIndexImagesDir.Location = new System.Drawing.Point(314, 291);
             this.labelMovieIndexImagesDir.Name = "labelMovieIndexImagesDir";
             this.labelMovieIndexImagesDir.Size = new System.Drawing.Size(112, 13);
             this.labelMovieIndexImagesDir.TabIndex = 8;
@@ -123,7 +139,7 @@
             // 
             // buttonMovieIndexImagesDir
             // 
-            this.buttonMovieIndexImagesDir.Location = new System.Drawing.Point(145, 283);
+            this.buttonMovieIndexImagesDir.Location = new System.Drawing.Point(145, 286);
             this.buttonMovieIndexImagesDir.Name = "buttonMovieIndexImagesDir";
             this.buttonMovieIndexImagesDir.Size = new System.Drawing.Size(163, 23);
             this.buttonMovieIndexImagesDir.TabIndex = 9;
@@ -133,7 +149,7 @@
             // 
             // buttonBack
             // 
-            this.buttonBack.Location = new System.Drawing.Point(12, 341);
+            this.buttonBack.Location = new System.Drawing.Point(12, 344);
             this.buttonBack.Name = "buttonBack";
             this.buttonBack.Size = new System.Drawing.Size(75, 23);
             this.buttonBack.TabIndex = 10;
@@ -143,7 +159,7 @@
             // 
             // buttonReadMovieDir
             // 
-            this.buttonReadMovieDir.Location = new System.Drawing.Point(12, 312);
+            this.buttonReadMovieDir.Location = new System.Drawing.Point(12, 315);
             this.buttonReadMovieDir.Name = "buttonReadMovieDir";
             this.buttonReadMovieDir.Size = new System.Drawing.Size(95, 23);
             this.buttonReadMovieDir.TabIndex = 11;
@@ -154,7 +170,7 @@
             // labelMoviesDir
             // 
             this.labelMoviesDir.AutoSize = true;
-            this.labelMoviesDir.Location = new System.Drawing.Point(113, 317);
+            this.labelMoviesDir.Location = new System.Drawing.Point(113, 320);
             this.labelMoviesDir.Name = "labelMoviesDir";
             this.labelMoviesDir.Size = new System.Drawing.Size(57, 13);
             this.labelMoviesDir.TabIndex = 12;
@@ -163,7 +179,7 @@
             // buttonMovieRefresh
             // 
             this.buttonMovieRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonMovieRefresh.Location = new System.Drawing.Point(174, 225);
+            this.buttonMovieRefresh.Location = new System.Drawing.Point(761, 225);
             this.buttonMovieRefresh.Name = "buttonMovieRefresh";
             this.buttonMovieRefresh.Size = new System.Drawing.Size(75, 23);
             this.buttonMovieRefresh.TabIndex = 13;
@@ -182,7 +198,6 @@
             this.listViewIndexImagesForParent.Size = new System.Drawing.Size(824, 93);
             this.listViewIndexImagesForParent.TabIndex = 14;
             this.listViewIndexImagesForParent.UseCompatibleStateImageBehavior = false;
-            this.listViewIndexImagesForParent.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listViewIndexImagesForParent_MouseClick);
             // 
             // imageListIndexImagesForParent
             // 
@@ -192,7 +207,7 @@
             // 
             // buttonExitParent
             // 
-            this.buttonExitParent.Location = new System.Drawing.Point(93, 341);
+            this.buttonExitParent.Location = new System.Drawing.Point(93, 344);
             this.buttonExitParent.Name = "buttonExitParent";
             this.buttonExitParent.Size = new System.Drawing.Size(75, 23);
             this.buttonExitParent.TabIndex = 15;
@@ -203,7 +218,7 @@
             // buttonAddIndexImage
             // 
             this.buttonAddIndexImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonAddIndexImage.Location = new System.Drawing.Point(526, 225);
+            this.buttonAddIndexImage.Location = new System.Drawing.Point(761, 341);
             this.buttonAddIndexImage.Name = "buttonAddIndexImage";
             this.buttonAddIndexImage.Size = new System.Drawing.Size(75, 23);
             this.buttonAddIndexImage.TabIndex = 16;
@@ -214,19 +229,18 @@
             // buttonAddSound
             // 
             this.buttonAddSound.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonAddSound.Location = new System.Drawing.Point(526, 254);
+            this.buttonAddSound.Location = new System.Drawing.Point(761, 370);
             this.buttonAddSound.Name = "buttonAddSound";
             this.buttonAddSound.Size = new System.Drawing.Size(75, 23);
             this.buttonAddSound.TabIndex = 17;
             this.buttonAddSound.Text = "Add Sound";
             this.buttonAddSound.UseVisualStyleBackColor = true;
-            this.buttonAddSound.Visible = false;
             this.buttonAddSound.Click += new System.EventHandler(this.buttonAddSound_Click);
             // 
             // buttonRecord
             // 
             this.buttonRecord.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonRecord.Location = new System.Drawing.Point(747, 225);
+            this.buttonRecord.Location = new System.Drawing.Point(747, 254);
             this.buttonRecord.Name = "buttonRecord";
             this.buttonRecord.Size = new System.Drawing.Size(89, 23);
             this.buttonRecord.TabIndex = 18;
@@ -237,7 +251,7 @@
             // buttonSoundSave
             // 
             this.buttonSoundSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonSoundSave.Location = new System.Drawing.Point(761, 254);
+            this.buttonSoundSave.Location = new System.Drawing.Point(761, 283);
             this.buttonSoundSave.Name = "buttonSoundSave";
             this.buttonSoundSave.Size = new System.Drawing.Size(75, 23);
             this.buttonSoundSave.TabIndex = 19;
@@ -248,7 +262,7 @@
             // buttonSoundLoad
             // 
             this.buttonSoundLoad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonSoundLoad.Location = new System.Drawing.Point(761, 283);
+            this.buttonSoundLoad.Location = new System.Drawing.Point(761, 312);
             this.buttonSoundLoad.Name = "buttonSoundLoad";
             this.buttonSoundLoad.Size = new System.Drawing.Size(75, 23);
             this.buttonSoundLoad.TabIndex = 20;
@@ -259,40 +273,18 @@
             // labelRecording
             // 
             this.labelRecording.AutoSize = true;
-            this.labelRecording.Location = new System.Drawing.Point(676, 230);
+            this.labelRecording.Location = new System.Drawing.Point(676, 259);
             this.labelRecording.Name = "labelRecording";
             this.labelRecording.Size = new System.Drawing.Size(65, 13);
             this.labelRecording.TabIndex = 21;
             this.labelRecording.Text = "Recording...";
             this.labelRecording.Visible = false;
             // 
-            // btMovieDelete
-            // 
-            this.btMovieDelete.Location = new System.Drawing.Point(93, 225);
-            this.btMovieDelete.Name = "btMovieDelete";
-            this.btMovieDelete.Size = new System.Drawing.Size(75, 23);
-            this.btMovieDelete.TabIndex = 22;
-            this.btMovieDelete.Text = "Delete";
-            this.btMovieDelete.UseVisualStyleBackColor = true;
-            this.btMovieDelete.Click += new System.EventHandler(this.btMovieDelete_Click);
-            // 
-            // labelSelectedIndexImage
-            // 
-            this.labelSelectedIndexImage.AutoSize = true;
-            this.labelSelectedIndexImage.Location = new System.Drawing.Point(526, 354);
-            this.labelSelectedIndexImage.Name = "labelSelectedIndexImage";
-            this.labelSelectedIndexImage.Size = new System.Drawing.Size(73, 13);
-            this.labelSelectedIndexImage.TabIndex = 23;
-            this.labelSelectedIndexImage.Text = "IndexImageID";
-            this.labelSelectedIndexImage.Visible = false;
-            // 
             // FormMovieParent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(848, 478);
-            this.Controls.Add(this.labelSelectedIndexImage);
-            this.Controls.Add(this.btMovieDelete);
             this.Controls.Add(this.labelRecording);
             this.Controls.Add(this.buttonSoundLoad);
             this.Controls.Add(this.buttonSoundSave);
@@ -309,12 +301,12 @@
             this.Controls.Add(this.labelMovieIndexImagesDir);
             this.Controls.Add(this.buttonIndexImageRefresh);
             this.Controls.Add(this.textBoxMovieName);
+            this.Controls.Add(this.textBoxMovieID);
             this.Controls.Add(this.labelMovieName);
+            this.Controls.Add(this.labelMovieID);
             this.Controls.Add(this.btModify);
             this.Controls.Add(this.btUpload);
             this.Controls.Add(this.dataGridViewMovies);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(512, 512);
             this.Name = "FormMovieParent";
             this.Text = "ChildrenDeffender - Parent - Movie";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -330,10 +322,13 @@
         private System.Windows.Forms.DataGridView dataGridViewMovies;
         private System.Windows.Forms.Button btUpload;
         private System.Windows.Forms.Button btModify;
+        private System.Windows.Forms.Label labelMovieID;
         private System.Windows.Forms.Label labelMovieName;
+        private System.Windows.Forms.TextBox textBoxMovieID;
         private System.Windows.Forms.TextBox textBoxMovieName;
         private System.Windows.Forms.Button buttonIndexImageRefresh;
         private System.Windows.Forms.Label labelMovieIndexImagesDir;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
         private System.Windows.Forms.Button buttonMovieIndexImagesDir;
         private System.Windows.Forms.Button buttonBack;
         private System.Windows.Forms.Button buttonReadMovieDir;
@@ -348,8 +343,6 @@
         private System.Windows.Forms.Button buttonSoundSave;
         private System.Windows.Forms.Button buttonSoundLoad;
         private System.Windows.Forms.Label labelRecording;
-        private System.Windows.Forms.Button btMovieDelete;
-        private System.Windows.Forms.Label labelSelectedIndexImage;
     }
 }
 
