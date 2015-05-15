@@ -79,10 +79,14 @@ namespace ChildrenDeffenderForm
                 case Keys.Up:
                     Common.VolumeInc(this);
                     break;
+                case Keys.Escape:
+                    ThisFormSwitchToBackForm();
+                    break;
                 default:
                     return;
-                    break;
+                    //break;
             }
+            Console.WriteLine("KeyDown {0}",e.KeyCode);
 
 
         }
@@ -105,6 +109,7 @@ namespace ChildrenDeffenderForm
            catch (Exception e)  // Valamiért exceptiont dob a fenti.......................... TODO: BUG: EXCEPTION
            {
                Console.WriteLine("Mouse event for pause on youtube.");
+               Console.WriteLine("Error message: {0}.", e.Message);
            }
         }
         //*/
@@ -126,12 +131,19 @@ namespace ChildrenDeffenderForm
 
         private void pictureBoxNetBack_DoubleClick(object sender, EventArgs e)
         {
+            ThisFormSwitchToBackForm();
+        }
+
+
+
+        private void ThisFormSwitchToBackForm()
+        {
             this.Close();
             //Form form = new Form();   // NEED, IF NEW
             //form.Show();
             backForm.Show();
-            
         }
+
 
         private void webBrowserForChildrenMovie_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {

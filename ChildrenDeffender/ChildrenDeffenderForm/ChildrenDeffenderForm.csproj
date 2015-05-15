@@ -58,10 +58,6 @@
     <ApplicationIcon>Lilla.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="NAudio, Version=1.7.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NAudio.1.7.3\lib\net35\NAudio.dll</HintPath>
       <Private>True</Private>
@@ -133,7 +129,6 @@
     <Compile Include="FormMoviesParent.Designer.cs">
       <DependentUpon>FormMoviesParent.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Category.cs">
       <DependentUpon>MovieContext.tt</DependentUpon>
     </Compile>
@@ -141,16 +136,6 @@
       <DependentUpon>MovieContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Movie.cs">
-      <DependentUpon>MovieContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\MovieContext.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MovieContext.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\MovieContext.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>MovieContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\MovieContext.Designer.cs">

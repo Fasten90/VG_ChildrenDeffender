@@ -9,24 +9,28 @@ namespace ChildrenDeffenderForm
     public  class ChildrenDeffenderConfig
     {
 
-
         // variables for Config
+
+        public String MoviesDir = @"D:\Minden\Mese\"; // TODO: ez legyen lista ??
+        public String MoviePlayer = @"C:\Program Files (x86)\VideoLAN\VLC\vlc.exe";
+
+
+        // Images
         public  String MovieIndexImagesDir = @"D:\Minden\Gabika dolgai\BME\Google Drive\VG\ChildrenDeffender\Images\Movies\";
-
-        public  String MoviesDir = @"D:\Minden\Mese\"; // TODO: ez legyen lista ??
-
-        public  String MovieSoundsDir = @"D:\Minden\Gabika dolgai\BME\Google Drive\VG\ChildrenDeffender\Sounds\Movies\";
-
-        public  String MoviePlayer = @"C:\Program Files (x86)\VideoLAN\VLC\vlc.exe";
-        public  String MovieSoundsFormat = ".wav";
-
         public  String UserImagesDir = @"D:\Minden\Gabika dolgai\BME\Google Drive\VG\ChildrenDeffender\Images\Users\";
+        public  String MovieIndexImagesFormat = ".jpg";
+
+        // sounds dir
+        public  String MovieSoundsDir = @"D:\Minden\Gabika dolgai\BME\Google Drive\VG\ChildrenDeffender\Sounds\Movies\";
+        public  String MovieSoundsFormat = ".wav";
         public  String UserSoundsDir = @"D:\Minden\Gabika dolgai\BME\Google Drive\VG\ChildrenDeffender\Sounds\Users\";
         public  String UserSoundsFormat = ".wav";
 
-        public String SoundMenuExit = @"D:\Minden\Gabika dolgai\BME\Google Drive\VG\ChildrenDeffender\Sounds\Menu\Exit.wav";
-        public String SoundMenuBack = @"D:\Minden\Gabika dolgai\BME\Google Drive\VG\ChildrenDeffender\Sounds\Menu\Back.wav";
-        public String SoundMenuWelcome = @"D:\Minden\Gabika dolgai\BME\Google Drive\VG\ChildrenDeffender\Sounds\Menu\Welcome.wav";
+
+        // Menu sounds
+        public  String SoundMenuExit = @"D:\Minden\Gabika dolgai\BME\Google Drive\VG\ChildrenDeffender\Sounds\Menu\Exit.wav";
+        public  String SoundMenuBack = @"D:\Minden\Gabika dolgai\BME\Google Drive\VG\ChildrenDeffender\Sounds\Menu\Back.wav";
+        public  String SoundMenuWelcome = @"D:\Minden\Gabika dolgai\BME\Google Drive\VG\ChildrenDeffender\Sounds\Menu\Welcome.wav";
 
 
     }

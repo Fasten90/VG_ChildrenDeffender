@@ -119,6 +119,7 @@ namespace ChildrenDeffenderForm
                 catch (Exception e )
                 {
                     //LoadUsersFromXml();
+                    Console.WriteLine("Error message: {0}.", e.Message);
                     success = false;
                 }
 

@@ -41,7 +41,6 @@ namespace ChildrenDeffenderWebAPI.Controllers
             using (ChildrenDeffenderEntities context = new ChildrenDeffenderEntities())
             {
                 var movies = new List<Movie> (context.Movie);
-                //movies = ;
                 if (movies == null)
                 {
                     return NotFound();
@@ -50,15 +49,6 @@ namespace ChildrenDeffenderWebAPI.Controllers
             }
         }
         //*/
-
-
-        // GET api/movie
-        /* // Generált
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-        */
 
 
         // web api 2 gyak doksi
@@ -101,7 +91,7 @@ namespace ChildrenDeffenderWebAPI.Controllers
         [Route("api/Movie/UpdateMovie")]
         public IHttpActionResult Put([FromBody]Movie modifiedMovie)
         {
-            using (ChildrenDeffenderEntities context = new ChildrenDeffenderEntities())
+            using (ChildrenDeffenderEntities context = new ChildrenDeffenderEntities()) // TODO: try-catch
             {
 
                 context.Movie.Attach(modifiedMovie);
@@ -148,29 +138,5 @@ namespace ChildrenDeffenderWebAPI.Controllers
         }
 
 
-                /*
-        // GET api/movie/5
-        public string Get(int id)
-        {
-            return "value";
-        }
-        */
-
-        /*
-        // POST api/movie
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT api/movie/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/movie/5
-        public void Delete(int id)
-        {
-        }
-        */
     }
 }

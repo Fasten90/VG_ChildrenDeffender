@@ -50,9 +50,9 @@
             this.pictureBoxNetBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBoxNetBack.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxNetBack.Image")));
             this.pictureBoxNetBack.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBoxNetBack.InitialImage")));
-            this.pictureBoxNetBack.Location = new System.Drawing.Point(768, 0);
+            this.pictureBoxNetBack.Location = new System.Drawing.Point(752, 0);
             this.pictureBoxNetBack.Name = "pictureBoxNetBack";
-            this.pictureBoxNetBack.Size = new System.Drawing.Size(16, 16);
+            this.pictureBoxNetBack.Size = new System.Drawing.Size(32, 32);
             this.pictureBoxNetBack.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxNetBack.TabIndex = 1;
             this.pictureBoxNetBack.TabStop = false;

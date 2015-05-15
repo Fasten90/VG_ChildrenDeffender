@@ -36,99 +36,12 @@ namespace ChildrenDeffenderForm
         private void FormMovieChildren_Load(object sender, EventArgs e)
         {
 
-            GetIndexImagesForChildren();
+            //GetIndexImagesForChildren(); IndexImage table....
             GetMoviesForChildren();
-
-
 
             // TODO: LOAD FROM XML
             //LoadMoviesFromXml();
             //SaveMoviesToXml();
-
-            //
-            /*
-            // GOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOODDDDDDDDDDDDDDDDDDDD
-            imageListMoviesForChildren.Images.Add(Image.FromFile("c:\\Images\\image1.bmp"));      
-            //imageListMoviesForChildren.Images.Add(Bitmap.FromFile("c:\\Images\\image1.bmp"));
-
-            //this.listViewMoviesForChildren.View = View.LargeIcon;
-            //this.listViewMoviesForChildren.LargeImageList = this.imageListMoviesForChildren;
-            
-            ListViewItem listViewMovie = new ListViewItem();
-            listViewMovie.ImageIndex = 0;
-            listViewMovie.Text = "Test";
-            listViewMoviesForChildren.Items.Add(listViewMovie);
-            //*/
-
-
-
-            // GOOOOOOOOOOOOOOOOODDDDDDDDDDDDDDDDDDD
-            // READ DIR images
-            /*
-            string[] filePaths = Directory.GetFiles(@"D:\Minden\Gabika dolgai\ChildrenDeffender\Images\");
-
-            for (int i=0; i<filePaths.Length; i++)
-            {
-                imageListMoviesForChildren.Images.Add(Image.FromFile(filePaths[i]));
-                ListViewItem listViewMovie = new ListViewItem();
-                listViewMovie.ImageIndex = i;
-                listViewMoviesForChildren.Items.Add(listViewMovie);
-            }
-            */
-
-
-            /*
-            // NOT GOOD, a sleep nem jó benne, átrakva a lekérdező függvénybe
-            String IndexImageFilePath = @"D:\Minden\Gabika dolgai\ChildrenDeffender\Images\";
-            while (ChildrenIndexImages == null) System.Threading.Thread.Sleep(1000);
-            foreach ( var item in ChildrenIndexImages )
-            {
-                String path = IndexImageFilePath + item.IndexImageName;
-                imageListMoviesForChildren.Images.Add(Image.FromFile(path));
-                ListViewItem listViewMovie = new ListViewItem();
-                listViewMovie.ImageIndex = item.IndexImageID;
-                listViewMoviesForChildren.Items.Add(listViewMovie);
-            }
-            */
-
-
-
-            /*
-            // TEST CODE - DO NOT USE
-            this.listView1.View = View.LargeIcon;
-            this.imageList1.ImageSize = new Size(32, 32);
-            this.listView1.LargeImageList = this.imageList1;        // OK
-
-            //or
-            //this.listView1.View = View.SmallIcon;
-            //this.listView1.SmallImageList = this.imageList1;
-
-            for (int j = 0; j < this.imageList1.Images.Count; j++)
-            {
-                ListViewItem item = new ListViewItem();
-                item.ImageIndex = j;
-                this.listView1.Items.Add(item);
-            }
-            */
-
-
-            /*
-            // TEST CODE - DO NOT USE
-                ImageList il = new ImageList();
-                il.Images.Add("test1", Image.FromFile(@"c:\Documents\SharpDevelop Projects\learning2\learning2\Koala.jpg"));
-
-                listView1.View = View.LargeIcon;
-                listView1.LargeImageList = il;
-                listView1.Items.Add("test");
-
-                for(int i = 0; i < il.Images.Count; i++)
-                {
-                    ListViewItem lvi = new ListViewItem();
-                    lvi.ImageIndex = i;
-                    lvi.Text="koala 1";
-                    listView1.Items.Add(lvi);
-                }
-             */
 
         }
 
@@ -144,12 +57,16 @@ namespace ChildrenDeffenderForm
 
                     ChildrenMovies = movies;
 
-                    SaveMoviesToXml();  // Lehet, hogy nem ide kéne tenni...
+                    SaveMoviesToXml();  // TODO: jó itt?
+
+                    LoadIndexImagesForChildren(); // TODO: jó itt?
 
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine("Load Movies from database has been failed.");
+                    Console.WriteLine("Error message: {0}.", e.Message);
+
                     LoadMoviesFromXml();
                 }
 
@@ -160,7 +77,7 @@ namespace ChildrenDeffenderForm
         }
 
 
-
+        /*
         private async void GetIndexImagesForChildren()
         {
             using (var client = new HttpClient())
@@ -179,6 +96,7 @@ namespace ChildrenDeffenderForm
                 catch (Exception e)
                 {
                     Console.WriteLine("Cannot get IndexImages from database.");
+                    Console.WriteLine("Error message: {0}.", e.Message);
                     try
                     {
                         LoadIndexImagesFromXml();
@@ -187,6 +105,7 @@ namespace ChildrenDeffenderForm
                     catch (Exception ex)
                     {
                         Console.WriteLine("LoadIndexImagesFromXml is failed.");
+                        Console.WriteLine("Error message: {0}.",ex.Message);
                     }
                     
                 }
@@ -201,12 +120,15 @@ namespace ChildrenDeffenderForm
             //ChildrenIndexImages = SortedList;
 
 
-            LoadIndexImagesForChildren();
+            //LoadIndexImagesForChildren(); // kivéve, mert az IndexImage table...
 
         }
+        */
 
         private void LoadIndexImagesForChildren()
         {
+            /*
+            // Eredeti, IndexImage táblás mód... helyette lentebb egy Movie -> NameEnglish...
             // ListView-be berakás
             String IndexImageFilePath = Config.MovieIndexImagesDir;
             foreach (var item in ChildrenIndexImages)
@@ -218,22 +140,56 @@ namespace ChildrenDeffenderForm
                 listViewMoviesForChildren.Items.Add(listViewMovie);
             }
             // end of ListView
+            */
+
+            // ListView-be berakás
+            int i = 0;
+
+            foreach (var item in ChildrenMovies)
+            {
+                // path + name + format
+                String path = Config.MovieIndexImagesDir + item.NameEnglish.Trim() + Config.MovieIndexImagesFormat;
+                try
+                {
+                    imageListMoviesForChildren.Images.Add(Image.FromFile(path));
+                    ListViewItem listViewMovie = new ListViewItem();
+                    listViewMovie.ImageIndex = i;
+                    listViewMovie.Tag = item;               // AZONOSÍTÓ !!!!!!!!!
+                    //listViewMovie.Text = item.NameEnglish;    // Megjelenítené, ezért kockázatos !!!!!!! TODO:
+                    listViewMoviesForChildren.Items.Add(listViewMovie);
+                    i++; // if it is ok
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Cannot load MovieID={0}. image.",item.IndexImageID);
+                    Console.WriteLine("Error message: {0}.", e.Message);
+                }
+
+            }
+            // end of ListView
         }
 
-        private void listViewMoviesForChildren_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //ListViewItem items = new ListViewItem();
-            //items = listViewMoviesForChildren.SelectedItems();
-
-            //MessageBox.Show("Klikkeltél{0}"+items.ImageIndex.ToString());
-        }
 
         private void listViewMoviesForChildren_MouseDoubleClick(object sender, MouseEventArgs e)
         {
+            // TODO: függvény a listViewItem --> movie konvertálásra
 
-            //ListViewItem items = new ListViewItem();
-            //items = listViewMoviesForChildren.SelectedItems;
 
+            ListViewItem listViewItem = new ListViewItem();
+            listViewItem = listViewMoviesForChildren.FocusedItem;
+
+            //int imageID = listViewItem.ImageIndex; // for table...
+            Movie movie = new Movie();
+            movie = (Movie)listViewItem.Tag;
+
+            if (movie != null)
+            {
+                ChildrenPlayMovie(movie); // lejátszás
+            }
+
+
+            /*
+            // OLD_GOOD: IndexImage table-s verzió ...
             ListViewItem listViewItem = new ListViewItem();
             listViewItem = listViewMoviesForChildren.FocusedItem;
 
@@ -248,25 +204,11 @@ namespace ChildrenDeffenderForm
                     break;
                 }
             }
+            */
 
-
-
-            /*
-            DependencyObject obj = (DependencyObject)e.OriginalSource;
-
-            while (obj != null && obj != myListView)
-            {
-                if (obj.GetType() == typeof(ListViewItem))
-                {
-                    // Do something here
-                    MessageBox.Show("A ListViewItem was double clicked!");
-
-                    break;
-                }
-                obj = VisualTreeHelper.GetParent(obj);
-            }
-             * */
          }
+
+
 
          void ChildrenPlayMovie(Movie item)
          {
@@ -355,15 +297,32 @@ namespace ChildrenDeffenderForm
 
          private void listViewMoviesForChildren_MouseClick(object sender, MouseEventArgs e)
          {
-             //ListViewItem items = new ListViewItem();
-             //items = listViewMoviesForChildren.SelectedItems;
 
              ListViewItem listViewItem = new ListViewItem();
              listViewItem = listViewMoviesForChildren.FocusedItem;
 
-             int imageID = listViewItem.ImageIndex;
+             //int imageID = listViewItem.ImageIndex; // for table...
+             Movie movie = new Movie();
+             movie = (Movie)listViewItem.Tag;
 
-             //ChildrenMovies.Find()
+             if (movie != null)
+             {
+                 ChildrenPlayMovieSound(movie); // lejátszás
+             }
+             else
+             {      // Error log
+                 Console.WriteLine("There is not found the movie from ListViewMoviesForChildren, index: {0}",
+                     listViewItem.ImageIndex);
+             }
+
+
+             /*
+             // OLD_GOOD: IndexImage version
+             ListViewItem listViewItem = new ListViewItem();
+             listViewItem = listViewMoviesForChildren.FocusedItem;
+
+             int imageID = listViewItem.ImageIndex; 
+
              foreach (var item in ChildrenMovies)
              {
                  if (item.IndexImageID == imageID)
@@ -372,6 +331,7 @@ namespace ChildrenDeffenderForm
                      break;
                  }
              }
+             */
          }
 
 
@@ -380,12 +340,20 @@ namespace ChildrenDeffenderForm
             String soundFileName = item.NameEnglish.Trim();
             String soundDir = Config.MovieSoundsDir;
             String format = Config.MovieSoundsFormat;
-
+            String soundFullPath = soundDir + soundFileName + format;
 
             if (soundFileName != null)        // TODO - külön függvénybe !!!!!!!!!!!!!!!!!!
             {
-                System.Media.SoundPlayer player = new System.Media.SoundPlayer(soundDir + soundFileName + format);
-                player.Play();
+                System.Media.SoundPlayer player = new System.Media.SoundPlayer(soundFullPath);
+                if (player != null)
+                {
+                    player.Play();
+                }
+                else
+                {
+                    Console.WriteLine("Not found the \"{0}\" sound.",soundFullPath);
+                }
+                
             }
 
          }
@@ -502,3 +470,7 @@ namespace ChildrenDeffenderForm
 
     }
 }
+
+
+// FOR WORK
+//Console.WriteLine("Error message: {0}.", e.Message);

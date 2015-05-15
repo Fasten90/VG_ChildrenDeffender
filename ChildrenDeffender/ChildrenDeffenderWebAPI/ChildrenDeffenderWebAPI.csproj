@@ -167,21 +167,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ChildrenDeffenderModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\DBContext.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DBContext.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DBContext.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DBContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DBContext.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DBContext.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Models\IndexImage.cs">
       <DependentUpon>ChildrenDeffenderModel.tt</DependentUpon>
     </Compile>
@@ -235,23 +220,6 @@
     </Content>
     <Content Include="CodeTemplates\EFModelFromDatabase\EntityType.cs.t4" />
     <Content Include="CodeTemplates\EFModelFromDatabase\Context.cs.t4" />
-    <EntityDeploy Include="Models\DBContext.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DBContext.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\DBContext.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DBContext.edmx</DependentUpon>
-      <LastGenOutput>DBContext.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\DBContext.edmx.diagram">
-      <DependentUpon>DBContext.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\DBContext.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DBContext.edmx</DependentUpon>
-      <LastGenOutput>DBContext.cs</LastGenOutput>
-    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
