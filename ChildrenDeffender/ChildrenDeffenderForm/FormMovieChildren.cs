@@ -20,7 +20,7 @@ namespace ChildrenDeffenderForm
     public partial class FormMovieChildren : Form
     {
 
-        List<IndexImage> ChildrenIndexImages;
+        //List<IndexImage> ChildrenIndexImages;
         List<Movie> ChildrenMovies;
         ChildrenDeffenderConfig Config;
 
@@ -51,7 +51,7 @@ namespace ChildrenDeffenderForm
             {
                 try
                 {
-                    var resp = await client.GetAsync("http://localhost:3051/api/Movie");
+                    var resp = await client.GetAsync(Config.ApiLink + "Movie");
 
                     var movies = await resp.Content.ReadAsAsync<List<Movie>>();
 
@@ -125,7 +125,7 @@ namespace ChildrenDeffenderForm
         }
         */
 
-        private void LoadIndexImagesForChildren()
+        private void LoadIndexImagesForChildren()   // TODO: ezt össze lehetne vonni :P
         {
             /*
             // Eredeti, IndexImage táblás mód... helyette lentebb egy Movie -> NameEnglish...
@@ -212,20 +212,31 @@ namespace ChildrenDeffenderForm
 
          void ChildrenPlayMovie(Movie item)
          {
-             String linkType = item.LinkType.Trim();
 
-             if (linkType == "local")
-             {
-                 Common.PlayLocalMovie(item, Config);
-             }
-             else if (linkType == "youtube")
-             {
-                 Common.PlayNetMovie(item, this);
-             }
-             else
-             {
-                 Common.PlayLocalMovie(item, Config);
-             }
+            String linkType = item.LinkType;
+
+            if (linkType != null)   // if has got linkType
+            {
+                linkType = linkType.Trim();
+                if (linkType == "local")
+                {
+                    Common.PlayLocalMovie(item, Config);
+                }
+                else if (linkType == "youtube")
+                {
+                    Common.PlayNetMovie(item, this);
+                }
+                else
+                {   // no local, no youtube
+                    Common.PlayLocalMovie(item, Config);
+                }
+            }
+            else
+            {   // Nope linkType
+                Common.PlaySound(Config.SoundThereIsNoVideo);
+            }
+
+
 
              // TODO: ManyVIews++
 
@@ -347,7 +358,17 @@ namespace ChildrenDeffenderForm
                 System.Media.SoundPlayer player = new System.Media.SoundPlayer(soundFullPath);
                 if (player != null)
                 {
-                    player.Play();
+                    try
+                    {
+                        player.Play();
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("Sound play error with {0}.",soundFileName);
+                        Console.WriteLine("Error message: {0}.", e.Message);
+                    }
+
+                    
                 }
                 else
                 {
@@ -433,6 +454,7 @@ namespace ChildrenDeffenderForm
         }
 
 
+        /*
         private void LoadIndexImagesFromXml()
         {
 
@@ -442,7 +464,9 @@ namespace ChildrenDeffenderForm
             ChildrenIndexImages = XmlSerialization.ReadFromXmlFile<List<IndexImage>>("IndexImages.xml");
 
         }
+        */
 
+        /*
         private void SaveIndexImagesToXml()
         {
             // And then in some function.
@@ -452,6 +476,7 @@ namespace ChildrenDeffenderForm
             //XmlSerialization.WriteToXmlFile<List<People>>("C:\people.txt", people);
             XmlSerialization.WriteToXmlFile<List<IndexImage>>("IndexImages.xml", ChildrenIndexImages);
         }
+        */
 
         private void timerFormMovieChildrenForDownload_Tick(object sender, EventArgs e)
         {
@@ -474,3 +499,5 @@ namespace ChildrenDeffenderForm
 
 // FOR WORK
 //Console.WriteLine("Error message: {0}.", e.Message);
+
+

@@ -20,7 +20,7 @@ namespace ChildrenDeffenderForm
     public partial class FormMovieParent : Form
     {
         ChildrenDeffenderConfig Config;
-        List<Movie> Movies;
+        List<Movie> ChildrenMovies;
         List<IndexImage> IndexImages;
 
         
@@ -40,16 +40,19 @@ namespace ChildrenDeffenderForm
         private void FormMovieParent_Load(object sender, EventArgs e)
         {
             GetMovies();
-            GetIndexImagesForParent();
+            //GetIndexImagesForParent();
         }
 
+
+        /*
+        // FOR INDEXIMAGE VERSION
         private async void GetIndexImagesForParent()
         {
 
             using (var client = new HttpClient())
             {
                 // Lekérdezés
-                var resp = await client.GetAsync("http://localhost:3051/api/IndexImage");
+                var resp = await client.GetAsync(Config.ApiLink + "IndexImage");
                 var indeximages = await resp.Content.ReadAsAsync<List<IndexImage>>();
                 //indeximages.  // TODO: csak a movie jellegűeket?
                 IndexImages = indeximages;
@@ -74,24 +77,66 @@ namespace ChildrenDeffenderForm
             }
 
         }
+        */
 
 
         private async void GetMovies()
         {
-            using (var client = new HttpClient())
+            using (var client = new HttpClient())   // TODO: Try + catch
             {
-                var resp = await client.GetAsync("http://localhost:3051/api/Movie");
+                var resp = await client.GetAsync(Config.ApiLink + "Movie");
 
-                Movies = await resp.Content.ReadAsAsync<List<Movie>>();
+                ChildrenMovies = await resp.Content.ReadAsAsync<List<Movie>>();
 
-                dataGridViewMovies.DataSource = Movies;
+                dataGridViewMovies.DataSource = ChildrenMovies;
                 //var resp = client.GetAsync(string.Format("http://localhost:3051/api/Movie/{0}", id)).Result;
                 //resp.EnsureSuccessStatusCode();
                 //var movie = resp.Content.ReadAsAsync<Movie>().Result;
                 //return movie;   // TODO: Ide érdemes breakpoint-ot tenni ... látni hogy mit kérdezett le
+
+                GetIndexImagesForParent();
             }
         }
-        //*/
+
+        private void GetIndexImagesForParent()
+        {
+
+            // ListView-be berakás
+            int i = 0;
+
+            foreach (var item in ChildrenMovies)
+            {
+                // path + name + format
+                if (item.NameEnglish != null)
+                {
+                    String path = Config.MovieIndexImagesDir +
+                                    item.NameEnglish.Trim() +
+                                    Config.MovieIndexImagesFormat;
+
+                    try
+                    {
+                        imageListIndexImagesForParent.Images.Add(Image.FromFile(path));
+                        ListViewItem listViewMovie = new ListViewItem();
+                        listViewMovie.ImageIndex = i;
+                        listViewMovie.Tag = item;                   // AZONOSÍTÓ !!!!!!!!!
+                        //listViewMovie.Text = item.NameEnglish;    // Megjelenítené, ezért kockázatos !!!!!!! TODO:
+                        listViewIndexImagesForParent.Items.Add(listViewMovie);
+                        i++; // if it is ok
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("Cannot load MovieID={0}. image.", item.IndexImageID);
+                        Console.WriteLine("Error message: {0}.", e.Message);
+                    }
+
+                }
+
+
+            }
+            // end of ListView
+
+        }
+
 
 
        // 
@@ -144,10 +189,11 @@ namespace ChildrenDeffenderForm
             using (var client = new HttpClient())
             {
                 // Post
-                await client.PostAsJsonAsync("http://localhost:3051/api/Movie", movie);
+                // await client.PostAsJsonAsync(Config.ApiLink + "Movie", movie);
+                await client.PostAsJsonAsync(Config.ApiLink + "Movie", movie);
 
                 // Get
-                var resp = await client.GetAsync("http://localhost:3051/api/Movie");  // BUG de hát ez get ...
+                var resp = await client.GetAsync(Config.ApiLink + "Movie");  // BUG de hát ez get ...
                 var movies = (await resp.Content.ReadAsAsync<List<Movie>>());
                 dataGridViewMovies.DataSource = movies;
             }
@@ -228,10 +274,10 @@ namespace ChildrenDeffenderForm
 
                 // Async + await kell ?s
                 // Mégse, nem ez volt a baj: A Name az rövidebb kell legyen ?????
-                await client.PutAsJsonAsync("http://localhost:3051/api/Movie/UpdateMovie", modifiedMovie);
+                await client.PutAsJsonAsync(Config.ApiLink + "UpdateMovie", modifiedMovie);
 
                 // TODO: BUG: exceptiont dob a savechange-nél - régen, amíg nem figyeltem a name hosszra, ellenőrizni!!!!
-                //var resp = client.PutAsJsonAsync("http://localhost:3051/api/Movie/UpdateMovie", modifiedMovie).Result;                
+                //var resp = client.PutAsJsonAsync(Config.ApiLink + "UpdateMovie", modifiedMovie).Result;                
                 //resp.EnsureSuccessStatusCode();
 
 
@@ -243,12 +289,12 @@ namespace ChildrenDeffenderForm
 
 
 
-        static Movie GetMovie(int id)
+        private Movie GetMovie(int id)
         {
-            using (var client = new HttpClient())
+            using (var client = new HttpClient())   // static volt...
             {
                 var resp = client.GetAsync(string.Format(
-                    "http://localhost:3051/api/Movie/{0}", id)).Result;
+                    Config.ApiLink + "Movie/{0}", id)).Result;
                 resp.EnsureSuccessStatusCode();
                 var movie = resp.Content.ReadAsAsync<Movie>().Result;
                 return movie;
@@ -347,10 +393,10 @@ namespace ChildrenDeffenderForm
             using (var client = new HttpClient())
             {
                 // Post
-                await client.PostAsJsonAsync("http://localhost:3051/api/Movie", movie);
+                await client.PostAsJsonAsync(Config.ApiLink + "Movie", movie);
 
                 // Get
-                //var resp = await client.GetAsync("http://localhost:3051/api/Movie");  // BUG de hát ez get ...
+                //var resp = await client.GetAsync(Config.ApiLink + "Movie");  // BUG de hát ez get ...
                 //var movies = (await resp.Content.ReadAsAsync<List<Movie>>());
                 //dataGridViewMovies.DataSource = movies;
             }
@@ -394,7 +440,7 @@ namespace ChildrenDeffenderForm
 
         private int GetMovieMaxID()
         {
-            int max = Movies.Max(t => t.MovieID);
+            int max = ChildrenMovies.Max(t => t.MovieID);
 
             return max;
         }
@@ -590,7 +636,7 @@ namespace ChildrenDeffenderForm
             using (var client = new HttpClient())
             {
                 // Post
-                await client.PostAsJsonAsync("http://localhost:3051/api/IndexImage", indexImage);
+                await client.PostAsJsonAsync(Config.ApiLink + "IndexImage", indexImage);
 
                 // Get
                 GetIndexImagesForParent();
@@ -608,7 +654,7 @@ namespace ChildrenDeffenderForm
             using (var client = new HttpClient())
             {
 
-                await client.DeleteAsync(string.Format("http://localhost:3051/api/Movie/{0}", id));
+                await client.DeleteAsync(string.Format(Config.ApiLink + "Movie/{0}", id));
 
                 //resp.EnsureSuccessStatusCode();
                 //var product = resp.Content.ReadAsAsync<Product>().Result;
