@@ -128,9 +128,9 @@
             // 
             // timerFormMovieChildrenForDownload
             // 
-            this.timerFormMovieChildrenForDownload.Enabled = true;
-            this.timerFormMovieChildrenForDownload.Interval = 10000;
-            this.timerFormMovieChildrenForDownload.Tick += new System.EventHandler(this.timerFormMovieChildrenForDownload_Tick);
+            //this.timerFormMovieChildrenForDownload.Enabled = true;
+            //this.timerFormMovieChildrenForDownload.Interval = 10000;
+            //this.timerFormMovieChildrenForDownload.Tick += new System.EventHandler(this.timerFormMovieChildrenForDownload_Tick);
             // 
             // FormMovieChildren
             // 

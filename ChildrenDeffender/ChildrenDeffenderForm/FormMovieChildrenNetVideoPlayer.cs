@@ -14,13 +14,13 @@ namespace ChildrenDeffenderForm
 {
     public partial class FormMovieChildrenNetVideoPlayer : Form
     {
-        Form backForm;
+        Form BackForm;
 
         public FormMovieChildrenNetVideoPlayer(Movie movie, Form backForm)
         {
             InitializeComponent();
             LoadVideoPage(movie);
-            this.backForm = backForm;
+            this.BackForm = backForm;
             
         }
 
@@ -139,9 +139,10 @@ namespace ChildrenDeffenderForm
         private void ThisFormSwitchToBackForm()
         {
             this.Close();
-            //Form form = new Form();   // NEED, IF NEW
+            //Form form = new Form();   // NEW FORM......
             //form.Show();
-            backForm.Show();
+            BackForm.Show();
+            //this.ParentForm.Show();   // Itt nem jó a ParentForm, mert Commonból hívjuk...
         }
 
 

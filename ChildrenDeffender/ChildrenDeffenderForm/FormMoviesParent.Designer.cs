@@ -42,8 +42,8 @@
             this.buttonReadMovieDir = new System.Windows.Forms.Button();
             this.labelMoviesDir = new System.Windows.Forms.Label();
             this.buttonMovieRefresh = new System.Windows.Forms.Button();
-            this.listViewIndexImagesForParent = new System.Windows.Forms.ListView();
-            this.imageListIndexImagesForParent = new System.Windows.Forms.ImageList(this.components);
+            this.listViewMoviesForParent = new System.Windows.Forms.ListView();
+            this.imageListMoviesForParent = new System.Windows.Forms.ImageList(this.components);
             this.buttonExitParent = new System.Windows.Forms.Button();
             this.buttonAddIndexImage = new System.Windows.Forms.Button();
             this.buttonAddSound = new System.Windows.Forms.Button();
@@ -52,7 +52,9 @@
             this.buttonSoundLoad = new System.Windows.Forms.Button();
             this.labelRecording = new System.Windows.Forms.Label();
             this.btMovieDelete = new System.Windows.Forms.Button();
-            this.labelSelectedIndexImage = new System.Windows.Forms.Label();
+            this.labelSelectedImage = new System.Windows.Forms.Label();
+            this.notifyIconForParent = new System.Windows.Forms.NotifyIcon(this.components);
+            this.labelSelectedMovie = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMovies)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,6 +67,7 @@
             this.dataGridViewMovies.Name = "dataGridViewMovies";
             this.dataGridViewMovies.Size = new System.Drawing.Size(824, 202);
             this.dataGridViewMovies.TabIndex = 0;
+            this.dataGridViewMovies.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewMovies_CellContentClick);
             // 
             // btUpload
             // 
@@ -171,24 +174,24 @@
             this.buttonMovieRefresh.UseVisualStyleBackColor = true;
             this.buttonMovieRefresh.Click += new System.EventHandler(this.buttonMovieRefresh_Click);
             // 
-            // listViewIndexImagesForParent
+            // listViewMoviesForParent
             // 
-            this.listViewIndexImagesForParent.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.listViewMoviesForParent.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.listViewIndexImagesForParent.LargeImageList = this.imageListIndexImagesForParent;
-            this.listViewIndexImagesForParent.Location = new System.Drawing.Point(12, 373);
-            this.listViewIndexImagesForParent.Name = "listViewIndexImagesForParent";
-            this.listViewIndexImagesForParent.Size = new System.Drawing.Size(824, 93);
-            this.listViewIndexImagesForParent.TabIndex = 14;
-            this.listViewIndexImagesForParent.UseCompatibleStateImageBehavior = false;
-            this.listViewIndexImagesForParent.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listViewIndexImagesForParent_MouseClick);
+            this.listViewMoviesForParent.LargeImageList = this.imageListMoviesForParent;
+            this.listViewMoviesForParent.Location = new System.Drawing.Point(12, 373);
+            this.listViewMoviesForParent.Name = "listViewMoviesForParent";
+            this.listViewMoviesForParent.Size = new System.Drawing.Size(824, 93);
+            this.listViewMoviesForParent.TabIndex = 14;
+            this.listViewMoviesForParent.UseCompatibleStateImageBehavior = false;
+            this.listViewMoviesForParent.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listViewIndexImagesForParent_MouseClick);
             // 
-            // imageListIndexImagesForParent
+            // imageListMoviesForParent
             // 
-            this.imageListIndexImagesForParent.ColorDepth = System.Windows.Forms.ColorDepth.Depth24Bit;
-            this.imageListIndexImagesForParent.ImageSize = new System.Drawing.Size(128, 128);
-            this.imageListIndexImagesForParent.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageListMoviesForParent.ColorDepth = System.Windows.Forms.ColorDepth.Depth24Bit;
+            this.imageListMoviesForParent.ImageSize = new System.Drawing.Size(128, 128);
+            this.imageListMoviesForParent.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // buttonExitParent
             // 
@@ -209,6 +212,7 @@
             this.buttonAddIndexImage.TabIndex = 16;
             this.buttonAddIndexImage.Text = "Add Image";
             this.buttonAddIndexImage.UseVisualStyleBackColor = true;
+            this.buttonAddIndexImage.Visible = false;
             this.buttonAddIndexImage.Click += new System.EventHandler(this.buttonAddIndexImage_Click);
             // 
             // buttonAddSound
@@ -276,22 +280,41 @@
             this.btMovieDelete.UseVisualStyleBackColor = true;
             this.btMovieDelete.Click += new System.EventHandler(this.btMovieDelete_Click);
             // 
-            // labelSelectedIndexImage
+            // labelSelectedImage
             // 
-            this.labelSelectedIndexImage.AutoSize = true;
-            this.labelSelectedIndexImage.Location = new System.Drawing.Point(526, 354);
-            this.labelSelectedIndexImage.Name = "labelSelectedIndexImage";
-            this.labelSelectedIndexImage.Size = new System.Drawing.Size(73, 13);
-            this.labelSelectedIndexImage.TabIndex = 23;
-            this.labelSelectedIndexImage.Text = "IndexImageID";
-            this.labelSelectedIndexImage.Visible = false;
+            this.labelSelectedImage.AutoSize = true;
+            this.labelSelectedImage.Location = new System.Drawing.Point(523, 312);
+            this.labelSelectedImage.Name = "labelSelectedImage";
+            this.labelSelectedImage.Size = new System.Drawing.Size(165, 13);
+            this.labelSelectedImage.TabIndex = 23;
+            this.labelSelectedImage.Text = "ImageIndex-MovieID-MovieName";
+            this.labelSelectedImage.Visible = false;
+            // 
+            // notifyIconForParent
+            // 
+            this.notifyIconForParent.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.notifyIconForParent.BalloonTipText = "ChildrenDeffender started";
+            this.notifyIconForParent.BalloonTipTitle = "ChildrenDeffender";
+            this.notifyIconForParent.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIconForParent.Icon")));
+            this.notifyIconForParent.Text = "ChildrenDeffender";
+            this.notifyIconForParent.Visible = true;
+            // 
+            // labelSelectedMovie
+            // 
+            this.labelSelectedMovie.AutoSize = true;
+            this.labelSelectedMovie.Location = new System.Drawing.Point(377, 229);
+            this.labelSelectedMovie.Name = "labelSelectedMovie";
+            this.labelSelectedMovie.Size = new System.Drawing.Size(100, 13);
+            this.labelSelectedMovie.TabIndex = 24;
+            this.labelSelectedMovie.Text = "labelSelectedMovie";
             // 
             // FormMovieParent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(848, 478);
-            this.Controls.Add(this.labelSelectedIndexImage);
+            this.Controls.Add(this.labelSelectedMovie);
+            this.Controls.Add(this.labelSelectedImage);
             this.Controls.Add(this.btMovieDelete);
             this.Controls.Add(this.labelRecording);
             this.Controls.Add(this.buttonSoundLoad);
@@ -300,7 +323,7 @@
             this.Controls.Add(this.buttonAddSound);
             this.Controls.Add(this.buttonAddIndexImage);
             this.Controls.Add(this.buttonExitParent);
-            this.Controls.Add(this.listViewIndexImagesForParent);
+            this.Controls.Add(this.listViewMoviesForParent);
             this.Controls.Add(this.buttonMovieRefresh);
             this.Controls.Add(this.labelMoviesDir);
             this.Controls.Add(this.buttonReadMovieDir);
@@ -339,8 +362,8 @@
         private System.Windows.Forms.Button buttonReadMovieDir;
         private System.Windows.Forms.Label labelMoviesDir;
         private System.Windows.Forms.Button buttonMovieRefresh;
-        private System.Windows.Forms.ListView listViewIndexImagesForParent;
-        private System.Windows.Forms.ImageList imageListIndexImagesForParent;
+        private System.Windows.Forms.ListView listViewMoviesForParent;
+        private System.Windows.Forms.ImageList imageListMoviesForParent;
         private System.Windows.Forms.Button buttonExitParent;
         private System.Windows.Forms.Button buttonAddIndexImage;
         private System.Windows.Forms.Button buttonAddSound;
@@ -349,7 +372,9 @@
         private System.Windows.Forms.Button buttonSoundLoad;
         private System.Windows.Forms.Label labelRecording;
         private System.Windows.Forms.Button btMovieDelete;
-        private System.Windows.Forms.Label labelSelectedIndexImage;
+        private System.Windows.Forms.Label labelSelectedImage;
+        public System.Windows.Forms.NotifyIcon notifyIconForParent;
+        private System.Windows.Forms.Label labelSelectedMovie;
     }
 }
 

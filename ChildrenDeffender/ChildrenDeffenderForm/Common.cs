@@ -44,19 +44,23 @@ namespace ChildrenDeffenderForm
         }
 
 
-        public static bool PlayNetMovie(Movie item, Form oldform)
+
+        ///*
+        // BUG: TODO: GOND: ParentFOrm nem lesz jó, oldForm meg ócsdi megoldás...
+        // NEM LEHET helyette a ParenForm-os, mert akkor nem lehet a commonban a függvény...............
+        public static bool PlayNetMovie(Movie item, Form backForm)
         {
 
             //String movielink = item.MovieLink;
 
-            oldform.Hide();
-            FormMovieChildrenNetVideoPlayer form = new FormMovieChildrenNetVideoPlayer(item,oldform);
+            backForm.Hide();
+            FormMovieChildrenNetVideoPlayer form = new FormMovieChildrenNetVideoPlayer(item,backForm);   //,oldform
             form.Show();
-
 
             return true;
 
         }
+        //*/
 
 
 

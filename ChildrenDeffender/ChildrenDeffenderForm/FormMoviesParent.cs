@@ -20,14 +20,22 @@ namespace ChildrenDeffenderForm
     public partial class FormMovieParent : Form
     {
         ChildrenDeffenderConfig Config;
-        List<Movie> ChildrenMovies;
-        List<IndexImage> IndexImages;
+        ChildrenMovies ChildrenMovies;
+        Form BackForm;
+        // Nem lehet kihagyni, mert a ParentForm az előző form is lehet... ? (pl. netplayer....)
 
-        
-        public FormMovieParent(ChildrenDeffenderConfig conf)
+        //List<Movie> ChildrenMovies;
+        //List<IndexImage> IndexImages;
+
+
+        public FormMovieParent(ChildrenDeffenderConfig conf, Form backForm)    // 
         {
             InitializeComponent();
-            Config = conf;
+
+            this.Config = conf;
+            //this.BackForm = this.ParentForm;
+            this.BackForm = backForm;
+            this.ChildrenMovies = new ChildrenMovies(conf);
 
             labelMovieIndexImagesDir.Text = Config.MovieIndexImagesDir;
             labelMoviesDir.Text = Config.MoviesDir;
@@ -39,7 +47,13 @@ namespace ChildrenDeffenderForm
         // Összes Movie betöltése induláskor
         private void FormMovieParent_Load(object sender, EventArgs e)
         {
-            GetMovies();
+
+            // Refresh Movies
+            RefreshMovies();
+
+            // NotifyIcon
+            notifyIconForParent.Visible = true;
+
             //GetIndexImagesForParent();
         }
 
@@ -80,13 +94,15 @@ namespace ChildrenDeffenderForm
         */
 
 
+        //
+        /*
         private async void GetMovies()
         {
             using (var client = new HttpClient())   // TODO: Try + catch
             {
                 var resp = await client.GetAsync(Config.ApiLink + "Movie");
 
-                ChildrenMovies = await resp.Content.ReadAsAsync<List<Movie>>();
+                ChildrenMovies.Movies = await resp.Content.ReadAsAsync<List<Movie>>();
 
                 dataGridViewMovies.DataSource = ChildrenMovies;
                 //var resp = client.GetAsync(string.Format("http://localhost:3051/api/Movie/{0}", id)).Result;
@@ -94,11 +110,13 @@ namespace ChildrenDeffenderForm
                 //var movie = resp.Content.ReadAsAsync<Movie>().Result;
                 //return movie;   // TODO: Ide érdemes breakpoint-ot tenni ... látni hogy mit kérdezett le
 
-                GetIndexImagesForParent();
+                //GetIndexImagesForParent();
             }
         }
+        //*/
 
-        private void GetIndexImagesForParent()
+        /*
+        private void GetIndexImagesForParent()  // TODO: összevonni a Children-es verzióval!
         {
 
             // ListView-be berakás
@@ -106,9 +124,10 @@ namespace ChildrenDeffenderForm
 
             foreach (var item in ChildrenMovies)
             {
-                // path + name + format
+                // If has got Name
                 if (item.NameEnglish != null)
                 {
+                    // path + name + format
                     String path = Config.MovieIndexImagesDir +
                                     item.NameEnglish.Trim() +
                                     Config.MovieIndexImagesFormat;
@@ -125,10 +144,14 @@ namespace ChildrenDeffenderForm
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine("Cannot load MovieID={0}. image.", item.IndexImageID);
+                        Console.WriteLine("Cannot load MovieID={0}'s image.", item.MovieID);
                         Console.WriteLine("Error message: {0}.", e.Message);
                     }
 
+                }
+                else
+                {
+                    Console.WriteLine("MovieID={0} Movie hasnt NameEnglish property, so cant load that.", item.MovieID);
                 }
 
 
@@ -136,6 +159,7 @@ namespace ChildrenDeffenderForm
             // end of ListView
 
         }
+        */
 
 
 
@@ -171,7 +195,7 @@ namespace ChildrenDeffenderForm
             {
                 //MovieID = 11,
                 //MovieID = int.Parse(textBoxMovieID.Text), // Good, but so MAX ID
-                MovieID = GetMovieMaxID() + 1,
+                MovieID = ChildrenMovies.GetMovieMaxID() + 1,
 
                 //MovieName = "Micimackó",
                 MovieName = textBoxMovieName.Text,
@@ -198,9 +222,26 @@ namespace ChildrenDeffenderForm
                 dataGridViewMovies.DataSource = movies;
             }
 
+
             // Succesful textbox
-            MessageBox.Show("Sikeres feltöltés");
+            //MessageBox.Show("Sikeres feltöltés");
+            String message = "Sikeres feltöltés! \n" +
+                            "MovieID: " + movie.MovieID + "\n" +
+                            "Name:" + movie.MovieName;
+
+            MessageForParent(message);
+
         }
+
+        private void MessageForParent(String message)
+        {
+            
+            notifyIconForParent.BalloonTipText = message;
+            //notifyIconForParent.Text = message;   // Ikon neve
+            notifyIconForParent.BalloonTipTitle = "ChildrenDeffender";
+            notifyIconForParent.ShowBalloonTip(1000);
+        }
+
 
 
         // Módosítás gomb - PUT
@@ -274,7 +315,7 @@ namespace ChildrenDeffenderForm
 
                 // Async + await kell ?s
                 // Mégse, nem ez volt a baj: A Name az rövidebb kell legyen ?????
-                await client.PutAsJsonAsync(Config.ApiLink + "UpdateMovie", modifiedMovie);
+                await client.PutAsJsonAsync(Config.ApiLink + "Movie/UpdateMovie", modifiedMovie);
 
                 // TODO: BUG: exceptiont dob a savechange-nél - régen, amíg nem figyeltem a name hosszra, ellenőrizni!!!!
                 //var resp = client.PutAsJsonAsync(Config.ApiLink + "UpdateMovie", modifiedMovie).Result;                
@@ -282,10 +323,18 @@ namespace ChildrenDeffenderForm
 
 
                 // Succesful textbox
-                MessageBox.Show("Sikeres módosítás");
+                //MessageBox.Show("Sikeres módosítás");
+                //String message = "Sikeres módosítás: " + movie.MovieID + "\n" +
+                //"Name:" + movie.MovieName;
+                String message = "Sikeres módosítás!\n" +
+                                "MovieID: " + modifiedMovie.MovieID + "\n" +
+                                "MovieName: " + modifiedMovie.MovieName;
+                MessageForParent(message);
             }
 
         }
+
+
 
 
 
@@ -351,7 +400,7 @@ namespace ChildrenDeffenderForm
                     movie.MovieName = movie.MovieLink;                                  // name = link ideiglenesen    
 
                     //MovieID = 11,
-                    movie.MovieID = GetMovieMaxID() + 1 + i;
+                    movie.MovieID = ChildrenMovies.GetMovieMaxID() + 1 + i;
                     //MovieName = "Micimackó",
                     //movies[i].MovieName = textBoxMovieName.Text,
                     //MovieLink = "C:\\",
@@ -378,7 +427,7 @@ namespace ChildrenDeffenderForm
                 }
 
                 // After END
-                GetMovies(); // Refresh // TODO: ez lehet itt? async, mielőtt szívbajt kapnál
+                RefreshMovies(); // Refresh // TODO: ez lehet itt? async, mielőtt szívbajt kapnál
                 // BUG: nem működik !!!!!!!!!!!!!!!!!!!!!!!!!4
 
             }
@@ -386,6 +435,20 @@ namespace ChildrenDeffenderForm
 
             
         }
+
+
+        private void RefreshMovies() // TODO: NEM LEHET ASYNC, HA NINCS AWAIT, DE AZ SE LEHET :(
+        {
+            // REFRESH
+            // Movie-k letöltése... és betöltése listView-ba
+            ChildrenMovies.GetChildrenMovies(imageListMoviesForParent, listViewMoviesForParent, dataGridViewMovies);
+
+            // Betöltés a dataGridView-be is !
+            // dataGridViewMovies.DataSource = ChildrenMovies; // TODO: !!! ITT NEM LEHET.... Átrakva a GetChildrenMovies() függvénybe
+
+            Console.WriteLine("Movies has been refreshed.");
+        }
+
 
         private async void UploadMovie (Movie movie)
         {
@@ -421,12 +484,7 @@ namespace ChildrenDeffenderForm
             labelMovieIndexImagesDir.Text = fbd.SelectedPath;
         }
 
-        private void buttonBack_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            FormLogin form = new FormLogin();
-            form.Show();
-        }
+
 
         private void buttonReadMovieDir_Click(object sender, EventArgs e)
         {
@@ -435,20 +493,36 @@ namespace ChildrenDeffenderForm
 
         private void buttonMovieRefresh_Click(object sender, EventArgs e)
         {
-            GetMovies();
+            RefreshMovies();
         }
 
-        private int GetMovieMaxID()
+
+
+        private void buttonBack_Click(object sender, EventArgs e)
         {
-            int max = ChildrenMovies.Max(t => t.MovieID);
-
-            return max;
+            ThisFormSwitchToBackForm();
         }
+
+
+
+        private void ThisFormSwitchToBackForm()
+        {
+            this.Hide();
+            //FormLogin form = new FormLogin(); // Újat létrehoz
+            //form.Show();
+            BackForm.Show();
+
+            notifyIconForParent.Visible = false;
+
+        }
+
 
         private void buttonExitParent_Click(object sender, EventArgs e)
         {
+            notifyIconForParent.Visible = false;        // Exit függvény ???
             Application.Exit();
         }
+
 
         private void buttonAddSound_Click(object sender, EventArgs e)
         {
@@ -531,7 +605,10 @@ namespace ChildrenDeffenderForm
             String fileName =  dataGridViewMovies.CurrentRow.Cells["NameEnglish"].Value.ToString().Trim();
             String format = Config.MovieSoundsFormat;
 
-            SaveMCI(dir + fileName + format);
+            String fullPath = dir + fileName + format;
+
+            SaveMCI(fullPath);
+
             /*
             SaveFileDialog save = new SaveFileDialog();
  
@@ -545,6 +622,10 @@ namespace ChildrenDeffenderForm
   
             }
             */
+            
+            String text = "Hangfájl sikeresen lementve:\n" +
+                          fullPath;
+            MessageForParent(text);
              
         }
  
@@ -561,7 +642,10 @@ namespace ChildrenDeffenderForm
             {
                 OpenFileDialog open = new OpenFileDialog();
                 open.Filter = "Wave|*.wav";
-                if (open.ShowDialog() == DialogResult.OK) { musica = open.FileName; }
+                if (open.ShowDialog() == DialogResult.OK)
+                {
+                    musica = open.FileName;
+                }
             }
             mciSendString("play \"" + musica + "\"", null, 0, 0);
         }
@@ -573,6 +657,8 @@ namespace ChildrenDeffenderForm
         }
         */
 
+
+        /*
         private void buttonAddIndexImage_Click(object sender, EventArgs e)
         {
 
@@ -629,8 +715,10 @@ namespace ChildrenDeffenderForm
             }
 
         }
+        */
 
 
+        /*
         private async void UploadIndexImage ( IndexImage indexImage)
         {
             using (var client = new HttpClient())
@@ -639,9 +727,11 @@ namespace ChildrenDeffenderForm
                 await client.PostAsJsonAsync(Config.ApiLink + "IndexImage", indexImage);
 
                 // Get
-                GetIndexImagesForParent();
+                ChildrenMovies.LoadMoviesImages(imageList)
+
             }
         }
+        */
 
 
         private async void btMovieDelete_Click(object sender, EventArgs e)
@@ -660,13 +750,19 @@ namespace ChildrenDeffenderForm
                 //var product = resp.Content.ReadAsAsync<Product>().Result;
 
 
-                // Succesful textbox
-                MessageBox.Show("Sikeres törlés");
+                // Succesful delete message:
+           
                 Console.WriteLine("Movie: {0} has been deleted.",id);
+                //MessageBox.Show("Sikeres törlés");
+                String text = "Sikeres törlés! \n" +
+                              "MovieID: " + id;
+                MessageForParent(text);
+
+
 
                 // Refresh
-                GetMovies();
-                Console.WriteLine("Movies has been refreshed.");
+                RefreshMovies();
+                
             }
         }
 
@@ -674,17 +770,79 @@ namespace ChildrenDeffenderForm
         {
 
             ListViewItem listViewItem = new ListViewItem();
-            listViewItem = listViewIndexImagesForParent.FocusedItem;
+            listViewItem = listViewMoviesForParent.FocusedItem;
 
-            int imageID = listViewItem.ImageIndex;
+            int ImageIndex = listViewItem.ImageIndex;
 
             // az adott image kiírása
 
-            labelSelectedIndexImage.Visible = true;
-            labelSelectedIndexImage.Text = "IndexImageID: " + imageID.ToString();
+            labelSelectedImage.Visible = true;
+            labelSelectedImage.Text = "ImageIndex: " + ImageIndex.ToString() + "\n"
+                                      + "MovieID: " + ((Movie)listViewItem.Tag).MovieID + "\n"
+                                      + "MovieName: " + ((Movie)listViewItem.Tag).MovieName;
 
 
         }
+
+        private void dataGridViewMovies_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+
+            // EXAMPLE
+            //AdressBokPerson currentObject = (AdressBokPerson)dataGridView1.CurrentRow.DataBoundItem;
+
+            //e.RowIndex;
+            //Movie movie = (Movie)dataGridViewMovies.Tag;  // WRONG
+            //Movie movie = (Movie)dataGridViewMovies.CurrentRow; // WRONG
+
+
+            // MODE 1  -> object
+            //Movie movie = (Movie)dataGridViewMovies.CurrentRow.DataBoundItem;       
+            //String movieID = movie.MovieID.ToString();
+            //String movieName = movie.MovieName.Trim();
+
+            // MODE 2 - from cells data
+            String movieID = dataGridViewMovies.CurrentRow.Cells["MovieID"].Value.ToString().Trim();
+            String movieName = dataGridViewMovies.CurrentRow.Cells["MovieName"].Value.ToString().Trim();
+
+
+            // Text
+            String labelText = "MovieID: " + movieID + "\n" +
+                               "MovieName: " + movieName;
+
+            labelSelectedMovie.Text = labelText;
+                
+        }
+
+        private void buttonAddIndexImage_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+        /*
+        private void dataGridViewMovies_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+
+            // EXAMPLE
+            //AdressBokPerson currentObject = (AdressBokPerson)dataGridView1.CurrentRow.DataBoundItem;
+
+            //e.RowIndex;
+            //Movie movie = (Movie)dataGridViewMovies.Tag;  // WRONG
+            //Movie movie = (Movie)dataGridViewMovies.CurrentRow; // WRONG
+            Movie movie = (Movie)dataGridViewMovies.CurrentRow.DataBoundItem;
+
+            //String movieID = dataGridViewMovies.CurrentRow.Cells["MovieID"].Value.ToString().Trim();
+            //String movieName = dataGridViewMovies.CurrentRow.Cells["MovieName"].Value.ToString().Trim();
+            String movieID = movie.MovieID.ToString();
+            String movieName = movie.MovieName.Trim();
+
+            String labelText = "MovieID: " + movieID + "\n" +
+                                " MovieName: " + movieName;
+
+            labelSelectedMovie.Text = labelText;
+        }
+        */
 
 
     }

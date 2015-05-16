@@ -39,7 +39,7 @@ namespace ChildrenDeffenderForm
 
             // MEGOLDÁS 2 - új form és a régi elrejtése
             this.Hide();
-            FormMovieChildren form = new FormMovieChildren(Config);
+            FormMovieChildren form = new FormMovieChildren(Config, this);
             form.Show();
 
 
@@ -65,7 +65,7 @@ namespace ChildrenDeffenderForm
         private void buttonLoginParent_Click(object sender, EventArgs e)
         {
             this.Hide();
-            FormMovieParent form = new FormMovieParent(Config);
+            FormMovieParent form = new FormMovieParent(Config, this);     // 
             form.Show();
 
             // Másik megoldás
@@ -77,8 +77,8 @@ namespace ChildrenDeffenderForm
 
         private void FormLogin_Load(object sender, EventArgs e)
         {
-            GetUsersForLogin();
-
+            
+            // Configs
             Config = new ChildrenDeffenderConfig();
             ConfigHandler handler = new ConfigHandler();
 
@@ -93,6 +93,10 @@ namespace ChildrenDeffenderForm
                 handler.SaveConfigsToXML(Config);
             }
 
+            // Get Users
+            GetUsersForLogin();
+
+
             Common.PlaySound(Config.SoundMenuWelcome);
              
         }
@@ -106,7 +110,7 @@ namespace ChildrenDeffenderForm
                 try
                 { 
                     // Lekérdezés
-                    var resp1 = await client.GetAsync("http://localhost:3051/api/User");
+                    var resp1 = await client.GetAsync(Config.ApiLink + "User");
                     var resp2 = await resp1.Content.ReadAsAsync<List<User>>();
                
                     LoginUsers = resp2;
@@ -194,13 +198,13 @@ namespace ChildrenDeffenderForm
         private void FormSwitchToChildrenForm ()
         {
             this.Hide();
-            FormMovieChildren form = new FormMovieChildren(Config);
+            FormMovieChildren form = new FormMovieChildren(Config, this); //
             form.Show();
         }
         private void FormSwitchToParentForm ()
         {
             this.Hide();
-            FormMovieParent form = new FormMovieParent(Config);
+            FormMovieParent form = new FormMovieParent(Config, this); // 
             form.Show();
         }
 
