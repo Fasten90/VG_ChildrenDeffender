@@ -55,6 +55,7 @@
             this.labelSelectedImage = new System.Windows.Forms.Label();
             this.notifyIconForParent = new System.Windows.Forms.NotifyIcon(this.components);
             this.labelSelectedMovie = new System.Windows.Forms.Label();
+            this.buttonPlayMovieSound = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMovies)).BeginInit();
             this.SuspendLayout();
             // 
@@ -165,7 +166,6 @@
             // 
             // buttonMovieRefresh
             // 
-            this.buttonMovieRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonMovieRefresh.Location = new System.Drawing.Point(174, 225);
             this.buttonMovieRefresh.Name = "buttonMovieRefresh";
             this.buttonMovieRefresh.Size = new System.Drawing.Size(75, 23);
@@ -206,7 +206,7 @@
             // buttonAddIndexImage
             // 
             this.buttonAddIndexImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonAddIndexImage.Location = new System.Drawing.Point(526, 225);
+            this.buttonAddIndexImage.Location = new System.Drawing.Point(454, 259);
             this.buttonAddIndexImage.Name = "buttonAddIndexImage";
             this.buttonAddIndexImage.Size = new System.Drawing.Size(75, 23);
             this.buttonAddIndexImage.TabIndex = 16;
@@ -218,7 +218,7 @@
             // buttonAddSound
             // 
             this.buttonAddSound.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonAddSound.Location = new System.Drawing.Point(526, 254);
+            this.buttonAddSound.Location = new System.Drawing.Point(454, 286);
             this.buttonAddSound.Name = "buttonAddSound";
             this.buttonAddSound.Size = new System.Drawing.Size(75, 23);
             this.buttonAddSound.TabIndex = 17;
@@ -263,7 +263,7 @@
             // labelRecording
             // 
             this.labelRecording.AutoSize = true;
-            this.labelRecording.Location = new System.Drawing.Point(676, 230);
+            this.labelRecording.Location = new System.Drawing.Point(588, 259);
             this.labelRecording.Name = "labelRecording";
             this.labelRecording.Size = new System.Drawing.Size(65, 13);
             this.labelRecording.TabIndex = 21;
@@ -283,7 +283,7 @@
             // labelSelectedImage
             // 
             this.labelSelectedImage.AutoSize = true;
-            this.labelSelectedImage.Location = new System.Drawing.Point(523, 312);
+            this.labelSelectedImage.Location = new System.Drawing.Point(588, 317);
             this.labelSelectedImage.Name = "labelSelectedImage";
             this.labelSelectedImage.Size = new System.Drawing.Size(165, 13);
             this.labelSelectedImage.TabIndex = 23;
@@ -302,17 +302,29 @@
             // labelSelectedMovie
             // 
             this.labelSelectedMovie.AutoSize = true;
-            this.labelSelectedMovie.Location = new System.Drawing.Point(377, 229);
+            this.labelSelectedMovie.Location = new System.Drawing.Point(588, 230);
             this.labelSelectedMovie.Name = "labelSelectedMovie";
             this.labelSelectedMovie.Size = new System.Drawing.Size(100, 13);
             this.labelSelectedMovie.TabIndex = 24;
             this.labelSelectedMovie.Text = "labelSelectedMovie";
+            // 
+            // buttonPlayMovieSound
+            // 
+            this.buttonPlayMovieSound.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonPlayMovieSound.Location = new System.Drawing.Point(761, 312);
+            this.buttonPlayMovieSound.Name = "buttonPlayMovieSound";
+            this.buttonPlayMovieSound.Size = new System.Drawing.Size(75, 23);
+            this.buttonPlayMovieSound.TabIndex = 25;
+            this.buttonPlayMovieSound.Text = "Play Sound";
+            this.buttonPlayMovieSound.UseVisualStyleBackColor = true;
+            this.buttonPlayMovieSound.Click += new System.EventHandler(this.buttonPlayMovieSound_Click);
             // 
             // FormMovieParent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(848, 478);
+            this.Controls.Add(this.buttonPlayMovieSound);
             this.Controls.Add(this.labelSelectedMovie);
             this.Controls.Add(this.labelSelectedImage);
             this.Controls.Add(this.btMovieDelete);
@@ -375,6 +387,7 @@
         private System.Windows.Forms.Label labelSelectedImage;
         public System.Windows.Forms.NotifyIcon notifyIconForParent;
         private System.Windows.Forms.Label labelSelectedMovie;
+        private System.Windows.Forms.Button buttonPlayMovieSound;
     }
 }
 

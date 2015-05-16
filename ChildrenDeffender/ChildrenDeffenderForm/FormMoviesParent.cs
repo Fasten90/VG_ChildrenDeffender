@@ -819,6 +819,26 @@ namespace ChildrenDeffenderForm
 
         }
 
+        private void buttonPlayMovieSound_Click(object sender, EventArgs e)
+        {
+
+            var valueEnglishName = dataGridViewMovies.CurrentRow.Cells["NameEnglish"].Value;
+            if (valueEnglishName != null)
+            {
+                String englishName = valueEnglishName.ToString().Trim();
+
+                String soundPath = Config.MovieSoundsDir + englishName + Config.MovieSoundsFormat;
+
+                Common.PlaySound(soundPath);
+
+                // Text
+                String text = "Sound played:\n" +
+                              soundPath;
+                MessageForParent(text);
+            }
+                
+        }
+
 
         /*
         private void dataGridViewMovies_RowEnter(object sender, DataGridViewCellEventArgs e)
