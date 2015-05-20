@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Net.Http;
@@ -19,6 +20,8 @@ namespace ChildrenDeffenderForm
 
         public ChildrenDeffenderConfig Config;
 
+        LogClass Log;
+
         //public ConfigHandler TheConfigHandler;
 
         //public static ChildrenDeffenderConfig Config;
@@ -30,6 +33,8 @@ namespace ChildrenDeffenderForm
         public FormLogin()
         {
             InitializeComponent();
+            Log = new LogClass();
+
         }
 
 
@@ -84,11 +89,14 @@ namespace ChildrenDeffenderForm
 
             if (handler.LoadConfigsFromXML(Config))
             {   // Ha sikerült betölteni a config fájlt
-                Console.WriteLine("Config.xml has been loaded.");
+                //Console.WriteLine("Config.xml has been loaded.");
+                Log.SendEventLog("Config.xml has been loaded.");
             }
             else
             {   // Ha nem sikerült betölteni a config fájlt
-                Console.WriteLine("Cannot load Config.xml, loaded standard values.");
+                //Console.WriteLine("Cannot load Config.xml, loaded standard values.");
+                //EventLogger.WriteLine("Cannot load Config.xml, loaded standard values.");
+                Log.SendErrorLog("Cannot load Config.xml, loaded standard values.");
                 MessageBox.Show("Hiányzó \"Config.xml\" fájl! Alapértelmezett config adatok betöltve és lementve.");
                 handler.SaveConfigsToXML(Config);
             }
