@@ -20,7 +20,7 @@ namespace ChildrenDeffenderForm
 
         public ChildrenDeffenderConfig Config;
 
-        LogClass Log;
+        //LogClass Log;
 
         //public ConfigHandler TheConfigHandler;
 
@@ -33,7 +33,7 @@ namespace ChildrenDeffenderForm
         public FormLogin()
         {
             InitializeComponent();
-            Log = new LogClass();
+            //Log = new LogClass();
 
         }
 
@@ -125,13 +125,15 @@ namespace ChildrenDeffenderForm
                     // End of Lekérdezés
 
                     success = true;
+                    Log.SendEventLog("Users has been downloaded.");
                     
                     
                 }
                 catch (Exception e )
                 {
                     //LoadUsersFromXml();
-                    Console.WriteLine("Error message: {0}.", e.Message);
+                    //Console.WriteLine("Error message: {0}.", e.Message);
+                    Log.SendErrorLog("Error message: " + e.Message);
                     success = false;
                 }
 
@@ -152,14 +154,24 @@ namespace ChildrenDeffenderForm
                 int i = 0;
                 foreach (var item in LoginUsers)
                 {
-                    ///*
-                    String path = IndexImageFilePath + item.IndexImageName;
-                    imageListUsersForLogin.Images.Add(Image.FromFile(path));    // TODO: hiányzó képre exceptiont dob, lekezelni
-                    ListViewItem listViewItem = new ListViewItem();
-                    listViewItem.ImageIndex = i;
-                    listViewUsersForLogin.Items.Add(listViewItem);
-                    i++;
-                    //*/
+                    String path = IndexImageFilePath + item.IndexImageName.Trim();
+
+                    try
+                    {
+                        imageListUsersForLogin.Images.Add(Image.FromFile(path));    // TODO: hiányzó képre exceptiont dob, lekezelni
+                        ListViewItem listViewItem = new ListViewItem();
+                        listViewItem.ImageIndex = i;
+                        listViewItem.Tag = item;                   // AZONOSÍTÓ !!!!!!!!!
+                        listViewUsersForLogin.Items.Add(listViewItem);
+                        i++;
+                    }
+                    catch (Exception e)
+                    {
+                        Log.SendErrorLog("User image loading has been failed. Image path: " + path
+                                          + "ErrorMessage: " + e.Message);
+                    }
+                    
+                    
                 }
                 // end of ListView
 
@@ -173,15 +185,30 @@ namespace ChildrenDeffenderForm
 
         private void listViewUsersForLogin_MouseDoubleClick(object sender, MouseEventArgs e)
         {
+            ListViewItem listViewItem = new ListViewItem();
+            listViewItem = listViewUsersForLogin.FocusedItem;
 
+            User user = new User();
+            user = (User)listViewItem.Tag;
+
+            if (user != null)
+            {
+                UserLogin(user);
+            }
+            else
+            {      // Error log
+                Log.SendErrorLog("There is not found the user from listViewUsersForLogin, index: " +
+                    listViewItem.ImageIndex);
+            }
+
+            /*
+            // TODO: Működő kód volt, de nem elegánsan nyeri ki az ID-t
             ListViewItem listViewItem = new ListViewItem();
             listViewItem = listViewUsersForLogin.FocusedItem;
 
             int userID = listViewItem.ImageIndex;
-            // TODO: értelmesebben kinyerni az ID-t !!!!!!!!!!!!!!4
 
 
-            //ChildrenMovies.Find()
             foreach (var item in LoginUsers)
             {
                 if (item.UserID == userID)
@@ -199,8 +226,29 @@ namespace ChildrenDeffenderForm
                     }
                     
                 }
-            }
 
+            }
+            */
+
+        }
+
+        private void UserLogin(User user)
+        {
+            //if (user.UserID != null)
+            //{
+                String profilType = user.ProfilType.Trim();
+                if (profilType == "Child")
+                {
+                    FormSwitchToChildrenForm();
+                    return;
+                }
+                else if (profilType == "Admin" || profilType == "Parent")
+                {
+                    FormSwitchToParentForm();
+                    return;
+                }
+
+            //}
         }
 
         private void FormSwitchToChildrenForm ()

@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace ChildrenDeffenderForm
 {
-    class LogClass
+    static class Log
     {
 
-        TextWriterTraceListener EventLogger;
-        TextWriterTraceListener ErrorLogger;
+        static TextWriterTraceListener EventLogger;
+        static TextWriterTraceListener ErrorLogger;
 
         // !! IMPORTANT !! - TRACE
         /*
@@ -29,7 +29,7 @@ namespace ChildrenDeffenderForm
         myListener.Flush();
         */
 
-        LogClass ()
+        static Log ()
         {
             EventLogger = new TextWriterTraceListener("Events.log", "EventLog");
             ErrorLogger = new TextWriterTraceListener("Errors.log", "ErrorLog");
@@ -41,17 +41,28 @@ namespace ChildrenDeffenderForm
             
         }
 
-        void SendEventLog(String text)
+        static public void SendEventLog(String text)
         {
             EventLogger.WriteLine(DateTime.Now.ToString() + "\t "+ text);
             EventLogger.Flush();
+            Console.WriteLine(text);
         }
 
-        void SendErrorLog(String text)
+        static public void SendErrorLog(String text)
         {
             ErrorLogger.WriteLine(DateTime.Now.ToString() + "\t " + text);
             ErrorLogger.Flush();
+            Console.WriteLine(text);
         }
+
+        /*
+        static public void WriteLine(String text)
+        {
+            EventLogger.WriteLine(DateTime.Now.ToString() + "\t " + text);
+            EventLogger.Flush();
+            Console.WriteLine(text);
+        }
+        */
 
 
     }

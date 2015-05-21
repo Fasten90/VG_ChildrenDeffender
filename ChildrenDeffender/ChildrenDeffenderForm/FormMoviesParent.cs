@@ -230,6 +230,7 @@ namespace ChildrenDeffenderForm
                             "Name:" + movie.MovieName;
 
             MessageForParent(message);
+            Log.SendEventLog(message);
 
         }
 
@@ -330,6 +331,7 @@ namespace ChildrenDeffenderForm
                                 "MovieID: " + modifiedMovie.MovieID + "\n" +
                                 "MovieName: " + modifiedMovie.MovieName;
                 MessageForParent(message);
+                Log.SendEventLog(message);
             }
 
         }
@@ -337,7 +339,7 @@ namespace ChildrenDeffenderForm
 
 
 
-
+        // Egy Movie lekérdezése
         private Movie GetMovie(int id)
         {
             using (var client = new HttpClient())   // static volt...
@@ -446,7 +448,8 @@ namespace ChildrenDeffenderForm
             // Betöltés a dataGridView-be is !
             // dataGridViewMovies.DataSource = ChildrenMovies; // TODO: !!! ITT NEM LEHET.... Átrakva a GetChildrenMovies() függvénybe
 
-            Console.WriteLine("Movies has been refreshed.");
+            //Console.WriteLine("Movies has been refreshed.");
+            Log.SendEventLog("Movies has been refreshed.");
         }
 
 
@@ -623,9 +626,10 @@ namespace ChildrenDeffenderForm
             }
             */
             
-            String text = "Hangfájl sikeresen lementve:\n" +
+            String message = "Hangfájl sikeresen lementve:\n" +
                           fullPath;
-            MessageForParent(text);
+            MessageForParent(message);
+            Log.SendEventLog(message);
              
         }
  
@@ -754,10 +758,10 @@ namespace ChildrenDeffenderForm
            
                 Console.WriteLine("Movie: {0} has been deleted.",id);
                 //MessageBox.Show("Sikeres törlés");
-                String text = "Sikeres törlés! \n" +
+                String message = "Sikeres törlés! \n" +
                               "MovieID: " + id;
-                MessageForParent(text);
-
+                MessageForParent(message);
+                Log.SendEventLog(message);
 
 
                 // Refresh
@@ -831,10 +835,11 @@ namespace ChildrenDeffenderForm
 
                 Common.PlaySound(soundPath);
 
-                // Text
-                String text = "Sound played:\n" +
+                // Message
+                String message = "Sound played:\n" +
                               soundPath;
-                MessageForParent(text);
+                MessageForParent(message);
+                Log.SendEventLog(message);
             }
                 
         }

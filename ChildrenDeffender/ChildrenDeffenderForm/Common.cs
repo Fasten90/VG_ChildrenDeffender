@@ -14,12 +14,23 @@ namespace ChildrenDeffenderForm
 
         public static void PlaySound(String sound)
         {
-
-            if (sound != null)        // TODO - külön függvénybe !!!!!!!!!!!!!!!!!!
+            try
             {
-                System.Media.SoundPlayer player = new System.Media.SoundPlayer(sound);
-                player.Play();
+                if (sound != null)        // TODO - külön függvénybe !!!!!!!!!!!!!!!!!!
+                {
+                    System.Media.SoundPlayer player = new System.Media.SoundPlayer(sound);
+                    player.Play();
+                }
+                else
+                {
+                    Log.SendErrorLog("Sound parameter is null.");
+                }
             }
+            catch (Exception e)
+            {
+                Log.SendErrorLog("Sound playing has been failed. " + e.Message);
+            }
+
 
         }
 
@@ -38,7 +49,17 @@ namespace ChildrenDeffenderForm
             //System.Diagnostics.Process.Start(@"C:\Program Files (x86)\VideoLAN\VLC\vlc.exe");
             String command = program;
             String argument = moviedir + moviename;
-            System.Diagnostics.Process.Start(command, argument);
+            try
+            {
+                System.Diagnostics.Process.Start(command, argument);
+                Log.SendEventLog("Movie player successful opened.");
+            }
+            catch (Exception)
+            {
+
+                Log.SendErrorLog("Movie player opening has been failed.");
+            }
+            
 
             return true;
         }
@@ -100,5 +121,10 @@ namespace ChildrenDeffenderForm
 
 
 
+
+        internal static void PlayLocalMovieVLC()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

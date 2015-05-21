@@ -23,11 +23,13 @@ namespace ChildrenDeffenderForm
                 writer.Serialize(file, Config);
                 file.Close();
 
+                Log.SendEventLog("Config.xml file saved succesful.");
+
                 return true;
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.ToString());
+                Log.SendErrorLog("Config.xml files saving has been failed: " + e.Message);
                 return false;
             }
 
@@ -46,12 +48,14 @@ namespace ChildrenDeffenderForm
                 Config = (ChildrenDeffenderConfig)reader.Deserialize(file);
                 file.Close();
 
+                Log.SendEventLog("Config.xml file loaded succesful.");
+
                 return true;
 
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.ToString());
+                Log.SendErrorLog("Config.xml files loading has been failed: " + e.Message);
                 return false;
             }
            

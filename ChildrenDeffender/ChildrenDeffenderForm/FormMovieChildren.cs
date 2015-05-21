@@ -11,9 +11,6 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Vlc;
-using Vlc.DotNet.Forms;
-using Vlc.DotNet.Core;
 
 
 namespace ChildrenDeffenderForm
@@ -247,8 +244,8 @@ namespace ChildrenDeffenderForm
              }
              else
              {      // Error log
-                 Console.WriteLine("There is not found the movie from ListViewMoviesForChildren, index: {0}",
-                     listViewItem.ImageIndex);
+                 Log.SendErrorLog("There is not found the movie from ListViewMoviesForChildren, index: "+
+                     listViewItem.ImageIndex.ToString());
              }
 
 

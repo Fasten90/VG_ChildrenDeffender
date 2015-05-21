@@ -2,11 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Vlc.DotNet.Core;
 
 namespace ChildrenDeffenderForm
 {
@@ -49,8 +51,9 @@ namespace ChildrenDeffenderForm
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("Load Movies from database has been failed.");
-                    Console.WriteLine("Error message: {0}.", e.Message);
+                    //Console.WriteLine("Load Movies from database has been failed.");
+                    //Console.WriteLine("Error message: {0}.", e.Message);
+                    Log.SendErrorLog("Load Movies from database has been failed: " + e.Message);
 
                     LoadMoviesFromXml();            // Betöltés Xml-ből
 
@@ -99,14 +102,17 @@ namespace ChildrenDeffenderForm
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine("Cannot load MovieID={0}'s image.", item.MovieID);
-                        Console.WriteLine("Error message: {0}.", e.Message);
+                        //Console.WriteLine("Cannot load MovieID={0}'s image.", item.MovieID);
+                        //Console.WriteLine("Error message: {0}.", e.Message);
+                        Log.SendErrorLog("Cannot load image MovieID= " + item.MovieID.ToString() + " "+ e.Message);
                     }
 
                 }
                 else
                 {
-                    Console.WriteLine("MovieID={0} Movie hasnt NameEnglish property, so cant load that.", item.MovieID);
+                    //Console.WriteLine("MovieID={0} Movie hasnt NameEnglish property, so cant load that.", item.MovieID);
+                    Log.SendErrorLog("MovieID={0} Movie hasnt NameEnglish property, so cant load that." + item.MovieID.ToString());
+                    
                 }
 
 
@@ -148,7 +154,17 @@ namespace ChildrenDeffenderForm
                 linkType = linkType.Trim();
                 if (linkType == "local")
                 {
-                    Common.PlayLocalMovie(item, Config);
+                    //Common.PlayLocalMovie(item, Config);
+
+                    // TEST1
+                    //FormMoviePlayer form = new FormMoviePlayer();
+                    //form.Show();
+
+                    // TEST2: static... ?
+                    //Common.PlayLocalMovieVLC();
+
+                    // TEST3:
+                    PlayLocalMovieVLC();
                 }
                 else if (linkType == "youtube")
                 {
@@ -237,6 +253,25 @@ namespace ChildrenDeffenderForm
             */
         }
 
+        private void PlayLocalMovieVLC()
+        {
+            // VLC
+
+            DirectoryInfo vlcLibDirectory = new DirectoryInfo(@"c:\Program Files (x86)\VideoLAN\VLC\");
+            VlcMediaPlayer vlcPlayer = new VlcMediaPlayer(vlcLibDirectory);
+
+            // VlcMedia SetMedia(FileInfo file, params string[] options);
+
+            Uri uri = new Uri(@"d:\Minden\Mese\BigHero.avi");
+            vlcPlayer.SetMedia(uri, null);
+            vlcPlayer.Play();
+            vlcPlayer.Pause();
+
+            //vlcPlayer.
+            // TODO: FULL SCREEN
+            // TODO: DLL HIBÁK VANNAK
+        }
+
 
 
 
@@ -258,15 +293,17 @@ namespace ChildrenDeffenderForm
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine("Sound play error with {0}.", soundFileName);
-                        Console.WriteLine("Error message: {0}.", e.Message);
+                        //Console.WriteLine("Sound play error with {0}.", soundFileName);
+                        //Console.WriteLine("Error message: {0}.", e.Message);
+                        Log.SendErrorLog("Sound play error with " + soundFileName.ToString() + " " + e.Message );
                     }
 
 
                 }
                 else
                 {
-                    Console.WriteLine("Not found the \"{0}\" sound.", soundFullPath);
+                    //Console.WriteLine("Not found the \"{0}\" sound.", soundFullPath);
+                    Log.SendErrorLog("Not found the sound:  " + soundFullPath);
                 }
 
             }
@@ -298,6 +335,8 @@ namespace ChildrenDeffenderForm
             //List<Person> people = XmlSerialization.ReadFromXmlFile<List<Person>>("C:\people.txt");
             Movies = XmlSerialization.ReadFromXmlFile<List<Movie>>("Movies.xml");
 
+            Log.SendEventLog("Load movies from Movies.xml has been successful.");
+
         }
 
         private void SaveMoviesToXml()
@@ -308,6 +347,8 @@ namespace ChildrenDeffenderForm
             //XmlSerialization.WriteToXmlFile<Person>("C:\person.txt", person);
             //XmlSerialization.WriteToXmlFile<List<People>>("C:\people.txt", people);
             XmlSerialization.WriteToXmlFile<List<Movie>>("Movies.xml", Movies);
+
+            Log.SendEventLog("Save movies from Movies.xml has been successful.");
         }
 
 
