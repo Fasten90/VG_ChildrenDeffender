@@ -157,14 +157,13 @@ namespace ChildrenDeffenderForm
                     //Common.PlayLocalMovie(item, Config);
 
                     // TEST1
-                    //FormMoviePlayer form = new FormMoviePlayer();
-                    //form.Show();
+                    FormMoviePlayer form = new FormMoviePlayer(item,Config,backForm);
 
                     // TEST2: static... ?
                     //Common.PlayLocalMovieVLC();
 
                     // TEST3:
-                    PlayLocalMovieVLC();
+                    //PlayLocalMovieVLC();
                 }
                 else if (linkType == "youtube")
                 {
@@ -253,10 +252,17 @@ namespace ChildrenDeffenderForm
             */
         }
 
-        private void PlayLocalMovieVLC()
-        {
-            // VLC
 
+
+        private void PlayLocalMovieVLC()    // Törölni, a FormMoviePlayer-ben is benne van ...
+        {
+
+     
+
+            // VLC
+            // GOOOD, de vezérelhetetlen, és elérhetetlen form ???
+            ///*
+            
             DirectoryInfo vlcLibDirectory = new DirectoryInfo(@"c:\Program Files (x86)\VideoLAN\VLC\");
             VlcMediaPlayer vlcPlayer = new VlcMediaPlayer(vlcLibDirectory);
 
@@ -266,6 +272,21 @@ namespace ChildrenDeffenderForm
             vlcPlayer.SetMedia(uri, null);
             vlcPlayer.Play();
             vlcPlayer.Pause();
+
+            //*/
+
+
+            /*
+            // Processként...
+            string vlc = @"C:\Program Files\VideoLAN\VLC\vlc.exe";
+            Process vlcProcess = new Process();
+            vlcProcess.StartInfo.FileName = vlc;
+            vlcProcess.StartInfo.Arguments = "\"" + videoFile + "\"";
+            vlcProcess.StartInfo.Arguments += " --play-and-exit";
+            vlcProcess.Start();
+            vlcProcess.Exit();  
+            */
+
 
             //vlcPlayer.
             // TODO: FULL SCREEN
