@@ -24,12 +24,10 @@ namespace ChildrenDeffenderForm
         private ChildrenDeffenderConfig Config;
         private Form BackForm;
 
-
         Vlc.DotNet.Forms.VlcControl vlcControl;
 
 
-
-        public FormMoviePlayer()    // NOT USED ?????????????
+        public FormMoviePlayer()    // NOT USED ????????????? TODO: delete
         {
             InitializeComponent();
         }
@@ -57,7 +55,7 @@ namespace ChildrenDeffenderForm
             //PlayMediaV0(filePath);
 
             // My version ... // VlcControl
-            PlayMediaV1(filePath);
+            PlayMediaVlcControl(filePath);
             
             // Other version
             //PlayMedia(filePath);
@@ -89,16 +87,29 @@ namespace ChildrenDeffenderForm
         }
         */
 
+        /*
+        VlcContext.LibVlcDllsPath = CommonStrings.LIBVLC_DLLS_PATH_DEFAULT_VALUE_AMD64;
+        VlcContext.LibVlcPluginsPath = CommonStrings.PLUGINS_PATH_DEFAULT_VALUE_AMD64;
 
-        private void PlayMediaV1(String fileName)
+        VlcContext.StartupOptions.IgnoreConfig = true;
+        VlcContext.StartupOptions.LogOptions.LogInFile = true;
+        VlcContext.StartupOptions.LogOptions.ShowLoggerConsole = true;
+        VlcContext.StartupOptions.LogOptions.Verbosity = VlcLogVerbosities.Debug;
+
+        VlcContext.Initialize();
+         */
+
+        private void PlayMediaVlcControl(String fileName)
         {
 
+ 
+            //DirectoryInfo vlcLibDirectory = new DirectoryInfo(@"c:\Program Files (x86)\VideoLAN\VLC\");
+            DirectoryInfo vlcLibDirectory = new DirectoryInfo(@"vlc\x86\");
+            // TODO: !!IMPORTANT!! NINCS DLL hiba, mióta a native csomagot linkelem...
 
-            DirectoryInfo vlcLibDirectory = new DirectoryInfo(@"c:\Program Files (x86)\VideoLAN\VLC\");
             //VlcMediaPlayer vlcPlayer = new VlcMediaPlayer(vlcLibDirectory);
 
             Uri uri = new Uri(fileName);
-
 
 
             vlcControl = new Vlc.DotNet.Forms.VlcControl();
@@ -111,7 +122,34 @@ namespace ChildrenDeffenderForm
             vlcControl.Dock = DockStyle.Fill;
 
 
-            vlcControl.Play(uri, null);
+            try     // TODO: try-catch nem segített a DLL hibán
+            {
+                // FULL SCREEN
+                this.WindowState = FormWindowState.Normal;
+
+                // minimize, maximize, close button hide
+           
+                this.FormBorderStyle = FormBorderStyle.None;
+
+                // max size
+                this.WindowState = FormWindowState.Maximized;
+
+
+
+                // Play()
+                // uri / fileinfo lehet az első paraméter (=mit játszon le)
+                // 2. paraméter: options
+                vlcControl.Play(uri, null);
+                //vlcControl.Play(uri, "-fullscreen"); // TODO: Full screen ... nem működik
+                // TODO: DLL hibákkal inicializálódik a VlcControl... megnézni
+
+
+            }
+            catch (Exception e)
+            {
+                Log.SendErrorLog("VlcControl.Play() hiba");
+                Log.SendErrorLog(e.Message);
+            }
 
 
             this.panelVideo.Controls.Add(vlcControl);       //panelVideo is main container panel.
@@ -127,21 +165,18 @@ namespace ChildrenDeffenderForm
                 //vlcControl.Play(uri, null);
                 //vlcControl.Controls.Add(panelDoubleClick);
             }
+            else
+            {
+                Log.SendErrorLog("VlcControl failed. Cannot play video.");
+            }
 
 
         }
-
-
-
-
-
-
+        // End of PlayMediaVlcControl();
 
 
 
         // http://stackoverflow.com/questions/24799178/c-sharp-vlc-player-mouse-double-click-event
-        
-
         //Vlc.DotNet.Core.VlcMedia media;
         //Medias.PathMedia Media2Play;
         public void PlayMedia(string fileName)
@@ -166,7 +201,7 @@ namespace ChildrenDeffenderForm
             Panel panelDoubleClick = new Panel();// this panel requires to catche double click evetns.
             panelDoubleClick.Dock = DockStyle.Fill;
             panelDoubleClick.BackColor = Color.Transparent;
-            panelDoubleClick.MouseDoubleClick += new MouseEventHandler(panelDoubleClick_MouseDoubleClick); ;
+            panelDoubleClick.MouseDoubleClick += new MouseEventHandler(panelDoubleClick_MouseDoubleClick);
 
             if (vlcControl != null)
             {
@@ -181,10 +216,12 @@ namespace ChildrenDeffenderForm
 
         }
 
+
         private void panelDoubleClick_MouseDoubleClick(object sender, MouseEventArgs e)
         {
            MessageBox.Show  ("ToggleFullScreen();");
         }
+
 
         private void initVLC()
         {
@@ -263,21 +300,34 @@ namespace ChildrenDeffenderForm
             }
         }
 
+
         private void panelVideo_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            KeyHandler(e);
+            //KeyHandler((KeyEventArgs)e);
         }
+
 
         private void FormMoviePlayer_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
 
-            KeyHandler(e);
+            //KeyHandler((KeyEventArgs)e);
 
         }
 
 
+        private void FormMoviePlayer_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //KeyHandler((KeyEventArgs)e);
+        }
 
-        private void KeyHandler(PreviewKeyDownEventArgs e)
+
+        private void FormMoviePlayer_KeyDown(object sender, KeyEventArgs e)
+        {
+            KeyHandler(e);
+        }
+
+
+        private void KeyHandler(KeyEventArgs e)
         {
             switch (e.KeyCode)
             {
@@ -316,10 +366,22 @@ namespace ChildrenDeffenderForm
 
         private void ThisFormSwitchToBackForm()
         {
-            //vlcControl.Esc
-            this.Close();
-            BackForm.Show();
+            try
+            {
+                vlcControl.Stop();
+                this.Close();
+                BackForm.Show();
+            }
+            catch (Exception e)
+            {
+                Log.SendErrorLog("Vlc closing with error.");
+                Log.SendErrorLog(e.Message);
+            }
+
         }
+
+
+
 
 
 

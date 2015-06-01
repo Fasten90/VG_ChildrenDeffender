@@ -48,7 +48,7 @@
             this.Controls.Add(this.panelVideo);
             this.Name = "FormMoviePlayer";
             this.Text = "FormMoviePlayer";
-            this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.FormMoviePlayer_PreviewKeyDown);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormMoviePlayer_KeyDown);
             this.ResumeLayout(false);
 
         }
