@@ -220,6 +220,8 @@
     </Content>
     <Content Include="CodeTemplates\EFModelFromDatabase\EntityType.cs.t4" />
     <Content Include="CodeTemplates\EFModelFromDatabase\Context.cs.t4" />
+    <None Include="Properties\PublishProfiles\ChildrenDeffender.pubxml" />
+    <None Include="Properties\PublishProfiles\Vizi Gábor.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
