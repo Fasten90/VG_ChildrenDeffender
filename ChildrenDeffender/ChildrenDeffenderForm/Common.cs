@@ -1,4 +1,4 @@
-﻿using ChildrenDeffenderForm.Model;
+﻿using ChildrenDeffenderDatabaseModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,7 +35,7 @@ namespace ChildrenDeffenderForm
         }
 
 
-        public static bool PlayLocalMovie(Movie item, ChildrenDeffenderConfig Config)
+        public static bool PlayLocalMovie(movie item, ChildrenDeffenderConfig Config)
         {
             String moviename = item.MovieLink.Trim();
             String program = Config.MoviePlayer;
@@ -69,7 +69,7 @@ namespace ChildrenDeffenderForm
         ///*
         // BUG: TODO: GOND: ParentFOrm nem lesz jó, oldForm meg ócsdi megoldás...
         // NEM LEHET helyette a ParenForm-os, mert akkor nem lehet a commonban a függvény...............
-        public static bool PlayNetMovie(Movie item, Form backForm)
+        public static bool PlayNetMovie(movie item, Form backForm)
         {
 
             //String movielink = item.MovieLink;

@@ -11,7 +11,7 @@ using Vlc;
 using Vlc.DotNet.Forms;
 using Vlc.DotNet.Core;
 using System.IO;
-using ChildrenDeffenderForm.Model;
+using ChildrenDeffenderDatabaseModel;
 
 
 
@@ -20,7 +20,7 @@ namespace ChildrenDeffenderForm
     public partial class FormMoviePlayer : Form
     {
             
-        private Movie movie;
+        private movie movie;
         private ChildrenDeffenderConfig Config;
         private Form BackForm;
 
@@ -34,7 +34,7 @@ namespace ChildrenDeffenderForm
 
 
 
-        public FormMoviePlayer(Model.Movie movie, ChildrenDeffenderConfig config, Form backForm)
+        public FormMoviePlayer(movie movie, ChildrenDeffenderConfig config, Form backForm)
         {
             InitializeComponent();
 

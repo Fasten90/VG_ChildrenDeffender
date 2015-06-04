@@ -1,4 +1,4 @@
-﻿using ChildrenDeffenderForm.Model;
+﻿using ChildrenDeffenderDatabaseModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,7 +16,7 @@ namespace ChildrenDeffenderForm
     public partial class FormLogin : Form
     {
 
-        public List<User> LoginUsers;
+        public List<user> LoginUsers;
 
         public ChildrenDeffenderConfig Config;
 
@@ -119,7 +119,7 @@ namespace ChildrenDeffenderForm
                 { 
                     // Lekérdezés
                     var resp1 = await client.GetAsync(Config.ApiLink + "User");
-                    var resp2 = await resp1.Content.ReadAsAsync<List<User>>();
+                    var resp2 = await resp1.Content.ReadAsAsync<List<user>>();
                
                     LoginUsers = resp2;
                     // End of Lekérdezés
@@ -154,7 +154,7 @@ namespace ChildrenDeffenderForm
                 int i = 0;
                 foreach (var item in LoginUsers)
                 {
-                    String path = IndexImageFilePath + item.IndexImageName.Trim();
+                    String path = IndexImageFilePath + item.UserName.Trim() + Config.UserIndexImagesFormat;
 
                     try
                     {
@@ -188,8 +188,8 @@ namespace ChildrenDeffenderForm
             ListViewItem listViewItem = new ListViewItem();
             listViewItem = listViewUsersForLogin.FocusedItem;
 
-            User user = new User();
-            user = (User)listViewItem.Tag;
+            user user = new user();
+            user = (user)listViewItem.Tag;
 
             if (user != null)
             {
@@ -232,7 +232,7 @@ namespace ChildrenDeffenderForm
 
         }
 
-        private void UserLogin(User user)
+        private void UserLogin(user user)
         {
             //if (user.UserID != null)
             //{
@@ -314,7 +314,7 @@ namespace ChildrenDeffenderForm
             // Then in some other function.
             //Person person = XmlSerialization.ReadFromXmlFile<Person>("C:\person.txt");
             //List<Person> people = XmlSerialization.ReadFromXmlFile<List<Person>>("C:\people.txt");
-            LoginUsers = XmlSerialization.ReadFromXmlFile<List<User>>("Users.xml");
+            LoginUsers = XmlSerialization.ReadFromXmlFile<List<user>>("Users.xml");
 
         }
 
@@ -325,7 +325,7 @@ namespace ChildrenDeffenderForm
             //List<Person> people = GetListOfPeople();
             //XmlSerialization.WriteToXmlFile<Person>("C:\person.txt", person);
             //XmlSerialization.WriteToXmlFile<List<People>>("C:\people.txt", people);
-            XmlSerialization.WriteToXmlFile<List<User>>("Users.xml", LoginUsers);
+            XmlSerialization.WriteToXmlFile<List<user>>("Users.xml", LoginUsers);
         }
 
     }

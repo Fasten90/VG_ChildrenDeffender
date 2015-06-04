@@ -1,4 +1,5 @@
-﻿namespace ChildrenDeffenderForm
+﻿using System;
+namespace ChildrenDeffenderForm
 {
     partial class FormMoviePlayer
     {
@@ -17,7 +18,15 @@
             {
                 components.Dispose();
             }
-            base.Dispose(disposing);
+            try
+            {
+                base.Dispose(disposing);    // TODO: EXCEPTION
+            }
+            catch (Exception e)
+            {
+                Log.SendErrorLog(e.Message);
+            }
+            
         }
 
         #region Windows Form Designer generated code

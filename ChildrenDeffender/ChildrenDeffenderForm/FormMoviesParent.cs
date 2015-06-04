@@ -1,4 +1,4 @@
-﻿using ChildrenDeffenderForm.Model;
+﻿using ChildrenDeffenderDatabaseModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -191,14 +191,15 @@ namespace ChildrenDeffenderForm
         private async void btUpload_Click(object sender, EventArgs e)
         {
             // new movie
-            var movie = new Movie
+            var movie = new movie
             {
                 //MovieID = 11,
                 //MovieID = int.Parse(textBoxMovieID.Text), // Good, but so MAX ID
                 MovieID = ChildrenMovies.GetMovieMaxID() + 1,
 
                 //MovieName = "Micimackó",
-                MovieName = textBoxMovieName.Text,
+                MovieName = textBoxMovieName.Text.Trim(),
+                MovieNameEnglish = textBoxMovieName.Text.Trim(),
                 //MovieLink = "C:\\",
                 //LinkType = "local",
                 //Language = "HU",
@@ -218,7 +219,7 @@ namespace ChildrenDeffenderForm
 
                 // Get
                 var resp = await client.GetAsync(Config.ApiLink + "Movie");  // BUG de hát ez get ...
-                var movies = (await resp.Content.ReadAsAsync<List<Movie>>());
+                var movies = (await resp.Content.ReadAsAsync<List<movie>>());
                 dataGridViewMovies.DataSource = movies;
             }
 
@@ -253,7 +254,7 @@ namespace ChildrenDeffenderForm
             //int id = int.Parse(dataGridViewMovies.CurrentRow.Cells["MovieID"].Value.ToString());
             //Movie modifiedMovie = GetMovie(id);
 
-            Movie modifiedMovie = new Movie();
+            movie modifiedMovie = new movie();
 
             // TODO: lecserélni majd valami objektumosabbra?
 
@@ -288,10 +289,10 @@ namespace ChildrenDeffenderForm
             }
 
             //modifiedMovie.NameEnglish = dataGridViewMovies.CurrentRow.Cells["NameEnglish"].Value.ToString();
-            var nameEnglish = dataGridViewMovies.CurrentRow.Cells["NameEnglish"].Value;
-            if (nameEnglish != null)
+            var movieNameEnglish = dataGridViewMovies.CurrentRow.Cells["MovieNameEnglish"].Value;
+            if (movieNameEnglish != null)
             {
-                modifiedMovie.NameEnglish = nameEnglish.ToString().Trim();
+                modifiedMovie.MovieNameEnglish = movieNameEnglish.ToString().Trim();
             }
 
 
@@ -302,10 +303,25 @@ namespace ChildrenDeffenderForm
                 modifiedMovie.Category = category.ToString().Trim();
             }
 
+            var minAge = dataGridViewMovies.CurrentRow.Cells["MinAge"].Value;
+            if ( minAge != null)
+            {
+                //modifiedMovie.MinAge = short.Parse(minAge.ToString());
 
-            modifiedMovie.MinAge = short.Parse(dataGridViewMovies.CurrentRow.Cells["MinAge"].Value.ToString());
-            modifiedMovie.ManyViews  = int.Parse(dataGridViewMovies.CurrentRow.Cells["ManyViews"].Value.ToString());        
-            modifiedMovie.DateAdded = DateTime.Parse(dataGridViewMovies.CurrentRow.Cells["DateAdded"].Value.ToString());
+                modifiedMovie.MinAge = (decimal)minAge;
+
+            }
+
+
+
+            //modifiedMovie.ManyViews  = int.Parse(dataGridViewMovies.CurrentRow.Cells["ManyViews"].Value.ToString());        
+            modifiedMovie.ManyViews = (int)dataGridViewMovies.CurrentRow.Cells["ManyViews"].Value;
+            
+            //modifiedMovie.DateAdded = DateTime.Parse(dataGridViewMovies.CurrentRow.Cells["DateAdded"].Value.ToString());
+            modifiedMovie.DateAdded = (DateTime)dataGridViewMovies.CurrentRow.Cells["DateAdded"].Value;
+
+            modifiedMovie.DateLastModified = DateTime.Now;
+
 
             // MOVIE ÖSSZEÁLLÍTVA
 
@@ -340,14 +356,14 @@ namespace ChildrenDeffenderForm
 
 
         // Egy Movie lekérdezése
-        private Movie GetMovie(int id)
+        private movie GetMovie(int id)
         {
             using (var client = new HttpClient())   // static volt...
             {
                 var resp = client.GetAsync(string.Format(
                     Config.ApiLink + "Movie/{0}", id)).Result;
                 resp.EnsureSuccessStatusCode();
-                var movie = resp.Content.ReadAsAsync<Movie>().Result;
+                var movie = resp.Content.ReadAsAsync<movie>().Result;
                 return movie;
             }
         }
@@ -392,12 +408,12 @@ namespace ChildrenDeffenderForm
             if ( filePaths.Length > 0)
             {
                 // Movie lista az átalakításhoz
-                List<Movie> movies = new List<Movie>();
+                List<movie> movies = new List<movie>();
 
                 // String[] --> List<Movie>
                 for (int i = 0; i < filePaths.Length; i++)
                 {
-                    Movie movie = new Movie();
+                    movie movie = new movie();
                     movie.MovieLink = filePaths[i].Remove(0, Config.MoviesDir.Length);  // link elejének leszedése
                     movie.MovieName = movie.MovieLink;                                  // name = link ideiglenesen    
 
@@ -453,7 +469,7 @@ namespace ChildrenDeffenderForm
         }
 
 
-        private async void UploadMovie (Movie movie)
+        private async void UploadMovie (movie movie)
         {
 
             using (var client = new HttpClient())
@@ -782,8 +798,8 @@ namespace ChildrenDeffenderForm
 
             labelSelectedImage.Visible = true;
             labelSelectedImage.Text = "ImageIndex: " + ImageIndex.ToString() + "\n"
-                                      + "MovieID: " + ((Movie)listViewItem.Tag).MovieID + "\n"
-                                      + "MovieName: " + ((Movie)listViewItem.Tag).MovieName;
+                                      + "MovieID: " + ((movie)listViewItem.Tag).MovieID + "\n"
+                                      + "MovieName: " + ((movie)listViewItem.Tag).MovieName;
 
 
         }

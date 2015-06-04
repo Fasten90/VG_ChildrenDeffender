@@ -1,4 +1,4 @@
-﻿using ChildrenDeffenderForm.Model;
+﻿using ChildrenDeffenderDatabaseModel;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -15,7 +15,7 @@ namespace ChildrenDeffenderForm
     class ChildrenMovies
     {
 
-        public List<Movie> Movies;
+        public List<movie> Movies;
         ChildrenDeffenderConfig Config;
 
 
@@ -36,7 +36,7 @@ namespace ChildrenDeffenderForm
                 {
                     var resp = await client.GetAsync(Config.ApiLink + "Movie");
 
-                    Movies = await resp.Content.ReadAsAsync<List<Movie>>();
+                    Movies = await resp.Content.ReadAsAsync<List<movie>>();
                     
                     SaveMoviesToXml();              // Mentés XML-be
 
@@ -83,11 +83,11 @@ namespace ChildrenDeffenderForm
             foreach (var item in Movies)
             {
                 // If has got Name
-                if (item.NameEnglish != null)
+                if (item.MovieNameEnglish != null)
                 {
                     // path + name + format
                     String path = Config.MovieIndexImagesDir +
-                                    item.NameEnglish.Trim() +
+                                    item.MovieNameEnglish.Trim() +
                                     Config.MovieIndexImagesFormat;
 
                     try
@@ -127,7 +127,7 @@ namespace ChildrenDeffenderForm
             // Itt lehet sort...
 
 
-            List<Movie> SortedList = Movies.OrderBy(p => p.FavID).ToList();
+            List<movie> SortedList = Movies.OrderBy(p => p.FavID).ToList();
             Movies = SortedList;
 
         }
@@ -144,7 +144,7 @@ namespace ChildrenDeffenderForm
 
 
 
-        public void ChildrenPlayMovie(Movie item, Form backForm)
+        public void ChildrenPlayMovie(movie item, Form backForm)
         {
 
             String linkType = item.LinkType;
@@ -296,9 +296,9 @@ namespace ChildrenDeffenderForm
 
 
 
-        public void ChildrenPlayMovieSound(Movie item)
+        public void ChildrenPlayMovieSound(movie item)
         {
-            String soundFileName = item.NameEnglish.Trim();
+            String soundFileName = item.MovieNameEnglish.Trim();
             String soundDir = Config.MovieSoundsDir;
             String format = Config.MovieSoundsFormat;
             String soundFullPath = soundDir + soundFileName + format;
@@ -354,7 +354,7 @@ namespace ChildrenDeffenderForm
             // Then in some other function.
             //Person person = XmlSerialization.ReadFromXmlFile<Person>("C:\person.txt");
             //List<Person> people = XmlSerialization.ReadFromXmlFile<List<Person>>("C:\people.txt");
-            Movies = XmlSerialization.ReadFromXmlFile<List<Movie>>("Movies.xml");
+            Movies = XmlSerialization.ReadFromXmlFile<List<movie>>("Movies.xml");
 
             Log.SendEventLog("Load movies from Movies.xml has been successful.");
 
@@ -367,7 +367,7 @@ namespace ChildrenDeffenderForm
             //List<Person> people = GetListOfPeople();
             //XmlSerialization.WriteToXmlFile<Person>("C:\person.txt", person);
             //XmlSerialization.WriteToXmlFile<List<People>>("C:\people.txt", people);
-            XmlSerialization.WriteToXmlFile<List<Movie>>("Movies.xml", Movies);
+            XmlSerialization.WriteToXmlFile<List<movie>>("Movies.xml", Movies);
 
             Log.SendEventLog("Save movies from Movies.xml has been successful.");
         }

@@ -1,4 +1,4 @@
-﻿using ChildrenDeffenderForm.Model;
+﻿using ChildrenDeffenderDatabaseModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,7 +17,7 @@ namespace ChildrenDeffenderForm
     {
         Form BackForm;
 
-        public FormMovieChildrenNetVideoPlayer(Movie movie, Form backForm)
+        public FormMovieChildrenNetVideoPlayer(movie movie, Form backForm)
         {
             InitializeComponent();
             LoadVideoPage(movie);
@@ -26,7 +26,7 @@ namespace ChildrenDeffenderForm
         }
 
 
-        public void LoadVideoPage (Movie movie)
+        public void LoadVideoPage (movie movie)
         {
             String link = movie.MovieLink;
             webBrowserForChildrenMovie.Url = new Uri(link); // its ok, but not full screen
@@ -37,7 +37,7 @@ namespace ChildrenDeffenderForm
 
         }
 
-        public void CreateWebPageForPlaying (Movie movie)
+        public void CreateWebPageForPlaying (movie movie)
         {
             //<iframe width="420" height="315" src="https://www.youtube.com/embed/2ATBSX2rd-g" frameborder="0" allowfullscreen></iframe>
 

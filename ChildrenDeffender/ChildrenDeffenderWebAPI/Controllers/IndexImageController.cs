@@ -1,4 +1,4 @@
-﻿using ChildrenDeffenderWebAPI.Models;
+﻿using ChildrenDeffenderDatabaseModel;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -7,6 +7,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
+/*
 namespace ChildrenDeffenderWebAPI.Controllers
 {
     public class IndexImageController : ApiController
@@ -102,3 +103,6 @@ namespace ChildrenDeffenderWebAPI.Controllers
 
     }
 }
+
+
+*/

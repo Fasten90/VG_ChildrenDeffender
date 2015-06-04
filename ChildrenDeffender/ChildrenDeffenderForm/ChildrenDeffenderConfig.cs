@@ -11,7 +11,9 @@ namespace ChildrenDeffenderForm
 
         // variables for Config
 
-        public String ApiLink = "http://localhost:3051/api/";
+        public String ApiLink = "http://localhost:3581/api/";
+        //public String ApiLink = "http://localhost:3306/api/";
+        //public String ApiLink = "http://localhost:3051/api/"; // old version, For MS SQL
 
         // Important - Movie dir, Movie player
         public String MoviesDir = @"D:\Minden\Mese\"; // TODO: ez legyen lista ??
@@ -22,6 +24,7 @@ namespace ChildrenDeffenderForm
         public String MovieIndexImagesDir = @"D:\Minden\Gabika dolgai\BME\Google Drive\VG\ChildrenDeffender\Images\Movies\";
         public String UserImagesDir = @"D:\Minden\Gabika dolgai\BME\Google Drive\VG\ChildrenDeffender\Images\Users\";
         public String MovieIndexImagesFormat = ".jpg";
+        public String UserIndexImagesFormat = ".jpg";
 
         // sounds dir
         public String MovieSoundsDir = @"D:\Minden\Gabika dolgai\BME\Google Drive\VG\ChildrenDeffender\Sounds\Movies\";

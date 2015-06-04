@@ -1,4 +1,4 @@
-﻿using ChildrenDeffenderWebAPI.Models;
+﻿using ChildrenDeffenderDatabaseModel;
 using System.Collections.Generic;
 using System.Web.Http;
 using System;
@@ -18,9 +18,9 @@ namespace ChildrenDeffenderWebAPI.Controllers
         public IHttpActionResult Get()
         {
 
-            using (ChildrenDeffenderEntities context = new ChildrenDeffenderEntities())
+            using (childrendeffenderEntities context = new childrendeffenderEntities())
             {
-                var items = new List<User>(context.User); // TODO: ITT EXCEPTION VAN, HA NINCS SZERVER
+                var items = new List<user>(context.user); // TODO: ITT EXCEPTION VAN, HA NINCS SZERVER
                 if (items == null)
                 {
                     return NotFound();
@@ -36,9 +36,9 @@ namespace ChildrenDeffenderWebAPI.Controllers
         [Route("api/User/{id}", Name = "GetUserUrl")]
         public IHttpActionResult Get(int id)
         {
-            using (ChildrenDeffenderEntities context = new ChildrenDeffenderEntities())
+            using (childrendeffenderEntities context = new childrendeffenderEntities())
             {
-                var item = context.User.SingleOrDefault(p => p.UserID == id);
+                var item = context.user.SingleOrDefault(p => p.UserID == id);
                 if (item == null)
                 {
                     return NotFound();
@@ -51,14 +51,14 @@ namespace ChildrenDeffenderWebAPI.Controllers
         // POST api/User
         [HttpPost]
         [Route("api/User")]
-        public IHttpActionResult Post([FromBody] User p)
+        public IHttpActionResult Post([FromBody] user p)
         {
-            using (ChildrenDeffenderEntities context = new ChildrenDeffenderEntities())
+            using (childrendeffenderEntities context = new childrendeffenderEntities())
             {
                 // TODO: maxID keresés ?????????????????????????????
                 //p.MovieID = Movie.Max(i => i.MovieID) + 1;
 
-                context.User.Add(p);
+                context.user.Add(p);
                 context.SaveChanges();
                 return Created(Url.Link("GetUserUrl", new { id = p.UserID.ToString() }), p);
             }
@@ -68,12 +68,12 @@ namespace ChildrenDeffenderWebAPI.Controllers
         // PUT: api/User/5
         [HttpPut]
         [Route("api/User/UpdateUser")]
-        public IHttpActionResult Put([FromBody]User modifiedItem)
+        public IHttpActionResult Put([FromBody]user modifiedItem)
         {
-            using (ChildrenDeffenderEntities context = new ChildrenDeffenderEntities())
+            using (childrendeffenderEntities context = new childrendeffenderEntities())
             {
 
-                context.User.Attach(modifiedItem);
+                context.user.Attach(modifiedItem);
                 context.Entry(modifiedItem).State = EntityState.Modified;
                 context.SaveChanges();
                 return Ok();
@@ -85,14 +85,14 @@ namespace ChildrenDeffenderWebAPI.Controllers
         [Route("api/User/{id}")]
         public IHttpActionResult Delete(int id)
         {
-            using (ChildrenDeffenderEntities context = new ChildrenDeffenderEntities())
+            using (childrendeffenderEntities context = new childrendeffenderEntities())
             {
-                var item = context.User.SingleOrDefault(p => p.UserID == id);
+                var item = context.user.SingleOrDefault(p => p.UserID == id);
                 if (item == null)
                 {
                     return NotFound();
                 }
-                context.User.Remove(item);
+                context.user.Remove(item);
                 context.SaveChanges();
                 return Ok();
             }

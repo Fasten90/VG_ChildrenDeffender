@@ -1,4 +1,4 @@
-﻿using ChildrenDeffenderWebAPI.Models;
+﻿using ChildrenDeffenderDatabaseModel;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -38,9 +38,9 @@ namespace ChildrenDeffenderWebAPI.Controllers
         public IHttpActionResult Get()      
         {
 
-            using (ChildrenDeffenderEntities context = new ChildrenDeffenderEntities())
+            using (childrendeffenderEntities context = new childrendeffenderEntities())
             {
-                var movies = new List<Movie> (context.Movie);
+                var movies = new List<movie> (context.movie);
                 if (movies == null)
                 {
                     return NotFound();
@@ -56,9 +56,9 @@ namespace ChildrenDeffenderWebAPI.Controllers
         [Route("api/Movie/{id}", Name = "GetMovieUrl")]
         public IHttpActionResult Get(int id)
         {
-            using (ChildrenDeffenderEntities context = new ChildrenDeffenderEntities())
+            using (childrendeffenderEntities context = new childrendeffenderEntities())
             {
-                var movie = context.Movie.SingleOrDefault(p => p.MovieID == id);
+                var movie = context.movie.SingleOrDefault(p => p.MovieID == id);
                 if (movie == null)
                 {
                     return NotFound();
@@ -70,14 +70,14 @@ namespace ChildrenDeffenderWebAPI.Controllers
 
         [HttpPost]
         [Route( "api/Movie" )]
-        public IHttpActionResult Post( [FromBody] Movie p )
+        public IHttpActionResult Post( [FromBody] movie p )
         {
-            using (ChildrenDeffenderEntities context = new ChildrenDeffenderEntities())
+            using (childrendeffenderEntities context = new childrendeffenderEntities())
             {
                 // TODO: maxID keresés ?????????????????????????????
                 //p.MovieID = Movie.Max(i => i.MovieID) + 1;
 
-                context.Movie.Add( p );
+                context.movie.Add( p );
                 context.SaveChanges();
                 return Created( Url.Link( "GetMovieUrl", new { id = p.MovieID.ToString() } ), p );
             }
@@ -89,12 +89,12 @@ namespace ChildrenDeffenderWebAPI.Controllers
         // PUT: api/Movie/5
         [HttpPut]
         [Route("api/Movie/UpdateMovie")]
-        public IHttpActionResult Put([FromBody]Movie modifiedMovie)
+        public IHttpActionResult Put([FromBody]movie modifiedMovie)
         {
-            using (ChildrenDeffenderEntities context = new ChildrenDeffenderEntities()) // TODO: try-catch
+            using (childrendeffenderEntities context = new childrendeffenderEntities()) // TODO: try-catch
             {
 
-                context.Movie.Attach(modifiedMovie);
+                context.movie.Attach(modifiedMovie);
                 context.Entry(modifiedMovie).State = EntityState.Modified;
                 context.SaveChanges();
                 return Ok();
@@ -124,14 +124,14 @@ namespace ChildrenDeffenderWebAPI.Controllers
         [Route("api/Movie/{id}")]
         public IHttpActionResult Delete(int id)
         {
-            using (ChildrenDeffenderEntities context = new ChildrenDeffenderEntities())
+            using (childrendeffenderEntities context = new childrendeffenderEntities())
             {
-                var movie = context.Movie.SingleOrDefault(p => p.MovieID == id);
+                var movie = context.movie.SingleOrDefault(p => p.MovieID == id);
                 if (movie == null)
                 {
                     return NotFound();
                 }
-                context.Movie.Remove(movie);
+                context.movie.Remove(movie);
                 context.SaveChanges();
                 return Ok();
             }

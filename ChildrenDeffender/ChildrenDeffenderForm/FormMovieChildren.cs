@@ -1,4 +1,4 @@
-﻿using ChildrenDeffenderForm.Model;
+﻿using ChildrenDeffenderDatabaseModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -197,8 +197,8 @@ namespace ChildrenDeffenderForm
             listViewItem = listViewMoviesForChildren.FocusedItem;
 
             //int imageID = listViewItem.ImageIndex; // for table...
-            Movie movie = new Movie();
-            movie = (Movie)listViewItem.Tag;
+            movie movie = new movie();
+            movie = (movie)listViewItem.Tag;
 
             if (movie != null)
             {
@@ -235,8 +235,8 @@ namespace ChildrenDeffenderForm
              listViewItem = listViewMoviesForChildren.FocusedItem;
 
              //int imageID = listViewItem.ImageIndex; // for table...
-             Movie movie = new Movie();
-             movie = (Movie)listViewItem.Tag;
+             movie movie = new movie();
+             movie = (movie)listViewItem.Tag;
 
              if (movie != null)
              {
@@ -337,7 +337,7 @@ namespace ChildrenDeffenderForm
          */
 
 
-         public bool PlayNetMovie(Movie item)
+         public bool PlayNetMovie(movie item)
          {
 
              //String movielink = item.MovieLink;
