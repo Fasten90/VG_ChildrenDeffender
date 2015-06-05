@@ -27,6 +27,9 @@ namespace ChildrenDeffenderForm
         //List<Movie> ChildrenMovies;
         //List<IndexImage> IndexImages;
 
+        int MovieParentDataGriedViewChangedRowIndex;
+        bool IsRowChanged;
+
 
         public FormMovieParent(ChildrenDeffenderConfig conf, Form backForm)    // 
         {
@@ -39,6 +42,9 @@ namespace ChildrenDeffenderForm
 
             labelMovieIndexImagesDir.Text = Config.MovieIndexImagesDir;
             labelMoviesDir.Text = Config.MoviesDir;
+
+            MovieParentDataGriedViewChangedRowIndex = -1;
+            IsRowChanged = false;
 
         }
 
@@ -195,18 +201,25 @@ namespace ChildrenDeffenderForm
             {
                 //MovieID = 11,
                 //MovieID = int.Parse(textBoxMovieID.Text), // Good, but so MAX ID
-                MovieID = ChildrenMovies.GetMovieMaxID() + 1,
+                MovieID = ChildrenMovies.GetMovieMaxID() + 1,   // TODO: e helyett más? MySQL auto increment?
 
                 //MovieName = "Micimackó",
-                MovieName = textBoxMovieName.Text.Trim(),
-                MovieNameEnglish = textBoxMovieName.Text.Trim(),
+                MovieName = textBoxMovieUploadMovieName.Text.Trim(),    // TODO:Megcsinálni biztonságosabbra?
+
+                MovieNameEnglish = textBoxMovieUploadMovieNameEnglish.Text.Trim(),  // TODO: ide validáció?
+
+                MovieLink = textBoxMovieUploadMovieLink.Text.Trim(),
+
+                LinkType = textBoxMovieUploadLinkType.Text.Trim(),
+
                 //MovieLink = "C:\\",
                 //LinkType = "local",
                 //Language = "HU",
                 //NameEnglish = "Winnie the Pooh",
                 //Category = "állatos",
                 MinAge = 6,
-                ManyViews  = 0,          
+                ManyViews  = 0,
+                DateLastModified = DateTime.Now,
                 DateAdded = DateTime.Now
             };
 
@@ -248,30 +261,37 @@ namespace ChildrenDeffenderForm
 
         // Módosítás gomb - PUT
         // Hasonló az "static void UpdateV1(int id)"-hoz
-        private async void btModify_Click(object sender, EventArgs e)
+        private void btModify_Click(object sender, EventArgs e)
         {
 
-            //int id = int.Parse(dataGridViewMovies.CurrentRow.Cells["MovieID"].Value.ToString());
+            MovieModify(dataGridViewMovies.CurrentRow);
+   
+
+        }
+
+        private async void MovieModify(DataGridViewRow dataGridViewRow)
+        {
+            //int id = int.Parse(dataGridViewRow.Cells["MovieID"].Value.ToString());
             //Movie modifiedMovie = GetMovie(id);
 
             movie modifiedMovie = new movie();
 
             // TODO: lecserélni majd valami objektumosabbra?
 
-            modifiedMovie.MovieID = int.Parse(dataGridViewMovies.CurrentRow.Cells["MovieID"].Value.ToString());
+            modifiedMovie.MovieID = int.Parse(dataGridViewRow.Cells["MovieID"].Value.ToString());
 
-            modifiedMovie.MovieName = dataGridViewMovies.CurrentRow.Cells["MovieName"].Value.ToString().Trim(); // végéről leszedi a white space-eket
+            modifiedMovie.MovieName = dataGridViewRow.Cells["MovieName"].Value.ToString().Trim(); // végéről leszedi a white space-eket
 
 
             // TODO: Lehet, hogy ezekre jobb lenne külön függvény...
-            //modifiedMovie.MovieLink = dataGridViewMovies.CurrentRow.Cells["MovieLink"].Value.ToString();
-            var value = dataGridViewMovies.CurrentRow.Cells["MovieLink"].Value;
-            if ( value!= null)
+            //modifiedMovie.MovieLink = dataGridViewRow.Cells["MovieLink"].Value.ToString();
+            var value = dataGridViewRow.Cells["MovieLink"].Value;
+            if (value != null)
             {
                 modifiedMovie.MovieLink = value.ToString().Trim();
             }
 
-            var linktype = dataGridViewMovies.CurrentRow.Cells["LinkType"].Value;
+            var linktype = dataGridViewRow.Cells["LinkType"].Value;
             if (linktype != null)
             {
                 modifiedMovie.LinkType = linktype.ToString().Trim();
@@ -281,30 +301,30 @@ namespace ChildrenDeffenderForm
                 linktype = "";
             }
 
-            //modifiedMovie.Language = dataGridViewMovies.CurrentRow.Cells["Language"].Value.ToString();
-            var language = dataGridViewMovies.CurrentRow.Cells["Language"].Value;
+            //modifiedMovie.Language = dataGridViewRow.Cells["Language"].Value.ToString();
+            var language = dataGridViewRow.Cells["Language"].Value;
             if (language != null)
             {
                 modifiedMovie.Language = language.ToString().Trim();
             }
 
-            //modifiedMovie.NameEnglish = dataGridViewMovies.CurrentRow.Cells["NameEnglish"].Value.ToString();
-            var movieNameEnglish = dataGridViewMovies.CurrentRow.Cells["MovieNameEnglish"].Value;
+            //modifiedMovie.NameEnglish = dataGridViewRow.Cells["NameEnglish"].Value.ToString();
+            var movieNameEnglish = dataGridViewRow.Cells["MovieNameEnglish"].Value;
             if (movieNameEnglish != null)
             {
                 modifiedMovie.MovieNameEnglish = movieNameEnglish.ToString().Trim();
             }
 
 
-            //modifiedMovie.Category = dataGridViewMovies.CurrentRow.Cells["Category"].Value.ToString();
-            var category = dataGridViewMovies.CurrentRow.Cells["Category"].Value;
+            //modifiedMovie.Category = dataGridViewRow.Cells["Category"].Value.ToString();
+            var category = dataGridViewRow.Cells["Category"].Value;
             if (category != null)
             {
                 modifiedMovie.Category = category.ToString().Trim();
             }
 
-            var minAge = dataGridViewMovies.CurrentRow.Cells["MinAge"].Value;
-            if ( minAge != null)
+            var minAge = dataGridViewRow.Cells["MinAge"].Value;
+            if (minAge != null)
             {
                 //modifiedMovie.MinAge = short.Parse(minAge.ToString());
 
@@ -314,11 +334,20 @@ namespace ChildrenDeffenderForm
 
 
 
-            //modifiedMovie.ManyViews  = int.Parse(dataGridViewMovies.CurrentRow.Cells["ManyViews"].Value.ToString());        
-            modifiedMovie.ManyViews = (int)dataGridViewMovies.CurrentRow.Cells["ManyViews"].Value;
+            //modifiedMovie.ManyViews  = int.Parse(dataGridViewRow.Cells["ManyViews"].Value.ToString());
+            var manyViews = dataGridViewRow.Cells["ManyViews"].Value;
+            if ( manyViews != null)
+            {
+                modifiedMovie.ManyViews = (int)manyViews;
+            }
             
-            //modifiedMovie.DateAdded = DateTime.Parse(dataGridViewMovies.CurrentRow.Cells["DateAdded"].Value.ToString());
-            modifiedMovie.DateAdded = (DateTime)dataGridViewMovies.CurrentRow.Cells["DateAdded"].Value;
+
+            //modifiedMovie.DateAdded = DateTime.Parse(dataGridViewRow.Cells["DateAdded"].Value.ToString());
+            var dateAdded = dataGridViewRow.Cells["DateAdded"].Value;
+            if ( dateAdded != null)
+            {
+                modifiedMovie.DateAdded = (DateTime)dateAdded;
+            }
 
             modifiedMovie.DateLastModified = DateTime.Now;
 
@@ -349,6 +378,7 @@ namespace ChildrenDeffenderForm
                 MessageForParent(message);
                 Log.SendEventLog(message);
             }
+
 
         }
 
@@ -610,6 +640,7 @@ namespace ChildrenDeffenderForm
         private void buttonRecord_Click(object sender, EventArgs e)
         {
             labelRecording.Visible = true;
+            buttonRecordImage.Visible = true;
             mciSendString("open new type waveaudio alias Som", null, 0, 0);
             mciSendString("record Som", null, 0, 0);
          
@@ -618,10 +649,11 @@ namespace ChildrenDeffenderForm
         private void buttonSave_Click(object sender, EventArgs e)
         {
             labelRecording.Visible = false;
+            buttonRecordImage.Visible = false;
             mciSendString("pause Som", null, 0, 0);
 
             String dir = Config.MovieSoundsDir;
-            String fileName =  dataGridViewMovies.CurrentRow.Cells["NameEnglish"].Value.ToString().Trim();
+            String fileName =  dataGridViewMovies.CurrentRow.Cells["MovieNameEnglish"].Value.ToString().Trim();
             String format = Config.MovieSoundsFormat;
 
             String fullPath = dir + fileName + format;
@@ -807,30 +839,8 @@ namespace ChildrenDeffenderForm
         private void dataGridViewMovies_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+            // helyette Select...
 
-            // EXAMPLE
-            //AdressBokPerson currentObject = (AdressBokPerson)dataGridView1.CurrentRow.DataBoundItem;
-
-            //e.RowIndex;
-            //Movie movie = (Movie)dataGridViewMovies.Tag;  // WRONG
-            //Movie movie = (Movie)dataGridViewMovies.CurrentRow; // WRONG
-
-
-            // MODE 1  -> object
-            //Movie movie = (Movie)dataGridViewMovies.CurrentRow.DataBoundItem;       
-            //String movieID = movie.MovieID.ToString();
-            //String movieName = movie.MovieName.Trim();
-
-            // MODE 2 - from cells data
-            String movieID = dataGridViewMovies.CurrentRow.Cells["MovieID"].Value.ToString().Trim();
-            String movieName = dataGridViewMovies.CurrentRow.Cells["MovieName"].Value.ToString().Trim();
-
-
-            // Text
-            String labelText = "MovieID: " + movieID + "\n" +
-                               "MovieName: " + movieName;
-
-            labelSelectedMovie.Text = labelText;
                 
         }
 
@@ -842,7 +852,7 @@ namespace ChildrenDeffenderForm
         private void buttonPlayMovieSound_Click(object sender, EventArgs e)
         {
 
-            var valueEnglishName = dataGridViewMovies.CurrentRow.Cells["NameEnglish"].Value;
+            var valueEnglishName = dataGridViewMovies.CurrentRow.Cells["MovieNameEnglish"].Value;
             if (valueEnglishName != null)
             {
                 String englishName = valueEnglishName.ToString().Trim();
@@ -858,6 +868,77 @@ namespace ChildrenDeffenderForm
                 Log.SendEventLog(message);
             }
                 
+        }
+
+        private void buttonRecordImage_Click(object sender, EventArgs e)
+        {
+            buttonSave_Click(sender,e);
+        }
+
+        private void dataGridViewMovies_SelectionChanged(object sender, EventArgs e)
+        {
+
+            // EXAMPLE
+            //AdressBokPerson currentObject = (AdressBokPerson)dataGridView1.CurrentRow.DataBoundItem;
+
+            //e.RowIndex;
+            //Movie movie = (Movie)dataGridViewMovies.Tag;  // WRONG
+            //Movie movie = (Movie)dataGridViewMovies.CurrentRow; // WRONG
+
+
+            // MODE 1  -> object
+            //Movie movie = (Movie)dataGridViewMovies.CurrentRow.DataBoundItem;       
+            //String movieID = movie.MovieID.ToString();
+            //String movieName = movie.MovieName.Trim();
+
+            // MODE 2 - from cells data
+
+            // TODO: átírni Tag-es, mert az idézőjeles... karbantarthatatlanabb kódot eredményez
+            String movieID = dataGridViewMovies.CurrentRow.Cells["MovieID"].Value.ToString().Trim();
+            String movieName = dataGridViewMovies.CurrentRow.Cells["MovieName"].Value.ToString().Trim();
+            //String movieNameEnglish = ((movie)dataGridViewMovies.CurrentRow.Tag).MovieNameEnglish;
+            String movieNameEnglish = dataGridViewMovies.CurrentRow.Cells["MovieNameEnglish"].Value.ToString().Trim();
+
+            /*
+            // Már nem használt ... TODO: törölni
+            // Text
+            String labelText = "MovieID: " + movieID + "\n" +
+                               "MovieName: " + movieName;
+
+            labelSelectedMovie.Text = labelText;
+            */
+
+            textBoxMovieModifyMovieID.Text = movieID;
+            textBoxMovieModifyMovieName.Text = movieName;
+            textBoxMovieModifyMovieNameEnglish.Text = movieNameEnglish;
+
+            textBoxMovieSoundMovieID.Text = movieID;
+            textBoxMovieSoundMovieName.Text = movieName;
+            textBoxMovieSoundMovieNameEnglish.Text = movieNameEnglish;
+        }
+
+        private void dataGridViewMovies_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            MovieParentDataGriedViewChangedRowIndex = e.RowIndex;
+            IsRowChanged = true;
+        }
+
+        private void dataGridViewMovies_RowLeave(object sender, DataGridViewCellEventArgs e)
+        {
+
+
+        }
+
+        private void dataGridViewMovies_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Ha az index más, és volt változás, akkor módosítás esemény kiváltása ...
+            if ((MovieParentDataGriedViewChangedRowIndex != e.RowIndex) && (IsRowChanged == true))
+            {
+
+                MovieModify(dataGridViewMovies.Rows[MovieParentDataGriedViewChangedRowIndex]);
+                MovieParentDataGriedViewChangedRowIndex = -1;
+                IsRowChanged = false;
+            }
         }
 
 

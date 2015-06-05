@@ -218,6 +218,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Lilla.ico" />
+    <None Include="Resources\Record.bmp" />
+    <None Include="Resources\Exit.bmp" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">

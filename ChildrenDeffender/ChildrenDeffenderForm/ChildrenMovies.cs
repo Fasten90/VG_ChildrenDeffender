@@ -47,6 +47,7 @@ namespace ChildrenDeffenderForm
                     if (dataGridView != null)   // dataGriedView-ba betöltés
                     {
                         dataGridView.DataSource = Movies;
+                        dataGridView.Tag = Movies;
                     }
                 }
                 catch (Exception e)
