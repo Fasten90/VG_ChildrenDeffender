@@ -11,6 +11,11 @@ namespace ChildrenDeffenderForm
 
         // variables for Config
 
+        // Standards
+
+        public String Language = "en";
+
+
         public String ApiLink = "http://localhost:3581/api/";
         //public String ApiLink = "http://localhost:3306/api/";
         //public String ApiLink = "http://localhost:3051/api/"; // old version, For MS SQL

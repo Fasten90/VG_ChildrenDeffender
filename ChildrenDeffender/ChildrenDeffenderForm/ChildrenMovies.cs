@@ -382,7 +382,7 @@ namespace ChildrenDeffenderForm
             //XmlSerialization.WriteToXmlFile<List<People>>("C:\people.txt", people);
             XmlSerialization.WriteToXmlFile<List<movie>>("Movies.xml", Movies);
 
-            Log.SendEventLog("Save movies from Movies.xml has been successful.");
+            Log.SendEventLog("Save movies to Movies.xml has been successful.");
         }
 
 

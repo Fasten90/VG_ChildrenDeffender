@@ -20,6 +20,8 @@ namespace ChildrenDeffenderForm
 
         public ChildrenDeffenderConfig Config;
 
+        private ConfigHandler configHandler;
+
         //LogClass Log;
 
         //public ConfigHandler TheConfigHandler;
@@ -70,7 +72,7 @@ namespace ChildrenDeffenderForm
         private void buttonLoginParent_Click(object sender, EventArgs e)
         {
             this.Hide();
-            FormMovieParent form = new FormMovieParent(Config, this);     // 
+            FormMovieParent form = new FormMovieParent(Config, configHandler, this); 
             form.Show();
 
             // Másik megoldás
@@ -84,13 +86,15 @@ namespace ChildrenDeffenderForm
         {
             
             // Configs
-            Config = new ChildrenDeffenderConfig();
-            ConfigHandler handler = new ConfigHandler();
+            //Config = new ChildrenDeffenderConfig();   // lokális, ez nekünk nem jó...
+            configHandler = new ConfigHandler();
 
-            if (handler.LoadConfigsFromXML(Config))
+            Config = configHandler.LoadConfigsFromXML(Config);   // Config beállítása / betöltése
+
+            if ( Config != null )
             {   // Ha sikerült betölteni a config fájlt
-                //Console.WriteLine("Config.xml has been loaded.");
-                Log.SendEventLog("Config.xml has been loaded.");
+                //Console.WriteLine("Config has been loaded.");
+                Log.SendEventLog("Config has been loaded.");
             }
             else
             {   // Ha nem sikerült betölteni a config fájlt
@@ -98,7 +102,7 @@ namespace ChildrenDeffenderForm
                 //EventLogger.WriteLine("Cannot load Config.xml, loaded standard values.");
                 Log.SendErrorLog("Cannot load Config.xml, loaded standard values.");
                 MessageBox.Show("Hiányzó \"Config.xml\" fájl! Alapértelmezett config adatok betöltve és lementve.");
-                handler.SaveConfigsToXML(Config);
+                configHandler.SaveConfigsToXML(Config);
             }
 
             // Get Users
@@ -137,14 +141,32 @@ namespace ChildrenDeffenderForm
                     success = false;
                 }
 
+
+
                 if (success)
                 {
-                    SaveUsersToXml();
-
+                    try
+                    {
+                        SaveUsersToXml();
+                        Log.SendEventLog("Users save has been succesful.");
+                    }
+                    catch (Exception e)
+                    {
+                        Log.SendErrorLog("Users saving is unsuccesful: " + e.Message);
+                    }
+                    
                 }
                 else
-                {
-                    LoadUsersFromXml();
+                {                 
+                    try
+                    {
+                        LoadUsersFromXml();
+                        Log.SendEventLog("Users loading has been succesful.");
+                    }
+                    catch (Exception e)
+                    {
+                        Log.SendErrorLog("Users loadging is unsuccesful: " + e.Message);
+                    }
                 }
                 
                 
@@ -260,7 +282,7 @@ namespace ChildrenDeffenderForm
         private void FormSwitchToParentForm ()
         {
             this.Hide();
-            FormMovieParent form = new FormMovieParent(Config, this); // 
+            FormMovieParent form = new FormMovieParent(Config, configHandler, this); // 
             form.Show();
         }
 
@@ -369,6 +391,7 @@ namespace ChildrenDeffenderForm
             //Person person = XmlSerialization.ReadFromXmlFile<Person>("C:\person.txt");
             //List<Person> people = XmlSerialization.ReadFromXmlFile<List<Person>>("C:\people.txt");
             LoginUsers = XmlSerialization.ReadFromXmlFile<List<user>>("Users.xml");
+            Log.SendEventLog("Users.xml file loaded succesful.");
 
         }
 
@@ -380,6 +403,7 @@ namespace ChildrenDeffenderForm
             //XmlSerialization.WriteToXmlFile<Person>("C:\person.txt", person);
             //XmlSerialization.WriteToXmlFile<List<People>>("C:\people.txt", people);
             XmlSerialization.WriteToXmlFile<List<user>>("Users.xml", LoginUsers);
+            Log.SendEventLog("Users.xml file saved succesful.");
         }
 
     }

@@ -13,6 +13,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using NAudio;
 using NAudio.Wave;
+using System.Globalization;
+using System.Threading;
 
 
 namespace ChildrenDeffenderForm
@@ -21,6 +23,9 @@ namespace ChildrenDeffenderForm
     {
         ChildrenDeffenderConfig Config;
         ChildrenMovies ChildrenMovies;
+
+        ConfigHandler ConfigHandler;
+
         Form BackForm;
         // Nem lehet kihagyni, mert a ParentForm az előző form is lehet... ? (pl. netplayer....)
 
@@ -31,7 +36,7 @@ namespace ChildrenDeffenderForm
         bool IsRowChanged;
 
 
-        public FormMovieParent(ChildrenDeffenderConfig conf, Form backForm)    // 
+        public FormMovieParent(ChildrenDeffenderConfig conf, ConfigHandler configHandler, Form backForm) 
         {
             InitializeComponent();
 
@@ -39,13 +44,23 @@ namespace ChildrenDeffenderForm
             //this.BackForm = this.ParentForm;
             this.BackForm = backForm;
             this.ChildrenMovies = new ChildrenMovies(conf);
+            this.ConfigHandler = configHandler;
 
             labelMovieIndexImagesDir.Text = Config.MovieIndexImagesDir;
             labelMoviesDir.Text = Config.MoviesDir;
 
+            // dataGriedView (táblázat) adatok változtatásának észrevételéhez ...
             MovieParentDataGriedViewChangedRowIndex = -1;
             IsRowChanged = false;
 
+            // Language setting;
+
+            comboBoxMovieParentLanguage.Items.Add(new CultureInfo("en"));
+            comboBoxMovieParentLanguage.Items.Add(new CultureInfo("hu-Hu"));
+            comboBoxMovieParentLanguage.Items.Add(new CultureInfo("de-De"));
+
+            comboBoxMovieParentLanguage.Text = Config.Language;
+            SetLanguage(Config.Language);
         }
 
 
@@ -427,7 +442,9 @@ namespace ChildrenDeffenderForm
             // TODO: lista mentése adatbázisba?
         }
 
-        private void buttonIndexImageRefresh_Click(object sender, EventArgs e)
+
+
+        private void buttonIndexImagesReadFromDir_Click(object sender, EventArgs e)
         {
             ReadDirForIndexImages();
         }
@@ -716,82 +733,7 @@ namespace ChildrenDeffenderForm
         }
         */
 
-
-        /*
-        private void buttonAddIndexImage_Click(object sender, EventArgs e)
-        {
-
-            // TODO: Add Image
-            String fileName = null;
-            Stream myStream = null;
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
-
-
-            openFileDialog1.InitialDirectory = Config.MovieIndexImagesDir;
-            openFileDialog1.Filter = "jpg files (*.jpg)|*.jpg|All files (*.*)|*.*";
-            openFileDialog1.FilterIndex = 2;
-            openFileDialog1.RestoreDirectory = true;
-
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    if ((myStream = openFileDialog1.OpenFile()) != null)
-                    {
-                        using (myStream)
-                        {
-                            // Insert code to read the stream here.
-                        }
-                        //filePath = openFileDialog1.FileName;  // full path!!
-                        fileName = openFileDialog1.SafeFileName;
-
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
-                    return;
-                }
-            }
-
-            if (fileName != null)
-            {
-                // new IndexImage
-                var indexImage = new IndexImage
-                {
-                    IndexImageID = IndexImages.Max(t => t.IndexImageID) + 1,    // Max + 1
-                    IndexImageName = fileName,
-                    Type = "Movie",
-                    SizeX = 128,
-                    SizeY = 128,
-                    IsTransparency = false,
-                    Version = 1,
-                    DateAdded = DateTime.Now
-                };
-
-                UploadIndexImage(indexImage);
-
-            }
-
-        }
-        */
-
-
-        /*
-        private async void UploadIndexImage ( IndexImage indexImage)
-        {
-            using (var client = new HttpClient())
-            {
-                // Post
-                await client.PostAsJsonAsync(Config.ApiLink + "IndexImage", indexImage);
-
-                // Get
-                ChildrenMovies.LoadMoviesImages(imageList)
-
-            }
-        }
-        */
-
+ 
 
         private async void btMovieDelete_Click(object sender, EventArgs e)
         {
@@ -825,36 +767,142 @@ namespace ChildrenDeffenderForm
             }
         }
 
-        private void listViewIndexImagesForParent_MouseClick(object sender, MouseEventArgs e)
-        {
-
-            ListViewItem listViewItem = new ListViewItem();
-            listViewItem = listViewMoviesForParent.FocusedItem;
-
-            int ImageIndex = listViewItem.ImageIndex;
-
-            // az adott image kiírása
-
-            labelSelectedImage.Visible = true;
-            labelSelectedImage.Text = "ImageIndex: " + ImageIndex.ToString() + "\n"
-                                      + "MovieID: " + ((movie)listViewItem.Tag).MovieID + "\n"
-                                      + "MovieName: " + ((movie)listViewItem.Tag).MovieName;
-
-
-        }
-
-        private void dataGridViewMovies_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-            // helyette Select...
-
-                
-        }
 
         private void buttonAddIndexImage_Click(object sender, EventArgs e)
         {
 
+            String movieName= textBoxMovieModifyMovieNameEnglish.Text;  // Fontos, hogy az angol név alapján mentünk le képeket...
+
+            String imageNewDir = Config.MovieIndexImagesDir;
+
+            String imageFormat = Config.MovieIndexImagesFormat;
+
+            String imageNewPath = imageNewDir + movieName + imageFormat;
+
+
+            // Az eredeti, lementésre kerülő fájl:
+
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            // Példa: „Szövegfájlok (*.txt)|*.txt|Minden fájl (*.*)|*.*”
+            openFileDialog.Filter = "Jpeg (*" + imageFormat + "|*" + imageFormat;
+
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                String imageOriginalPath = openFileDialog.FileName;
+
+                // átmásolni a saját helyünkre ???
+
+                try
+                {
+                    // Másolás
+                    // File.Copy(imageOriginalPath, imageNewPath);    // felülírás nincs engedélyezve
+                    File.Copy(imageOriginalPath, imageNewPath, true);       // felülírás engedélyezve
+                    
+                    // Ha sikeres, üzenet
+                    MessageForParent("Image has been added.\r\n" +
+                                    imageNewPath);
+
+                    // Ha sikeres, kép betöltése ...
+                    pictureBoxSelectedMovieImage.ImageLocation = imageNewPath;
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
+                    return;
+                }
+
+
+
+            }
+
+
         }
+
+
+
+        /*
+        // FELTÖLTÉSES VERZIÓ ... OLD
+        
+        private void buttonAddIndexImage_Click(object sender, EventArgs e)
+        {
+
+        // TODO: Add Image
+        String fileName = null;
+        
+        OpenFileDialog openFileDialog1 = new OpenFileDialog();
+
+
+        openFileDialog1.InitialDirectory = Config.MovieIndexImagesDir;
+        openFileDialog1.Filter = "jpg files (*.jpg)|*.jpg|All files (*.*)|*.*";
+        openFileDialog1.FilterIndex = 2;
+        openFileDialog1.RestoreDirectory = true;
+
+        if (openFileDialog1.ShowDialog() == DialogResult.OK)
+        {
+            try
+            {
+                if ((myStream = openFileDialog1.OpenFile()) != null)
+                {
+                    using (myStream)
+                    {
+                        // Insert code to read the stream here.
+                    }
+                    //filePath = openFileDialog1.FileName;  // full path!!
+                    fileName = openFileDialog1.SafeFileName;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
+                return;
+            }
+        }
+
+        if (fileName != null)
+        {
+            // new IndexImage
+            var indexImage = new IndexImage
+            {
+                IndexImageID = IndexImages.Max(t => t.IndexImageID) + 1,    // Max + 1
+                IndexImageName = fileName,
+                Type = "Movie",
+                SizeX = 128,
+                SizeY = 128,
+                IsTransparency = false,
+                Version = 1,
+                DateAdded = DateTime.Now
+            };
+
+            UploadIndexImage(indexImage);
+
+        }
+
+        }
+
+
+
+   
+        private async void UploadIndexImage ( IndexImage indexImage)
+        {
+            using (var client = new HttpClient())
+            {
+                // Post
+                await client.PostAsJsonAsync(Config.ApiLink + "IndexImage", indexImage);
+
+                // Get
+                ChildrenMovies.LoadMoviesImages(imageList)
+
+            }
+        }
+        */
+        
+
+
+
 
         private void buttonPlayMovieSound_Click(object sender, EventArgs e)
         {
@@ -922,6 +970,14 @@ namespace ChildrenDeffenderForm
             textBoxMovieSoundMovieID.Text = movieID;
             textBoxMovieSoundMovieName.Text = movieName;
             textBoxMovieSoundMovieNameEnglish.Text = movieNameEnglish;
+
+            textBoxMovieImageAddMovieID.Text = movieID;
+            textBoxMovieImageAddMovieName.Text = movieName;
+            textBoxMovieImageAddMovieNameEnglish.Text = movieNameEnglish;
+
+
+            pictureBoxSelectedMovieImage.ImageLocation = Config.MovieIndexImagesDir + movieNameEnglish + Config.MovieIndexImagesFormat;
+
         }
 
         private void dataGridViewMovies_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -1169,6 +1225,197 @@ namespace ChildrenDeffenderForm
             errorProviderMovieUpload.SetError(textBoxMovieUploadLinkType, "");
         }
 
+
+        ////////////////////////////////////////////////////////////////////////////
+
+
+        // FOR LANGUAGE - combobox ...
+        private void comboBoxMovieParentLanguage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //Config.Language = comboBoxMovieParentLanguage.SelectedText;
+            //SetLanguage(Config.Language);
+
+
+            if (comboBoxMovieParentLanguage.SelectedIndex == -1)
+            return;
+
+            CultureInfo ci = (CultureInfo)comboBoxMovieParentLanguage.SelectedItem;
+
+            if (ci != null)
+            {
+                Thread.CurrentThread.CurrentUICulture = ci;
+                ComponentResourceManager resources = new ComponentResourceManager(this.GetType());
+                ApplyResourceToControl(resources, this);
+
+                // Config lementése
+                Config.Language = ci.ToString();
+                ConfigHandler.SaveConfigsToXML(Config);
+                Log.SendEventLog("Config changed (Language). Config has been saved to Config.xml file.");
+
+            }
+
+        }
+
+
+         private static void ApplyResourceToControl(ComponentResourceManager res, Control control)
+        {
+            foreach (Control c in control.Controls)
+            ApplyResourceToControl(res, c);
+
+            var text = res.GetString(String.Format("{0}.Text", control.Name));
+            control.Text = text ?? control.Text;
+        }
+
+
+         /*
+         private void comboBoxMovieParentLanguage_SelectedValueChanged(object sender, EventArgs e)
+         {
+
+         }
+         */
+
+         private void SetLanguage(String language)
+         {
+             CultureInfo ci = new CultureInfo(language);
+
+             if (ci != null)
+             {
+                 //CultureInfo ci = (CultureInfo)comboBoxMovieParentLanguage.SelectedItem;
+                 Thread.CurrentThread.CurrentUICulture = ci;
+             }
+             else
+             {
+                 Thread.CurrentThread.CurrentUICulture = new CultureInfo("en");
+             }
+             
+             ComponentResourceManager resources = new ComponentResourceManager(this.GetType());
+             ApplyResourceToControl(resources, this);
+
+         }
+
+         private void listViewMoviesForParent_Click(object sender, EventArgs e)
+         {
+             ListViewItem listViewItem = new ListViewItem();
+             listViewItem = listViewMoviesForParent.FocusedItem;    //a kiválasztott elem
+
+
+             movie movie = new movie();
+             movie = (movie)listViewItem.Tag;
+
+             if (movie != null)
+             {
+                 
+                 // az adott image kiírása
+
+                 labelMovieParentSelectedImageMovieID.Text = "MovieID: " + movie.MovieID.ToString();
+                 labelMovieParentSelectedImageMovieName.Text = "MovieName: " + movie.MovieName;
+
+                 //ChildrenMovies.ChildrenPlayMovieSound(movie); // lejátszás
+
+             }
+             else
+             {
+                 //labelMovieParentSelectedImageMovieName.Visible = false;
+
+                 // Error log
+                 Log.SendErrorLog("There is not found the movie from ListViewMoviesForChildren, index: " +
+                     listViewItem.ImageIndex.ToString());
+             }
+
+
+         }
+
+         private void buttonMovieImageChange_Click(object sender, EventArgs e)
+         {
+
+         }
+
+         private void listViewMoviesForParent_DoubleClick(object sender, EventArgs e)
+         {
+             // Hang lejátszása
+             MoviePlaySound(listViewMoviesForParent.FocusedItem);
+         }
+
+         private void MoviePlaySound(ListViewItem listViewItem)
+         {
+
+             //ListViewItem listViewItem = new ListViewItem();
+             //listViewItem = listViewMoviesForParent.FocusedItem;
+
+             //int imageID = listViewItem.ImageIndex; // for table...
+             movie movie = new movie();
+             movie = (movie)listViewItem.Tag;
+
+             if (movie != null)
+             {
+                 ChildrenMovies.ChildrenPlayMovieSound(movie); // lejátszás
+             }
+             else
+             {      // Error log
+                 Log.SendErrorLog("There is not found the movie's sound from ListViewMoviesForChildren, index: " +
+                     listViewItem.ImageIndex.ToString());
+             }
+
+         }
+
+         private void buttonPlayMovie_Click(object sender, EventArgs e)
+         {
+             // Film lejátszása
+             MoviePlayMovie(listViewMoviesForParent.FocusedItem);
+
+         }
+
+         private void MoviePlayMovie(ListViewItem listViewItem)
+         {
+
+             //ListViewItem listViewItem = new ListViewItem();
+             //listViewItem = listViewMoviesForParent.FocusedItem;
+
+             //int imageID = listViewItem.ImageIndex; // for table...
+             movie movie = new movie();
+             movie = (movie)listViewItem.Tag;
+
+             if (movie != null)
+             {
+                 ChildrenMovies.ChildrenPlayMovie(movie, this); // lejátszás
+             }
+
+         }
+
+
+         private void buttonMoviePlaySound_Click(object sender, EventArgs e)
+         {
+             MoviePlaySound(listViewMoviesForParent.FocusedItem);
+         }
+          
+
+        /*
+         private void SetLanguage (CultureInfo language)
+        {
+            if (language.ToString() == "HU")
+            {
+                CultureInfo newCulture = new CultureInfo("de");
+                this.Instance.ChangeCurrentThreadUICulture(newCulture);
+                this.Instance.ChangeLanguage(this);
+            }
+            else if (language.ToString() == "EN")
+            {
+                CultureInfo newCulture = new CultureInfo("de");
+                this.Instance.ChangeCurrentThreadUICulture(newCulture);
+                this.Instance.ChangeLanguage(this);
+            }
+            else if (language.ToString() == "DU")
+            {
+                
+            }
+            else
+            {
+
+            }
+        }
+         */
+
+        
 
         ////////////////////////////////////////////////////////////////////////////
 

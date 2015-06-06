@@ -244,7 +244,7 @@ namespace ChildrenDeffenderForm
              }
              else
              {      // Error log
-                 Log.SendErrorLog("There is not found the movie from ListViewMoviesForChildren, index: "+
+                 Log.SendErrorLog("There is not found the movie's sound from ListViewMoviesForChildren, index: "+
                      listViewItem.ImageIndex.ToString());
              }
 

@@ -35,28 +35,30 @@ namespace ChildrenDeffenderForm
 
         }
 
-        public bool LoadConfigsFromXML(ChildrenDeffenderConfig Config)
+        public ChildrenDeffenderConfig LoadConfigsFromXML(ChildrenDeffenderConfig config)
         {
 
             try
             {
+                config = new ChildrenDeffenderConfig();
+
                 System.Xml.Serialization.XmlSerializer reader =
                 new System.Xml.Serialization.XmlSerializer(typeof(ChildrenDeffenderConfig));
 
                 System.IO.StreamReader file = new System.IO.StreamReader(
                     @"Config.xml");
-                Config = (ChildrenDeffenderConfig)reader.Deserialize(file);
+                config = (ChildrenDeffenderConfig)reader.Deserialize(file);
                 file.Close();
 
                 Log.SendEventLog("Config.xml file loaded succesful.");
 
-                return true;
+                return config;
 
             }
             catch (Exception e)
             {
                 Log.SendErrorLog("Config.xml files loading has been failed: " + e.Message);
-                return false;
+                return null;
             }
            
 

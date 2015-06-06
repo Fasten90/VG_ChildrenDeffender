@@ -182,6 +182,10 @@
     <EmbeddedResource Include="FormMovieChildrenNetVideoPlayer.resx">
       <DependentUpon>FormMovieChildrenNetVideoPlayer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormMovieParent.hu-HU.resx">
+      <DependentUpon>FormMovieParent.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormMoviePlayer.resx">
       <DependentUpon>FormMoviePlayer.cs</DependentUpon>
     </EmbeddedResource>
@@ -218,6 +222,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Lilla.ico" />
+    <None Include="Resources\Error.bmp" />
     <None Include="Resources\Record.bmp" />
     <None Include="Resources\Exit.bmp" />
   </ItemGroup>
