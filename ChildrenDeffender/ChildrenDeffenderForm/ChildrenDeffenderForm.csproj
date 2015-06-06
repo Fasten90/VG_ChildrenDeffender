@@ -162,11 +162,11 @@
     <Compile Include="FormMoviePlayer.Designer.cs">
       <DependentUpon>FormMoviePlayer.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormMoviesParent.cs">
+    <Compile Include="FormMovieParent.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormMoviesParent.Designer.cs">
-      <DependentUpon>FormMoviesParent.cs</DependentUpon>
+    <Compile Include="FormMovieParent.Designer.cs">
+      <DependentUpon>FormMovieParent.cs</DependentUpon>
     </Compile>
     <Compile Include="Log.cs" />
     <Compile Include="Program.cs" />
@@ -185,8 +185,8 @@
     <EmbeddedResource Include="FormMoviePlayer.resx">
       <DependentUpon>FormMoviePlayer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormMoviesParent.resx">
-      <DependentUpon>FormMoviesParent.cs</DependentUpon>
+    <EmbeddedResource Include="FormMovieParent.resx">
+      <DependentUpon>FormMovieParent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -16,7 +16,13 @@ namespace ChildrenDeffenderForm
     {
 
         public List<movie> Movies;
-        ChildrenDeffenderConfig Config;
+        public ChildrenDeffenderConfig Config;
+
+        public const int ValidMovieNameMaxLength = 45;
+        public const int ValidMovieNameEnglishMaxLength = 45;
+        // equal long the MovieLink
+        public const int ValidMovieLinkTypeMaxLength = 10;
+
 
 
 
@@ -40,14 +46,14 @@ namespace ChildrenDeffenderForm
                     
                     SaveMoviesToXml();              // Mentés XML-be
 
-                    SortMovies();
+                    SortMovies();                   // Rendezés valamilyen sorrendben
 
                     LoadMoviesImages(imageListMovies, listViewMovies); // ImageList-be és ListView-ba betöltés
                     
                     if (dataGridView != null)   // dataGriedView-ba betöltés
                     {
                         dataGridView.DataSource = Movies;
-                        dataGridView.Tag = Movies;
+                        //dataGridView.Tag = Movies;        // TODO: DONT WORK
                     }
                 }
                 catch (Exception e)
@@ -56,7 +62,13 @@ namespace ChildrenDeffenderForm
                     //Console.WriteLine("Error message: {0}.", e.Message);
                     Log.SendErrorLog("Load Movies from database has been failed: " + e.Message);
 
-                    LoadMoviesFromXml();            // Betöltés Xml-ből
+                    LoadMoviesFromXml();            // Betöltés Xml-ből a Movie listába
+
+                    if (dataGridView != null)   // dataGriedView-ba betöltés
+                    {
+                        dataGridView.DataSource = Movies;
+                        //dataGridView.Tag = Movies;        // TODO: DONT WORK
+                    }   
 
                     LoadMoviesImages(imageListMovies, listViewMovies);   // TODO: jó itt?
                 }

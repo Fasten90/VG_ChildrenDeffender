@@ -32,6 +32,5 @@ namespace ChildrenDeffenderDatabaseModel
         public Nullable<System.DateTime> DateLastView { get; set; }
         public Nullable<System.DateTime> DateAdded { get; set; }
         public Nullable<System.DateTime> DateLastModified { get; set; }
-        public string new_tablecol { get; set; }
     }
 }

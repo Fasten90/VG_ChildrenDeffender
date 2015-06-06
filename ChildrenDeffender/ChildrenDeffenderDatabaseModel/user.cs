@@ -24,6 +24,5 @@ namespace ChildrenDeffenderDatabaseModel
         public Nullable<int> ManyLogged { get; set; }
         public Nullable<System.DateTime> DateLastLogged { get; set; }
         public Nullable<System.DateTime> DateAdded { get; set; }
-        public string usercol { get; set; }
     }
 }

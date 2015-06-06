@@ -201,7 +201,8 @@ namespace ChildrenDeffenderForm
             {
                 //MovieID = 11,
                 //MovieID = int.Parse(textBoxMovieID.Text), // Good, but so MAX ID
-                MovieID = ChildrenMovies.GetMovieMaxID() + 1,   // TODO: e helyett más? MySQL auto increment?
+               // MovieID = ChildrenMovies.GetMovieMaxID() + 1,   // TODO: e helyett más? MySQL auto increment?
+               // !! IMPORTANT !! --> Changed to Auto Increment
 
                 //MovieName = "Micimackó",
                 MovieName = textBoxMovieUploadMovieName.Text.Trim(),    // TODO:Megcsinálni biztonságosabbra?
@@ -332,6 +333,12 @@ namespace ChildrenDeffenderForm
 
             }
 
+
+            var favID = dataGridViewRow.Cells["FavID"].Value;
+            if (favID != null)
+            {
+                modifiedMovie.FavID = (int)favID;
+            }
 
 
             //modifiedMovie.ManyViews  = int.Parse(dataGridViewRow.Cells["ManyViews"].Value.ToString());
@@ -940,6 +947,231 @@ namespace ChildrenDeffenderForm
                 IsRowChanged = false;
             }
         }
+
+
+        // FOR EXAMPLE, NOT USED
+        // https://msdn.microsoft.com/en-us/library/system.windows.forms.control.validating%28v=vs.110%29.aspx?cs-save-lang=1&cs-lang=csharp#code-snippet-2
+
+
+        private void textBox1_Validating(object sender, 
+ 				System.ComponentModel.CancelEventArgs e)
+        {
+            string errorMsg;
+            if (!ValidEmailAddress(textBoxMovieUploadMovieName.Text, out errorMsg))
+            {
+                // Cancel the event and select the text to be corrected by the user.
+                e.Cancel = true;
+                textBoxMovieUploadMovieName.Select(0, textBoxMovieUploadMovieName.Text.Length);
+
+                // Set the ErrorProvider error with the text to display.  
+                this.errorProviderMovieUpload.SetError(textBoxMovieUploadMovieName, errorMsg);
+            }
+        }
+
+
+        private void textBox1_Validated(object sender, System.EventArgs e)
+        {
+            // If all conditions have been met, clear the ErrorProvider of errors.
+            errorProviderMovieUpload.SetError(textBoxMovieUploadMovieName, "");
+        }
+
+        public bool ValidEmailAddress(string emailAddress, out string errorMessage)
+        {
+            // Confirm that the e-mail address string is not empty. 
+            if (emailAddress.Length == 0)
+            {
+                errorMessage = "e-mail address is required.";
+                return false;
+            }
+
+            // Confirm that there is an "@" and a "." in the e-mail address, and in the correct order.
+            if (emailAddress.IndexOf("@") > -1)
+            {
+                if (emailAddress.IndexOf(".", emailAddress.IndexOf("@")) > emailAddress.IndexOf("@"))
+                {
+                    errorMessage = "";
+                    return true;
+                }
+            }
+
+            errorMessage = "e-mail address must be valid e-mail address format.\n" +
+               "For example 'someone@example.com' ";
+            return false;
+        }
+
+
+        // END OF MSDN VALIDATING EXAMPLE
+
+
+        ////////////////////////////////////////////////////////////////////////////
+
+
+        // from MSDN example ... my Validate for Movie uploading
+
+        private bool ValidMovieName(string inputText, out string errorMessage)
+        {
+
+            if (inputText.Length == 0)
+            {
+                errorMessage = "Movie Name is required";
+                return false;
+            }
+            else if (inputText.Length >= ChildrenMovies.ValidMovieNameMaxLength)
+            {
+                errorMessage = "Movie Name is too long";
+                return false;
+            }
+            else
+            {
+                errorMessage = "";
+                return true;
+            }
+        }
+
+        private bool ValidMovieLink(string inputText, out string errorMessage)
+        {
+
+            if (inputText.Length == 0)
+            {
+                errorMessage = "Movie Link is required";
+                return false;
+            }
+            else if (inputText.Length >= ChildrenMovies.ValidMovieNameMaxLength)
+            {
+                errorMessage = "Movie Link is too long";
+                return false;
+            }
+            else if (!(inputText.IndexOf("\\") > -1) && 
+                    !(inputText.IndexOf("http:\\") > -1) &&
+                    !(inputText.IndexOf("https:\\") > -1) )
+            {
+                errorMessage = "There is no \\ for local link or http:\\\\ / http:\\\\ for internet link";
+                return false;              
+            }
+            else
+            {
+                errorMessage = "";
+                return true;
+            }
+        }
+
+        private bool ValidMovielLinkType(string inputText, out string errorMessage)
+        {
+
+            if (inputText.Length == 0)
+            {
+                errorMessage = "Link type is required";
+                return false;
+            }
+            else if (inputText.Length >= ChildrenMovies.ValidMovieLinkTypeMaxLength)
+            {
+                errorMessage = "Link type is too long";
+                return false;
+            }
+            else if (!inputText.Equals("youtube") && !inputText.Equals("local"))
+            {
+                errorMessage = "Link type is only be \"youtube\" or \"local\"";
+                return false;
+            }
+            else
+            {
+                errorMessage = "";
+                return true;
+            }
+        }
+
+
+
+        private void textBoxMovieUploadMovieName_Validating(object sender, CancelEventArgs e)
+        {
+            string errorMsg;
+            if (!ValidMovieName(textBoxMovieUploadMovieName.Text, out errorMsg))
+            {
+                // Cancel the event and select the text to be corrected by the user.
+                e.Cancel = true;
+                textBoxMovieUploadMovieName.Select(0, textBoxMovieUploadMovieName.Text.Length);
+
+                // Set the ErrorProvider error with the text to display.  
+                this.errorProviderMovieUpload.SetError(textBoxMovieUploadMovieName, errorMsg);
+            }
+
+        }
+
+        private void textBoxMovieUploadMovieName_Validated(object sender, EventArgs e)
+        {
+            // If all conditions have been met, clear the ErrorProvider of errors.
+            errorProviderMovieUpload.SetError(textBoxMovieUploadMovieName, "");
+        }
+
+
+        private void textBoxMovieUploadMovieNameEnglish_Validating(object sender, CancelEventArgs e)
+        {
+            string errorMsg;
+            if (!ValidMovieName(textBoxMovieUploadMovieNameEnglish.Text, out errorMsg))
+            {
+                // Cancel the event and select the text to be corrected by the user.
+                e.Cancel = true;
+                textBoxMovieUploadMovieNameEnglish.Select(0, textBoxMovieUploadMovieNameEnglish.Text.Length);
+
+                // Set the ErrorProvider error with the text to display.  
+                this.errorProviderMovieUpload.SetError(textBoxMovieUploadMovieNameEnglish, errorMsg);
+            }
+        }
+
+
+        private void textBoxMovieUploadMovieNameEnglish_Validated(object sender, EventArgs e)
+        {
+            // If all conditions have been met, clear the ErrorProvider of errors.
+            errorProviderMovieUpload.SetError(textBoxMovieUploadMovieNameEnglish, "");
+        }
+
+
+        private void textBoxMovieUploadMovieLink_Validating(object sender, CancelEventArgs e)
+        {
+            string errorMsg;
+            if (!ValidMovieLink(textBoxMovieUploadMovieLink.Text, out errorMsg))
+            {
+                // Cancel the event and select the text to be corrected by the user.
+                e.Cancel = true;
+                textBoxMovieUploadMovieLink.Select(0, textBoxMovieUploadMovieLink.Text.Length);
+
+                // Set the ErrorProvider error with the text to display.  
+                this.errorProviderMovieUpload.SetError(textBoxMovieUploadMovieLink, errorMsg);
+            }
+        }
+
+
+        private void textBoxMovieUploadMovieLink_Validated(object sender, EventArgs e)
+        {   
+            // If all conditions have been met, clear the ErrorProvider of errors.
+            errorProviderMovieUpload.SetError(textBoxMovieUploadMovieLink, "");
+        }
+
+
+        private void textBoxMovieUploadLinkType_Validating(object sender, CancelEventArgs e)
+        {
+            string errorMsg;
+            if (!ValidMovielLinkType(textBoxMovieUploadLinkType.Text, out errorMsg))
+            {
+                // Cancel the event and select the text to be corrected by the user.
+                e.Cancel = true;
+                textBoxMovieUploadLinkType.Select(0, textBoxMovieUploadLinkType.Text.Length);
+
+                // Set the ErrorProvider error with the text to display.  
+                this.errorProviderMovieUpload.SetError(textBoxMovieUploadLinkType, errorMsg);
+            }
+        }
+
+
+        private void textBoxMovieUploadLinkType_Validated(object sender, EventArgs e)
+        {
+            // If all conditions have been met, clear the ErrorProvider of errors.
+            errorProviderMovieUpload.SetError(textBoxMovieUploadLinkType, "");
+        }
+
+
+        ////////////////////////////////////////////////////////////////////////////
+
 
 
         /*

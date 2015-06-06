@@ -4,12 +4,12 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ChildrenDeffenderModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ChildrenDeffenderModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="movie">
           <Key>
             <PropertyRef Name="MovieID" />
           </Key>
-          <Property Name="MovieID" Type="int" Nullable="false" />
+          <Property Name="MovieID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MovieName" Type="varchar" MaxLength="45" Nullable="false" />
           <Property Name="MovieLink" Type="varchar" MaxLength="45" />
           <Property Name="LinkType" Type="varchar" MaxLength="10" />
@@ -27,13 +27,12 @@
           <Property Name="DateLastView" Type="datetime" Precision="0" />
           <Property Name="DateAdded" Type="datetime" Precision="0" />
           <Property Name="DateLastModified" Type="datetime" Precision="0" />
-          <Property Name="new_tablecol" Type="varchar" MaxLength="45" />
         </EntityType>
         <EntityType Name="user">
           <Key>
             <PropertyRef Name="UserID" />
           </Key>
-          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserName" Type="varchar" MaxLength="45" Nullable="false" />
           <Property Name="DisplayName" Type="varchar" MaxLength="45" />
           <Property Name="ProfilType" Type="varchar" MaxLength="10" />
@@ -43,14 +42,12 @@
           <Property Name="ManyLogged" Type="int" />
           <Property Name="DateLastLogged" Type="datetime" Precision="0" />
           <Property Name="DateAdded" Type="datetime" Precision="0" />
-          <Property Name="usercol" Type="varchar" MaxLength="45" />
         </EntityType>
         <EntityContainer Name="ChildrenDeffenderModelStoreContainer">
           <EntitySet Name="movie" EntityType="Self.movie" Schema="childrendeffender" store:Type="Tables" />
           <EntitySet Name="user" EntityType="Self.user" Schema="childrendeffender" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ChildrenDeffenderModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -76,7 +73,6 @@
           <Property Name="DateLastView" Type="DateTime" />
           <Property Name="DateAdded" Type="DateTime" />
           <Property Name="DateLastModified" Type="DateTime" />
-          <Property Name="new_tablecol" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="user">
           <Key>
@@ -92,7 +88,6 @@
           <Property Name="ManyLogged" Type="Int32" />
           <Property Name="DateLastLogged" Type="DateTime" />
           <Property Name="DateAdded" Type="DateTime" />
-          <Property Name="usercol" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityContainer Name="childrendeffenderEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="movie" EntityType="Self.movie" />
@@ -125,7 +120,6 @@
                 <ScalarProperty Name="DateLastView" ColumnName="DateLastView" />
                 <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
                 <ScalarProperty Name="DateLastModified" ColumnName="DateLastModified" />
-                <ScalarProperty Name="new_tablecol" ColumnName="new_tablecol" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -142,7 +136,6 @@
                 <ScalarProperty Name="ManyLogged" ColumnName="ManyLogged" />
                 <ScalarProperty Name="DateLastLogged" ColumnName="DateLastLogged" />
                 <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
-                <ScalarProperty Name="usercol" ColumnName="usercol" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

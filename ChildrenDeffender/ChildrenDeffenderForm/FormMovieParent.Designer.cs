@@ -84,6 +84,7 @@
             this.buttonExitParent = new System.Windows.Forms.Button();
             this.buttonMovieRefresh = new System.Windows.Forms.Button();
             this.buttonBack = new System.Windows.Forms.Button();
+            this.errorProviderMovieUpload = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMovies)).BeginInit();
             this.tabControlMovieParent.SuspendLayout();
             this.tabPageMovieModify.SuspendLayout();
@@ -93,6 +94,7 @@
             this.tabPageMovieImage.SuspendLayout();
             this.tabPageMovieSound.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderMovieUpload)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridViewMovies
@@ -454,6 +456,8 @@
             this.textBoxMovieUploadMovieName.Name = "textBoxMovieUploadMovieName";
             this.textBoxMovieUploadMovieName.Size = new System.Drawing.Size(100, 20);
             this.textBoxMovieUploadMovieName.TabIndex = 8;
+            this.textBoxMovieUploadMovieName.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxMovieUploadMovieName_Validating);
+            this.textBoxMovieUploadMovieName.Validated += new System.EventHandler(this.textBoxMovieUploadMovieName_Validated);
             // 
             // label2
             // 
@@ -493,6 +497,8 @@
             this.textBoxMovieUploadMovieNameEnglish.Name = "textBoxMovieUploadMovieNameEnglish";
             this.textBoxMovieUploadMovieNameEnglish.Size = new System.Drawing.Size(100, 20);
             this.textBoxMovieUploadMovieNameEnglish.TabIndex = 31;
+            this.textBoxMovieUploadMovieNameEnglish.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxMovieUploadMovieNameEnglish_Validating);
+            this.textBoxMovieUploadMovieNameEnglish.Validated += new System.EventHandler(this.textBoxMovieUploadMovieNameEnglish_Validated);
             // 
             // labelMovieUploadMovieLink
             // 
@@ -512,6 +518,8 @@
             this.textBoxMovieUploadMovieLink.Name = "textBoxMovieUploadMovieLink";
             this.textBoxMovieUploadMovieLink.Size = new System.Drawing.Size(100, 20);
             this.textBoxMovieUploadMovieLink.TabIndex = 34;
+            this.textBoxMovieUploadMovieLink.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxMovieUploadMovieLink_Validating);
+            this.textBoxMovieUploadMovieLink.Validated += new System.EventHandler(this.textBoxMovieUploadMovieLink_Validated);
             // 
             // textBoxMovieUploadLinkType
             // 
@@ -520,6 +528,8 @@
             this.textBoxMovieUploadLinkType.Name = "textBoxMovieUploadLinkType";
             this.textBoxMovieUploadLinkType.Size = new System.Drawing.Size(100, 20);
             this.textBoxMovieUploadLinkType.TabIndex = 35;
+            this.textBoxMovieUploadLinkType.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxMovieUploadLinkType_Validating);
+            this.textBoxMovieUploadLinkType.Validated += new System.EventHandler(this.textBoxMovieUploadLinkType_Validated);
             // 
             // btUpload
             // 
@@ -725,6 +735,10 @@
             this.buttonBack.UseVisualStyleBackColor = true;
             this.buttonBack.Click += new System.EventHandler(this.buttonBack_Click);
             // 
+            // errorProviderMovieUpload
+            // 
+            this.errorProviderMovieUpload.ContainerControl = this;
+            // 
             // FormMovieParent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -757,6 +771,7 @@
             this.tabPageMovieSound.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderMovieUpload)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -817,6 +832,7 @@
         private System.Windows.Forms.Label labelMovieUploadMovieLink;
         private System.Windows.Forms.TextBox textBoxMovieUploadMovieLink;
         private System.Windows.Forms.TextBox textBoxMovieUploadLinkType;
+        private System.Windows.Forms.ErrorProvider errorProviderMovieUpload;
     }
 }
 

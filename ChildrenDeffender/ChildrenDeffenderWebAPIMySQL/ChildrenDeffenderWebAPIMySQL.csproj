@@ -140,21 +140,6 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="ChildrenDeffenderEntityModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ChildrenDeffenderEntityModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ChildrenDeffenderEntityModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ChildrenDeffenderEntityModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ChildrenDeffenderEntityModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ChildrenDeffenderEntityModel.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MovieController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -162,13 +147,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="movie.cs">
-      <DependentUpon>ChildrenDeffenderEntityModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="user.cs">
-      <DependentUpon>ChildrenDeffenderEntityModel.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
@@ -190,23 +169,6 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\HelpPageApiModel.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
-    <EntityDeploy Include="ChildrenDeffenderEntityModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ChildrenDeffenderEntityModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="ChildrenDeffenderEntityModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ChildrenDeffenderEntityModel.edmx</DependentUpon>
-      <LastGenOutput>ChildrenDeffenderEntityModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="ChildrenDeffenderEntityModel.edmx.diagram">
-      <DependentUpon>ChildrenDeffenderEntityModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="ChildrenDeffenderEntityModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ChildrenDeffenderEntityModel.edmx</DependentUpon>
-      <LastGenOutput>ChildrenDeffenderEntityModel.cs</LastGenOutput>
-    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

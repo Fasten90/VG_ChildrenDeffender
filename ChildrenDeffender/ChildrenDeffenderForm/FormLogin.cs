@@ -270,6 +270,29 @@ namespace ChildrenDeffenderForm
             ListViewItem listViewItem = new ListViewItem();
             listViewItem = listViewUsersForLogin.FocusedItem;
 
+            user user = new user();
+            user = (user)listViewItem.Tag;
+
+            if (user != null)
+            {
+                PlayLoginUserSound(user);
+            }
+            else
+            {      // Error log
+                Log.SendErrorLog("There is not found the user from listViewUsersForLogin, index: " +
+                    listViewItem.ImageIndex + "\t" +
+                    "User Name:" + user.UserID +
+                    "User Name: " + user.UserName);
+            }
+
+
+
+            // Működő kód volt, de Index kinyeréssel szerzi meg a user-t és a hangját, ami elcsúszásokat okozhat...
+            // Helyette a fenti listViewItem.Tag-os verzió ajánlott...
+            /*
+            ListViewItem listViewItem = new ListViewItem();
+            listViewItem = listViewUsersForLogin.FocusedItem;
+
             int userID = listViewItem.ImageIndex;
             // TODO: értelmesebben kinyerni az ID-t !!!!!!!!!!!!!!
 
@@ -293,8 +316,39 @@ namespace ChildrenDeffenderForm
 
                 }
             }
+            */
 
         }
+
+        private void PlayLoginUserSound(user user)
+        {
+            String soundFileDir = Config.UserSoundsDir;
+
+            //String soundFileName = item.SoundFileName;    // TODO: sound paraméter vagy name paraméter?
+            String soundFileName = user.UserName;
+
+            String soundFormat = Config.UserSoundsFormat;
+
+            String soundFullPath;
+
+            if (soundFileName != null)
+            {
+                soundFileName = soundFileName.Trim();
+                soundFullPath = soundFileDir + soundFileName + soundFormat;
+
+                System.Media.SoundPlayer player = new System.Media.SoundPlayer(soundFullPath);
+                try
+                {
+                    player.Play();
+                }
+                catch (Exception e)
+                {
+                    Log.SendErrorLog("Cannot found and played this User Sound: " + soundFullPath + "  ErrorMessage: " +  e.Message);
+                }
+               
+            }
+        }
+
 
         private void pictureBoxLoginExit_Click(object sender, EventArgs e)
         {
