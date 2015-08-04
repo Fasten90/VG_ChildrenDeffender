@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ChildrenDeffenderConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Language>hu-HU</Language>
+  <ApiLink>http://localhost:3581/api/</ApiLink>
+  <MoviesDir>D:\Minden\Mese\</MoviesDir>
+  <MoviePlayer>C:\Program Files (x86)\VideoLAN\VLC\vlc.exe</MoviePlayer>
+  <MovieIndexImagesDir>D:\Minden\Gabika dolgai\BME\Google Drive\VG\ChildrenDeffender\Images\Movies\</MovieIndexImagesDir>
+  <UserImagesDir>D:\Minden\Gabika dolgai\BME\Google Drive\VG\ChildrenDeffender\Images\Users\</UserImagesDir>
+  <MovieIndexImagesFormat>.jpg</MovieIndexImagesFormat>
+  <UserIndexImagesFormat>.jpg</UserIndexImagesFormat>
+  <MovieSoundsDir>D:\Minden\Gabika dolgai\BME\Google Drive\VG\ChildrenDeffender\Sounds\Movies\</MovieSoundsDir>
+  <MovieSoundsFormat>.wav</MovieSoundsFormat>
+  <UserSoundsDir>D:\Minden\Gabika dolgai\BME\Google Drive\VG\ChildrenDeffender\Sounds\Users\</UserSoundsDir>
+  <UserSoundsFormat>.wav</UserSoundsFormat>
+  <SoundMenuExit>D:\Minden\Gabika dolgai\BME\Google Drive\VG\ChildrenDeffender\Sounds\Menu\Exit.wav</SoundMenuExit>
+  <SoundMenuBack>D:\Minden\Gabika dolgai\BME\Google Drive\VG\ChildrenDeffender\Sounds\Menu\Back.wav</SoundMenuBack>
+  <SoundMenuWelcome>D:\Minden\Gabika dolgai\BME\Google Drive\VG\ChildrenDeffender\Sounds\Menu\Welcome.wav</SoundMenuWelcome>
+  <SoundThereIsNoVideo>D:\Minden\Gabika dolgai\BME\Google Drive\VG\ChildrenDeffender\Sounds\Menu\NoVideo.wav</SoundThereIsNoVideo>
+</ChildrenDeffenderConfig>

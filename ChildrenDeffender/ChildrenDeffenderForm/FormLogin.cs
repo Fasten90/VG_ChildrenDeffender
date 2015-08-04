@@ -102,6 +102,7 @@ namespace ChildrenDeffenderForm
                 //EventLogger.WriteLine("Cannot load Config.xml, loaded standard values.");
                 Log.SendErrorLog("Cannot load Config.xml, loaded standard values.");
                 MessageBox.Show("Hiányzó \"Config.xml\" fájl! Alapértelmezett config adatok betöltve és lementve.");
+                Config = new ChildrenDeffenderConfig();
                 configHandler.SaveConfigsToXML(Config);
             }
 
@@ -165,7 +166,7 @@ namespace ChildrenDeffenderForm
                     }
                     catch (Exception e)
                     {
-                        Log.SendErrorLog("Users loadging is unsuccesful: " + e.Message);
+                        Log.SendErrorLog("Users loading is unsuccesful: " + e.Message);
                     }
                 }
                 

@@ -15,8 +15,8 @@ namespace ChildrenDeffenderForm
 
         public String Language = "en";
 
-
-        public String ApiLink = "http://localhost:3581/api/";
+        public String ApiLink = "http://childrendeffender.azurewebsites.net/Api/";      // For Azure version
+        //public String ApiLink = "http://localhost:3581/api/";                         // For last local version
         //public String ApiLink = "http://localhost:3306/api/";
         //public String ApiLink = "http://localhost:3051/api/"; // old version, For MS SQL
 

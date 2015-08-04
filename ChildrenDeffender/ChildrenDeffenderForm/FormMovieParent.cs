@@ -239,28 +239,53 @@ namespace ChildrenDeffenderForm
                 DateAdded = DateTime.Now
             };
 
-
-            using (var client = new HttpClient())
+            // Upload to database
+            try
             {
-                // Post
-                // await client.PostAsJsonAsync(Config.ApiLink + "Movie", movie);
-                await client.PostAsJsonAsync(Config.ApiLink + "Movie", movie);
+                using (var client = new HttpClient())
+                {
+                    // Post
+                    // await client.PostAsJsonAsync(Config.ApiLink + "Movie", movie);
+                    await client.PostAsJsonAsync(Config.ApiLink + "Movie", movie);
 
-                // Get
-                var resp = await client.GetAsync(Config.ApiLink + "Movie");  // BUG de hát ez get ...
-                var movies = (await resp.Content.ReadAsAsync<List<movie>>());
-                dataGridViewMovies.DataSource = movies;
+                    // Get
+                    var resp = await client.GetAsync(Config.ApiLink + "Movie");  // BUG de hát ez get ...
+                    var movies = (await resp.Content.ReadAsAsync<List<movie>>());
+                    dataGridViewMovies.DataSource = movies;
+                }
+
+
+                // Succesful textbox
+                //MessageBox.Show("Sikeres feltöltés");
+                String message = "Sikeres feltöltés! \n" +
+                                "MovieID: " + movie.MovieID + "\n" +
+                                "Name:" + movie.MovieName;
+
+                MessageForParent(message);
+                Log.SendEventLog(message);
+
             }
+            catch(Exception ex)
+            {
+                MessageForParent("Sikertelen videófeltöltés adatbázisba. Mentés XML fájlba.");
+                Log.SendErrorLog("Sikertelen videófeltöltés adatbázisba, mentés XML fájlba: " + ex.Message);
 
 
-            // Succesful textbox
-            //MessageBox.Show("Sikeres feltöltés");
-            String message = "Sikeres feltöltés! \n" +
-                            "MovieID: " + movie.MovieID + "\n" +
-                            "Name:" + movie.MovieName;
+                // max ID-t kézzel kell előállítani ...
+                movie.MovieID = ChildrenMovies.GetMovieMaxID() + 1;
 
-            MessageForParent(message);
-            Log.SendEventLog(message);
+                // Hozzáadni listához ...
+                ChildrenMovies.AddMovie(movie);
+
+                // XML-be beleírni ...
+                ChildrenMovies.SaveMoviesToXml();
+
+                // Frissítés
+                RefreshMovies();
+
+
+
+            }
 
         }
 
@@ -499,8 +524,8 @@ namespace ChildrenDeffenderForm
                 }
 
                 // After END
-                RefreshMovies(); // Refresh // TODO: ez lehet itt? async, mielőtt szívbajt kapnál
-                // BUG: nem működik !!!!!!!!!!!!!!!!!!!!!!!!!4
+                RefreshMovies(); // Refresh // TODO: ez lehet itt? async ...
+                // BUG: nem működik !!!!!!!!!!!!!!!!!!!!!!!!!
 
             }
 

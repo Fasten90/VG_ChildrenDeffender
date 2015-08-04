@@ -373,7 +373,7 @@ namespace ChildrenDeffenderForm
 
         }
 
-        private void SaveMoviesToXml()
+        public void SaveMoviesToXml()
         {
             // And then in some function.
             //Person person = new Person() { Name = "Dan", Age = 30; HomeAddress = new Address() { StreetAddress = "123 My St", City = "Regina" }};
@@ -383,6 +383,16 @@ namespace ChildrenDeffenderForm
             XmlSerialization.WriteToXmlFile<List<movie>>("Movies.xml", Movies);
 
             Log.SendEventLog("Save movies to Movies.xml has been successful.");
+        }
+
+
+
+
+        public void AddMovie(movie addMovie)
+        {
+            Movies.Add(addMovie);
+
+
         }
 
 

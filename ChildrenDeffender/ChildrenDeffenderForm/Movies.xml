@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfMovie xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <movie>
+    <MovieID>1</MovieID>
+    <MovieName>Hos6os</MovieName>
+    <MovieLink>BigHero.avi</MovieLink>
+    <LinkType>local</LinkType>
+    <Language>HU</Language>
+    <MovieNameEnglish>Big Hero</MovieNameEnglish>
+    <FavID xsi:nil="true" />
+    <IsContinueable xsi:nil="true" />
+    <NextID xsi:nil="true" />
+    <IsFirst xsi:nil="true" />
+    <IsVisible xsi:nil="true" />
+    <CategoryID xsi:nil="true" />
+    <MinAge>6.0</MinAge>
+    <ManyViews>0</ManyViews>
+    <DateLastView xsi:nil="true" />
+    <DateAdded>2015-06-03T21:03:00</DateAdded>
+    <DateLastModified>2015-06-05T22:57:07</DateLastModified>
+  </movie>
+  <movie>
+    <MovieID>2</MovieID>
+    <MovieName>Thomas a gozmozdony</MovieName>
+    <Language>HU</Language>
+    <MovieNameEnglish>Thomas</MovieNameEnglish>
+    <FavID xsi:nil="true" />
+    <IsContinueable xsi:nil="true" />
+    <NextID xsi:nil="true" />
+    <IsFirst xsi:nil="true" />
+    <IsVisible xsi:nil="true" />
+    <CategoryID xsi:nil="true" />
+    <Category>vonatos</Category>
+    <MinAge>6.0</MinAge>
+    <ManyViews>0</ManyViews>
+    <DateLastView xsi:nil="true" />
+    <DateAdded>2015-06-03T21:03:00</DateAdded>
+    <DateLastModified>2015-06-06T20:14:28</DateLastModified>
+  </movie>
+  <movie>
+    <MovieID>3</MovieID>
+    <MovieName>A szépség és a szörnyeteg</MovieName>
+    <Language>HU</Language>
+    <MovieNameEnglish>Beaty and the Beast</MovieNameEnglish>
+    <FavID xsi:nil="true" />
+    <IsContinueable xsi:nil="true" />
+    <NextID xsi:nil="true" />
+    <IsFirst xsi:nil="true" />
+    <IsVisible xsi:nil="true" />
+    <CategoryID xsi:nil="true" />
+    <MinAge>6.0</MinAge>
+    <ManyViews>0</ManyViews>
+    <DateLastView xsi:nil="true" />
+    <DateAdded>2015-06-03T21:03:00</DateAdded>
+    <DateLastModified>2015-06-06T14:26:36</DateLastModified>
+  </movie>
+  <movie>
+    <MovieID>4</MovieID>
+    <MovieName>Micimackó</MovieName>
+    <Language>HU</Language>
+    <MovieNameEnglish>Winnie the Pooh</MovieNameEnglish>
+    <FavID xsi:nil="true" />
+    <IsContinueable xsi:nil="true" />
+    <NextID xsi:nil="true" />
+    <IsFirst xsi:nil="true" />
+    <IsVisible xsi:nil="true" />
+    <CategoryID xsi:nil="true" />
+    <MinAge>6.0</MinAge>
+    <ManyViews>0</ManyViews>
+    <DateLastView xsi:nil="true" />
+    <DateAdded>2015-06-03T21:03:00</DateAdded>
+    <DateLastModified>2015-06-06T14:26:35</DateLastModified>
+  </movie>
+  <movie>
+    <MovieID>5</MovieID>
+    <MovieName>Hamupipoke</MovieName>
+    <Language>HU</Language>
+    <MovieNameEnglish>Cinderella</MovieNameEnglish>
+    <FavID xsi:nil="true" />
+    <IsContinueable xsi:nil="true" />
+    <NextID xsi:nil="true" />
+    <IsFirst xsi:nil="true" />
+    <IsVisible xsi:nil="true" />
+    <CategoryID xsi:nil="true" />
+    <Category>hercegnos</Category>
+    <MinAge>6.0</MinAge>
+    <ManyViews>0</ManyViews>
+    <DateLastView xsi:nil="true" />
+    <DateAdded>2015-06-03T21:03:00</DateAdded>
+    <DateLastModified>2015-06-06T14:26:34</DateLastModified>
+  </movie>
+  <movie>
+    <MovieID>6</MovieID>
+    <MovieName>Csipkerózsika</MovieName>
+    <Language>HU</Language>
+    <MovieNameEnglish>Sleeping Beauty</MovieNameEnglish>
+    <FavID xsi:nil="true" />
+    <IsContinueable xsi:nil="true" />
+    <NextID xsi:nil="true" />
+    <IsFirst xsi:nil="true" />
+    <IsVisible xsi:nil="true" />
+    <CategoryID xsi:nil="true" />
+    <Category>hercegnos</Category>
+    <MinAge>6.0</MinAge>
+    <ManyViews>0</ManyViews>
+    <DateLastView xsi:nil="true" />
+    <DateAdded>2015-06-04T21:11:41</DateAdded>
+    <DateLastModified>2015-06-05T23:50:41</DateLastModified>
+  </movie>
+  <movie>
+    <MovieID>7</MovieID>
+    <MovieName>Lecsó</MovieName>
+    <Language>HU</Language>
+    <MovieNameEnglish>Ratatouille</MovieNameEnglish>
+    <FavID xsi:nil="true" />
+    <IsContinueable xsi:nil="true" />
+    <NextID xsi:nil="true" />
+    <IsFirst xsi:nil="true" />
+    <IsVisible xsi:nil="true" />
+    <CategoryID xsi:nil="true" />
+    <MinAge>6.0</MinAge>
+    <ManyViews>0</ManyViews>
+    <DateLastView xsi:nil="true" />
+    <DateAdded>2015-06-04T21:12:54</DateAdded>
+    <DateLastModified>2015-06-04T21:13:30</DateLastModified>
+  </movie>
+  <movie>
+    <MovieID>8</MovieID>
+    <MovieName>Csingiling</MovieName>
+    <Language>HU</Language>
+    <MovieNameEnglish>Tinker Bell</MovieNameEnglish>
+    <FavID xsi:nil="true" />
+    <IsContinueable xsi:nil="true" />
+    <NextID xsi:nil="true" />
+    <IsFirst xsi:nil="true" />
+    <IsVisible xsi:nil="true" />
+    <CategoryID xsi:nil="true" />
+    <MinAge>6.0</MinAge>
+    <ManyViews>0</ManyViews>
+    <DateLastView xsi:nil="true" />
+    <DateAdded>2015-06-04T21:13:50</DateAdded>
+    <DateLastModified>2015-06-04T21:14:09</DateLastModified>
+  </movie>
+  <movie>
+    <MovieID>9</MovieID>
+    <MovieName>Hüvelyk Panna</MovieName>
+    <MovieLink>https://www.youtube.com/embed/ceLbMcCA8Bw</MovieLink>
+    <LinkType>youtube</LinkType>
+    <Language>HU</Language>
+    <MovieNameEnglish>Thumbelina</MovieNameEnglish>
+    <FavID>1</FavID>
+    <IsContinueable xsi:nil="true" />
+    <NextID xsi:nil="true" />
+    <IsFirst xsi:nil="true" />
+    <IsVisible xsi:nil="true" />
+    <CategoryID xsi:nil="true" />
+    <MinAge>6.0</MinAge>
+    <ManyViews>0</ManyViews>
+    <DateLastView xsi:nil="true" />
+    <DateAdded>2015-06-04T21:14:26</DateAdded>
+    <DateLastModified>2015-06-06T14:25:41</DateLastModified>
+  </movie>
+  <movie>
+    <MovieID>10</MovieID>
+    <MovieName>Hogy neveld a sárkányodat</MovieName>
+    <MovieLink>HowToTrainYourDragon.mkv</MovieLink>
+    <LinkType>local</LinkType>
+    <Language>HU</Language>
+    <MovieNameEnglish>HowToTrainYourDragon</MovieNameEnglish>
+    <FavID>2</FavID>
+    <IsContinueable xsi:nil="true" />
+    <NextID xsi:nil="true" />
+    <IsFirst xsi:nil="true" />
+    <IsVisible xsi:nil="true" />
+    <CategoryID xsi:nil="true" />
+    <MinAge>6.0</MinAge>
+    <ManyViews>0</ManyViews>
+    <DateLastView xsi:nil="true" />
+    <DateAdded>2015-06-04T21:14:56</DateAdded>
+    <DateLastModified>2015-06-06T14:25:42</DateLastModified>
+  </movie>
+  <movie>
+    <MovieID>11</MovieID>
+    <MovieName>Vili a veréb</MovieName>
+    <MovieLink>https://www.youtube.com/embed/2ATBSX2rd-g</MovieLink>
+    <LinkType>youtube</LinkType>
+    <Language>HU</Language>
+    <MovieNameEnglish>Willy</MovieNameEnglish>
+    <FavID>3</FavID>
+    <IsContinueable xsi:nil="true" />
+    <NextID xsi:nil="true" />
+    <IsFirst xsi:nil="true" />
+    <IsVisible xsi:nil="true" />
+    <CategoryID xsi:nil="true" />
+    <MinAge>6.0</MinAge>
+    <ManyViews>0</ManyViews>
+    <DateLastView xsi:nil="true" />
+    <DateAdded>2015-06-04T21:16:08</DateAdded>
+    <DateLastModified>2015-06-06T14:25:43</DateLastModified>
+  </movie>
+  <movie>
+    <MovieID>12</MovieID>
+    <MovieName>Hercegno és a kobold</MovieName>
+    <MovieLink>https://www.youtube.com/embed/ez192UDPNms</MovieLink>
+    <LinkType>youtube</LinkType>
+    <Language>HU</Language>
+    <MovieNameEnglish>ThePrincessAndTheGoblin</MovieNameEnglish>
+    <FavID>4</FavID>
+    <IsContinueable xsi:nil="true" />
+    <NextID xsi:nil="true" />
+    <IsFirst xsi:nil="true" />
+    <IsVisible xsi:nil="true" />
+    <CategoryID xsi:nil="true" />
+    <MinAge>6.0</MinAge>
+    <ManyViews>0</ManyViews>
+    <DateLastView xsi:nil="true" />
+    <DateAdded>2015-06-04T21:19:36</DateAdded>
+    <DateLastModified>2015-06-06T14:25:46</DateLastModified>
+  </movie>
+  <movie>
+    <MovieID>13</MovieID>
+    <MovieName>Segítség, hal lettem</MovieName>
+    <MovieLink>https://www.youtube.com/embed/wkCHuuXQk2A</MovieLink>
+    <LinkType>youtube</LinkType>
+    <Language>HU</Language>
+    <MovieNameEnglish>HelpImAFish</MovieNameEnglish>
+    <FavID>5</FavID>
+    <IsContinueable xsi:nil="true" />
+    <NextID xsi:nil="true" />
+    <IsFirst xsi:nil="true" />
+    <IsVisible xsi:nil="true" />
+    <CategoryID xsi:nil="true" />
+    <MinAge>6.0</MinAge>
+    <ManyViews>0</ManyViews>
+    <DateLastView xsi:nil="true" />
+    <DateAdded>2015-06-04T21:20:31</DateAdded>
+    <DateLastModified>2015-06-06T14:25:55</DateLastModified>
+  </movie>
+</ArrayOfMovie>
