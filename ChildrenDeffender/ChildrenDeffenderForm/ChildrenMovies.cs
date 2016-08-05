@@ -36,46 +36,64 @@ namespace ChildrenDeffenderForm
 
         public async void GetChildrenMovies(ImageList imageListMovies, ListView listViewMovies, DataGridView dataGridView = null)
         {
-            using (var client = new HttpClient())
-            {
-                try
-                {
-                    var resp = await client.GetAsync(Config.ApiLink + "Movie");
+			
+			// Get movies
+			if(Config.UseDatabaseQuestion)
+			{
+				// Get from database
 
-                    Movies = await resp.Content.ReadAsAsync<List<movie>>();
-                    
-                    SaveMoviesToXml();              // Mentés XML-be
+				using (var client = new HttpClient())
+				{
+					try
+					{
+						var resp = await client.GetAsync(Config.ApiLink + "Movie");
 
-                    SortMovies();                   // Rendezés valamilyen sorrendben
+						Movies = await resp.Content.ReadAsAsync<List<movie>>();
 
-                    LoadMoviesImages(imageListMovies, listViewMovies); // ImageList-be és ListView-ba betöltés
-                    
-                    if (dataGridView != null)   // dataGriedView-ba betöltés
-                    {
-                        dataGridView.DataSource = Movies;
-                        //dataGridView.Tag = Movies;        // TODO: DONT WORK
-                    }
-                }
-                catch (Exception e)
-                {
-                    //Console.WriteLine("Load Movies from database has been failed.");
-                    //Console.WriteLine("Error message: {0}.", e.Message);
-                    Log.SendErrorLog("Load Movies from database has been failed: " + e.Message);
+						SaveMoviesToXml();              // Mentés XML-be
 
-                    LoadMoviesFromXml();            // Betöltés Xml-ből a Movie listába
+						SortMovies();                   // Rendezés valamilyen sorrendben
 
-                    if (dataGridView != null)   // dataGriedView-ba betöltés
-                    {
-                        dataGridView.DataSource = Movies;
-                        //dataGridView.Tag = Movies;        // TODO: DONT WORK
-                    }   
+						LoadMoviesImages(imageListMovies, listViewMovies); // ImageList-be és ListView-ba betöltés
 
-                    LoadMoviesImages(imageListMovies, listViewMovies);   // TODO: jó itt?
-                }
+						if (dataGridView != null)   // dataGriedView-ba betöltés
+						{
+							dataGridView.DataSource = Movies;
+							//dataGridView.Tag = Movies;        // TODO: DONT WORK
+						}
+					}
+					catch (Exception e)
+					{
+						//Console.WriteLine("Load Movies from database has been failed.");
+						//Console.WriteLine("Error message: {0}.", e.Message);
+						Log.SendErrorLog("Load Movies from database has been failed: " + e.Message);
 
+						LoadMoviesFromXml();            // Betöltés Xml-ből a Movie listába
 
+						if (dataGridView != null)   // dataGriedView-ba betöltés
+						{
+							dataGridView.DataSource = Movies;
+							//dataGridView.Tag = Movies;        // TODO: DONT WORK
+						}
 
+						LoadMoviesImages(imageListMovies, listViewMovies);   // TODO: jó itt?
+					}
+				}
             }
+			else
+			{
+				// Without database
+
+				LoadMoviesFromXml();            // Betöltés Xml-ből a Movie listába
+
+				if (dataGridView != null)   // dataGriedView-ba betöltés
+				{
+					dataGridView.DataSource = Movies;
+					//dataGridView.Tag = Movies;        // TODO: DONT WORK
+				}
+
+				LoadMoviesImages(imageListMovies, listViewMovies);   // TODO: jó itt?
+			}
 
         }
 
@@ -392,39 +410,13 @@ namespace ChildrenDeffenderForm
         {
             Movies.Add(addMovie);
 
-
         }
 
+		public void DeleteMovie(movie deleteMovie)
+		{
+			Movies.Remove(deleteMovie);
 
-
-        /*
-        private void LoadIndexImagesFromXml()
-        {
-
-            // Then in some other function.
-            //Person person = XmlSerialization.ReadFromXmlFile<Person>("C:\person.txt");
-            //List<Person> people = XmlSerialization.ReadFromXmlFile<List<Person>>("C:\people.txt");
-            ChildrenIndexImages = XmlSerialization.ReadFromXmlFile<List<IndexImage>>("IndexImages.xml");
-
-        }
-        */
-
-        /*
-        private void SaveIndexImagesToXml()
-        {
-            // And then in some function.
-            //Person person = new Person() { Name = "Dan", Age = 30; HomeAddress = new Address() { StreetAddress = "123 My St", City = "Regina" }};
-            //List<Person> people = GetListOfPeople();
-            //XmlSerialization.WriteToXmlFile<Person>("C:\person.txt", person);
-            //XmlSerialization.WriteToXmlFile<List<People>>("C:\people.txt", people);
-            XmlSerialization.WriteToXmlFile<List<IndexImage>>("IndexImages.xml", ChildrenIndexImages);
-        }
-        */
-
-
-
-
-
+		}
 
 
         // PASTE NEW FUNCTIONS...

@@ -21,6 +21,8 @@ namespace ChildrenDeffenderForm
 {
     public partial class FormMovieParent : Form
     {
+
+
         ChildrenDeffenderConfig Config;
         ChildrenMovies ChildrenMovies;
 
@@ -64,7 +66,7 @@ namespace ChildrenDeffenderForm
         }
 
 
-        ///*
+
         // Összes Movie betöltése induláskor
         private void FormMovieParent_Load(object sender, EventArgs e)
         {
@@ -78,134 +80,6 @@ namespace ChildrenDeffenderForm
             //GetIndexImagesForParent();
         }
 
-
-        /*
-        // FOR INDEXIMAGE VERSION
-        private async void GetIndexImagesForParent()
-        {
-
-            using (var client = new HttpClient())
-            {
-                // Lekérdezés
-                var resp = await client.GetAsync(Config.ApiLink + "IndexImage");
-                var indeximages = await resp.Content.ReadAsAsync<List<IndexImage>>();
-                //indeximages.  // TODO: csak a movie jellegűeket?
-                IndexImages = indeximages;
-                // End of Lekérdezés
-
-
-                // ListView-be berakás
-                String IndexImageFilePath = Config.MovieIndexImagesDir;
-                listViewIndexImagesForParent.Items.Clear(); // összes törlése
-                imageListIndexImagesForParent.Images.Clear();   // összes képecske törlécskéje faszom
-
-                foreach (var item in IndexImages)
-                {
-                    String path = IndexImageFilePath + item.IndexImageName;
-                    imageListIndexImagesForParent.Images.Add(Image.FromFile(path));    // TODO: hiányzó képre exceptiont dob, lekezelni
-                    ListViewItem listViewImage = new ListViewItem();
-                    listViewImage.ImageIndex = item.IndexImageID;
-                    listViewIndexImagesForParent.Items.Add(listViewImage);
-                }
-                // end of ListView
-                
-            }
-
-        }
-        */
-
-
-        //
-        /*
-        private async void GetMovies()
-        {
-            using (var client = new HttpClient())   // TODO: Try + catch
-            {
-                var resp = await client.GetAsync(Config.ApiLink + "Movie");
-
-                ChildrenMovies.Movies = await resp.Content.ReadAsAsync<List<Movie>>();
-
-                dataGridViewMovies.DataSource = ChildrenMovies;
-                //var resp = client.GetAsync(string.Format("http://localhost:3051/api/Movie/{0}", id)).Result;
-                //resp.EnsureSuccessStatusCode();
-                //var movie = resp.Content.ReadAsAsync<Movie>().Result;
-                //return movie;   // TODO: Ide érdemes breakpoint-ot tenni ... látni hogy mit kérdezett le
-
-                //GetIndexImagesForParent();
-            }
-        }
-        //*/
-
-        /*
-        private void GetIndexImagesForParent()  // TODO: összevonni a Children-es verzióval!
-        {
-
-            // ListView-be berakás
-            int i = 0;
-
-            foreach (var item in ChildrenMovies)
-            {
-                // If has got Name
-                if (item.NameEnglish != null)
-                {
-                    // path + name + format
-                    String path = Config.MovieIndexImagesDir +
-                                    item.NameEnglish.Trim() +
-                                    Config.MovieIndexImagesFormat;
-
-                    try
-                    {
-                        imageListIndexImagesForParent.Images.Add(Image.FromFile(path));
-                        ListViewItem listViewMovie = new ListViewItem();
-                        listViewMovie.ImageIndex = i;
-                        listViewMovie.Tag = item;                   // AZONOSÍTÓ !!!!!!!!!
-                        //listViewMovie.Text = item.NameEnglish;    // Megjelenítené, ezért kockázatos !!!!!!! TODO:
-                        listViewIndexImagesForParent.Items.Add(listViewMovie);
-                        i++; // if it is ok
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine("Cannot load MovieID={0}'s image.", item.MovieID);
-                        Console.WriteLine("Error message: {0}.", e.Message);
-                    }
-
-                }
-                else
-                {
-                    Console.WriteLine("MovieID={0} Movie hasnt NameEnglish property, so cant load that.", item.MovieID);
-                }
-
-
-            }
-            // end of ListView
-
-        }
-        */
-
-
-
-       // 
-        /*
-        private void FormMovieParent_Load(object sender, EventArgs e)
-        {
-
-            var movie = GetProduct(1);
-            
-            dataGridViewMovies.DataSource = movie;
-        }
-
-
-        // WEb Api 2 :: program.cs-be javasolják, de a console application miatt
-        static Movie GetProduct(int id)
-        {
-            using (HttpClient client = new HttpClient())
-            {
-                var resp = client.GetAsync(string.Format("http://localhost:3051/api/Movie/{0}", id)).Result;
-                resp.EnsureSuccessStatusCode();
-                var movie = resp.Content.ReadAsAsync<Movie>().Result;
-                return movie;   // TODO: Ide érdemes breakpoint-ot tenni ... látni hogy mit kérdezett le
-            }
-        }//*/
 
 
         // Upload gomb - POST
@@ -239,56 +113,28 @@ namespace ChildrenDeffenderForm
                 DateAdded = DateTime.Now
             };
 
-            // Upload to database
-            try
-            {
-                using (var client = new HttpClient())
-                {
-                    // Post
-                    // await client.PostAsJsonAsync(Config.ApiLink + "Movie", movie);
-                    await client.PostAsJsonAsync(Config.ApiLink + "Movie", movie);
 
-                    // Get
-                    var resp = await client.GetAsync(Config.ApiLink + "Movie");  // BUG de hát ez get ...
-                    var movies = (await resp.Content.ReadAsAsync<List<movie>>());
-                    dataGridViewMovies.DataSource = movies;
-                }
+            // Save new movie 
+			if ( Config.UseDatabaseQuestion)
+			{
+				// Upload to database
+				UploadMovieToDatabase(movie);
 
-
-                // Succesful textbox
-                //MessageBox.Show("Sikeres feltöltés");
-                String message = "Sikeres feltöltés! \n" +
-                                "MovieID: " + movie.MovieID + "\n" +
-                                "Name:" + movie.MovieName;
-
-                MessageForParent(message);
-                Log.SendEventLog(message);
-
-            }
-            catch(Exception ex)
-            {
-                MessageForParent("Sikertelen videófeltöltés adatbázisba. Mentés XML fájlba.");
-                Log.SendErrorLog("Sikertelen videófeltöltés adatbázisba, mentés XML fájlba: " + ex.Message);
-
-
-                // max ID-t kézzel kell előállítani ...
-                movie.MovieID = ChildrenMovies.GetMovieMaxID() + 1;
-
-                // Hozzáadni listához ...
-                ChildrenMovies.AddMovie(movie);
-
-                // XML-be beleírni ...
-                ChildrenMovies.SaveMoviesToXml();
-
-                // Frissítés
-                RefreshMovies();
-
-
-
-            }
+			}
+			else
+			{
+				// Save without database
+				SaveMovieToLocal(movie);
+			}
 
         }
 
+
+
+		/// <summary>
+		/// Notify on taskbar
+		/// </summary>
+		/// <param name="message"></param>
         private void MessageForParent(String message)
         {
             
@@ -307,8 +153,8 @@ namespace ChildrenDeffenderForm
 
             MovieModify(dataGridViewMovies.CurrentRow);
    
-
         }
+
 
         private async void MovieModify(DataGridViewRow dataGridViewRow)
         {
@@ -401,38 +247,51 @@ namespace ChildrenDeffenderForm
 
             // MOVIE ÖSSZEÁLLÍTVA
 
+			if(Config.UseDatabaseQuestion)
+			{
+				using (var client = new HttpClient())
+				{
+					//modifiedMovie.MovieName = "Módosított"; // FOR TEST
 
-            using (var client = new HttpClient())
-            {
-                //modifiedMovie.MovieName = "Módosított"; // FOR TEST
+					// Async + await kell ?
+					// Mégse, nem ez volt a baj: A Name az rövidebb kell legyen ?????
+					await client.PutAsJsonAsync(Config.ApiLink + "Movie/UpdateMovie", modifiedMovie);
 
-                // Async + await kell ?s
-                // Mégse, nem ez volt a baj: A Name az rövidebb kell legyen ?????
-                await client.PutAsJsonAsync(Config.ApiLink + "Movie/UpdateMovie", modifiedMovie);
-
-                // TODO: BUG: exceptiont dob a savechange-nél - régen, amíg nem figyeltem a name hosszra, ellenőrizni!!!!
-                //var resp = client.PutAsJsonAsync(Config.ApiLink + "UpdateMovie", modifiedMovie).Result;                
-                //resp.EnsureSuccessStatusCode();
+					// TODO: BUG: exceptiont dob a savechange-nél - régen, amíg nem figyeltem a name hosszra, ellenőrizni!!!!
+					//var resp = client.PutAsJsonAsync(Config.ApiLink + "UpdateMovie", modifiedMovie).Result;                
+					//resp.EnsureSuccessStatusCode();
 
 
-                // Succesful textbox
-                //MessageBox.Show("Sikeres módosítás");
-                //String message = "Sikeres módosítás: " + movie.MovieID + "\n" +
-                //"Name:" + movie.MovieName;
-                String message = "Sikeres módosítás!\n" +
-                                "MovieID: " + modifiedMovie.MovieID + "\n" +
-                                "MovieName: " + modifiedMovie.MovieName;
-                MessageForParent(message);
-                Log.SendEventLog(message);
-            }
+					// Succesful textbox
+					//MessageBox.Show("Sikeres módosítás");
+					//String message = "Sikeres módosítás: " + movie.MovieID + "\n" +
+					//"Name:" + movie.MovieName;
+					String message = "Sikeres módosítás!\n" +
+									"MovieID: " + modifiedMovie.MovieID + "\n" +
+									"MovieName: " + modifiedMovie.MovieName;
+					MessageForParent(message);
+					Log.SendEventLog(message);
+				}
+			}
+			else
+			{
+				// Wihout database
 
+				// XML-be beleírni ...
+				ChildrenMovies.SaveMoviesToXml();
+
+				// Frissítés
+				RefreshMovies();
+		
+			}
 
         }
 
 
 
-
-        // Egy Movie lekérdezése
+		/// <summary>
+		/// Get an movie (with ID)
+		/// </summary>
         private movie GetMovie(int id)
         {
             using (var client = new HttpClient())   // static volt...
@@ -446,6 +305,10 @@ namespace ChildrenDeffenderForm
         }
 
 
+
+		/// <summary>
+		/// Get directory images ... TODO: NOT USED 
+		/// </summary>
         private void ReadDirForIndexImages()
         {
             ImageList imageListMoviesForParent = new ImageList();
@@ -519,7 +382,7 @@ namespace ChildrenDeffenderForm
                 for (int i = 0; i < movies.Count; i++)
                 {
 
-                    UploadMovie(movies[i]);
+                    UploadMovieToDatabase(movies[i]);
                     
                 }
 
@@ -528,12 +391,13 @@ namespace ChildrenDeffenderForm
                 // BUG: nem működik !!!!!!!!!!!!!!!!!!!!!!!!!
 
             }
-
-
-            
+    
         }
 
 
+		/// <summary>
+		/// Refresh movie list
+		/// </summary>
         private void RefreshMovies() // TODO: NEM LEHET ASYNC, HA NINCS AWAIT, DE AZ SE LEHET :(
         {
             // REFRESH
@@ -548,21 +412,170 @@ namespace ChildrenDeffenderForm
         }
 
 
-        private async void UploadMovie (movie movie)
+		/// <summary>
+		/// Upload movie
+		/// </summary>
+		/// <param name="movie"></param>
+        private async void UploadMovieToDatabase (movie movie)
         {
 
-            using (var client = new HttpClient())
-            {
-                // Post
-                await client.PostAsJsonAsync(Config.ApiLink + "Movie", movie);
 
-                // Get
-                //var resp = await client.GetAsync(Config.ApiLink + "Movie");  // BUG de hát ez get ...
-                //var movies = (await resp.Content.ReadAsAsync<List<Movie>>());
-                //dataGridViewMovies.DataSource = movies;
-            }
+			try
+			{
+				using (var client = new HttpClient())
+				{
+					// Post
+					// await client.PostAsJsonAsync(Config.ApiLink + "Movie", movie);
+					await client.PostAsJsonAsync(Config.ApiLink + "Movie", movie);
+
+					// Get
+					var resp = await client.GetAsync(Config.ApiLink + "Movie");  // BUG de hát ez get ...
+					var movies = (await resp.Content.ReadAsAsync<List<movie>>());
+					dataGridViewMovies.DataSource = movies;
+				}
+
+
+				// Succesful textbox
+				//MessageBox.Show("Sikeres feltöltés");
+				String message = "Sikeres feltöltés! \n" +
+								"MovieID: " + movie.MovieID + "\n" +
+								"Name:" + movie.MovieName;
+
+				MessageForParent(message);
+				Log.SendEventLog(message);
+
+			}
+			catch (Exception ex)
+			{
+				MessageForParent("Sikertelen videófeltöltés adatbázisba.");
+				Log.SendErrorLog("Sikertelen videófeltöltés adatbázisba." + ex.Message);
+
+			}
+
         }
-  
+
+
+
+		/// <summary>
+		/// Save movie to local
+		/// </summary>
+		/// <param name="movie"></param>
+		private void SaveMovieToLocal(movie movie)
+		{
+			try
+			{
+				// max ID-t kézzel kell előállítani ...
+				movie.MovieID = ChildrenMovies.GetMovieMaxID() + 1;
+
+				// Hozzáadni listához ...
+				ChildrenMovies.AddMovie(movie);
+
+				// XML-be beleírni ...
+				ChildrenMovies.SaveMoviesToXml();
+
+				// Frissítés
+				RefreshMovies();
+
+
+				// Succesful textbox
+				//MessageBox.Show("Sikeres feltöltés");
+				String message = "Sikeres feltöltés! \n" +
+								"MovieID: " + movie.MovieID + "\n" +
+								"Name:" + movie.MovieName;
+
+				MessageForParent(message);
+				Log.SendEventLog(message);
+
+			}
+			catch (Exception ex)
+			{
+				MessageForParent("Sikertelen videómentés XML fájlba.");
+				Log.SendErrorLog("Sikertelen videómentés XML fájlba: " + ex.Message);
+
+			}
+		}
+
+
+
+		/// <summary>
+		/// Delete movie on Database
+		/// </summary>
+		/// <param name="id"></param>
+		private async void DeleteMovieToDatabase(int id)
+		{
+
+			try
+			{
+				using (var client = new HttpClient())
+				{
+
+					await client.DeleteAsync(string.Format(Config.ApiLink + "Movie/{0}", id));
+
+					//resp.EnsureSuccessStatusCode();
+					//var product = resp.Content.ReadAsAsync<Product>().Result;
+
+
+					// Succesful delete message:
+
+					Console.WriteLine("Movie: {0} has been deleted.", id);
+					//MessageBox.Show("Sikeres törlés");
+					String message = "Sikeres törlés! \n" +
+								  "MovieID: " + id;
+					MessageForParent(message);
+					Log.SendEventLog(message);
+
+
+					// Refresh
+					RefreshMovies();
+
+				}
+			}
+			catch (Exception e)
+			{
+				String message = "Sikertelen törlés! \n" +
+							  "MovieID: " + id +
+							  e.Message;
+				MessageForParent(message);
+				Log.SendEventLog(message);
+			}
+
+		}
+
+
+		/// <summary>
+		/// Delete Movie on Local
+		/// </summary>
+		/// <param name="id"></param>
+		private void DeleteMovieToLocal(movie deleteMovie)
+		{
+
+			try
+			{
+				// Delete Movie
+				ChildrenMovies.DeleteMovie(deleteMovie);
+
+				// Save XML
+				ChildrenMovies.SaveMoviesToXml();
+
+				// Frissítés
+				RefreshMovies();
+
+
+				// Succesful textbox
+				String message = "Sikeres törlés! \n" +
+								"MovieID: " + deleteMovie.MovieID + "\n" +
+								"Name:" + deleteMovie.MovieName;
+
+				MessageForParent(message);
+				Log.SendEventLog(message);
+			}
+			catch (Exception e)
+			{
+				Log.SendErrorLog(e.Message);
+			}
+
+		}
+
 
 
         private void buttonMovieIndexImagesDir_Click(object sender, EventArgs e)
@@ -766,166 +779,26 @@ namespace ChildrenDeffenderForm
             int id;
 
             id = int.Parse(dataGridViewMovies.CurrentRow.Cells["MovieID"].Value.ToString());
-
-            using (var client = new HttpClient())
-            {
-
-                await client.DeleteAsync(string.Format(Config.ApiLink + "Movie/{0}", id));
-
-                //resp.EnsureSuccessStatusCode();
-                //var product = resp.Content.ReadAsAsync<Product>().Result;
+			movie deleteMovie = (movie)dataGridViewMovies.CurrentRow.DataBoundItem;
 
 
-                // Succesful delete message:
-           
-                Console.WriteLine("Movie: {0} has been deleted.",id);
-                //MessageBox.Show("Sikeres törlés");
-                String message = "Sikeres törlés! \n" +
-                              "MovieID: " + id;
-                MessageForParent(message);
-                Log.SendEventLog(message);
+			// Save
+			if(Config.UseDatabaseQuestion)
+			{
+				// Delete on database
+				DeleteMovieToDatabase(id);
 
+			}
+			else
+			{
+				// Delete on Local
+				DeleteMovieToLocal(deleteMovie);
+			}
 
-                // Refresh
-                RefreshMovies();
-                
-            }
-        }
-
-
-        private void buttonAddIndexImage_Click(object sender, EventArgs e)
-        {
-
-            String movieName= textBoxMovieModifyMovieNameEnglish.Text;  // Fontos, hogy az angol név alapján mentünk le képeket...
-
-            String imageNewDir = Config.MovieIndexImagesDir;
-
-            String imageFormat = Config.MovieIndexImagesFormat;
-
-            String imageNewPath = imageNewDir + movieName + imageFormat;
-
-
-            // Az eredeti, lementésre kerülő fájl:
-
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-
-            // Példa: „Szövegfájlok (*.txt)|*.txt|Minden fájl (*.*)|*.*”
-            openFileDialog.Filter = "Jpeg (*" + imageFormat + "|*" + imageFormat;
-
-
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                String imageOriginalPath = openFileDialog.FileName;
-
-                // átmásolni a saját helyünkre ???
-
-                try
-                {
-                    // Másolás
-                    // File.Copy(imageOriginalPath, imageNewPath);    // felülírás nincs engedélyezve
-                    File.Copy(imageOriginalPath, imageNewPath, true);       // felülírás engedélyezve
-                    
-                    // Ha sikeres, üzenet
-                    MessageForParent("Image has been added.\r\n" +
-                                    imageNewPath);
-
-                    // Ha sikeres, kép betöltése ...
-                    pictureBoxSelectedMovieImage.ImageLocation = imageNewPath;
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
-                    return;
-                }
-
-
-
-            }
-
+			// Select first row
+			dataGridViewMovies.Rows[0].Selected = true;
 
         }
-
-
-
-        /*
-        // FELTÖLTÉSES VERZIÓ ... OLD
-        
-        private void buttonAddIndexImage_Click(object sender, EventArgs e)
-        {
-
-        // TODO: Add Image
-        String fileName = null;
-        
-        OpenFileDialog openFileDialog1 = new OpenFileDialog();
-
-
-        openFileDialog1.InitialDirectory = Config.MovieIndexImagesDir;
-        openFileDialog1.Filter = "jpg files (*.jpg)|*.jpg|All files (*.*)|*.*";
-        openFileDialog1.FilterIndex = 2;
-        openFileDialog1.RestoreDirectory = true;
-
-        if (openFileDialog1.ShowDialog() == DialogResult.OK)
-        {
-            try
-            {
-                if ((myStream = openFileDialog1.OpenFile()) != null)
-                {
-                    using (myStream)
-                    {
-                        // Insert code to read the stream here.
-                    }
-                    //filePath = openFileDialog1.FileName;  // full path!!
-                    fileName = openFileDialog1.SafeFileName;
-
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
-                return;
-            }
-        }
-
-        if (fileName != null)
-        {
-            // new IndexImage
-            var indexImage = new IndexImage
-            {
-                IndexImageID = IndexImages.Max(t => t.IndexImageID) + 1,    // Max + 1
-                IndexImageName = fileName,
-                Type = "Movie",
-                SizeX = 128,
-                SizeY = 128,
-                IsTransparency = false,
-                Version = 1,
-                DateAdded = DateTime.Now
-            };
-
-            UploadIndexImage(indexImage);
-
-        }
-
-        }
-
-
-
-   
-        private async void UploadIndexImage ( IndexImage indexImage)
-        {
-            using (var client = new HttpClient())
-            {
-                // Post
-                await client.PostAsJsonAsync(Config.ApiLink + "IndexImage", indexImage);
-
-                // Get
-                ChildrenMovies.LoadMoviesImages(imageList)
-
-            }
-        }
-        */
-        
-
 
 
 
@@ -974,36 +847,38 @@ namespace ChildrenDeffenderForm
             // MODE 2 - from cells data
 
             // TODO: átírni Tag-es, mert az idézőjeles... karbantarthatatlanabb kódot eredményez
-            String movieID = dataGridViewMovies.CurrentRow.Cells["MovieID"].Value.ToString().Trim();
-            String movieName = dataGridViewMovies.CurrentRow.Cells["MovieName"].Value.ToString().Trim();
-            //String movieNameEnglish = ((movie)dataGridViewMovies.CurrentRow.Tag).MovieNameEnglish;
-            String movieNameEnglish = dataGridViewMovies.CurrentRow.Cells["MovieNameEnglish"].Value.ToString().Trim();
+			try
+			{
+				// Mert a movieID exceptiont eredményez néha törléskor (törölt sor marad kijelölve...)
 
-            /*
-            // Már nem használt ... TODO: törölni
-            // Text
-            String labelText = "MovieID: " + movieID + "\n" +
-                               "MovieName: " + movieName;
+				String movieID = dataGridViewMovies.CurrentRow.Cells["MovieID"].Value.ToString().Trim();
+				String movieName = dataGridViewMovies.CurrentRow.Cells["MovieName"].Value.ToString().Trim();
+				//String movieNameEnglish = ((movie)dataGridViewMovies.CurrentRow.Tag).MovieNameEnglish;
+				String movieNameEnglish = dataGridViewMovies.CurrentRow.Cells["MovieNameEnglish"].Value.ToString().Trim();
+				textBoxMovieModifyMovieID.Text = movieID;
+				textBoxMovieModifyMovieName.Text = movieName;
+				textBoxMovieModifyMovieNameEnglish.Text = movieNameEnglish;
 
-            labelSelectedMovie.Text = labelText;
-            */
+				textBoxMovieSoundMovieID.Text = movieID;
+				textBoxMovieSoundMovieName.Text = movieName;
+				textBoxMovieSoundMovieNameEnglish.Text = movieNameEnglish;
 
-            textBoxMovieModifyMovieID.Text = movieID;
-            textBoxMovieModifyMovieName.Text = movieName;
-            textBoxMovieModifyMovieNameEnglish.Text = movieNameEnglish;
-
-            textBoxMovieSoundMovieID.Text = movieID;
-            textBoxMovieSoundMovieName.Text = movieName;
-            textBoxMovieSoundMovieNameEnglish.Text = movieNameEnglish;
-
-            textBoxMovieImageAddMovieID.Text = movieID;
-            textBoxMovieImageAddMovieName.Text = movieName;
-            textBoxMovieImageAddMovieNameEnglish.Text = movieNameEnglish;
+				textBoxMovieImageAddMovieID.Text = movieID;
+				textBoxMovieImageAddMovieName.Text = movieName;
+				textBoxMovieImageAddMovieNameEnglish.Text = movieNameEnglish;
 
 
-            pictureBoxSelectedMovieImage.ImageLocation = Config.MovieIndexImagesDir + movieNameEnglish + Config.MovieIndexImagesFormat;
+				pictureBoxSelectedMovieImage.ImageLocation = Config.MovieIndexImagesDir + movieNameEnglish + Config.MovieIndexImagesFormat;
+
+			}
+			catch(Exception ex)
+			{
+				Log.SendErrorLog("Change Currentrow Error: " + ex.Message);
+			}
 
         }
+
+
 
         private void dataGridViewMovies_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
@@ -1011,11 +886,8 @@ namespace ChildrenDeffenderForm
             IsRowChanged = true;
         }
 
-        private void dataGridViewMovies_RowLeave(object sender, DataGridViewCellEventArgs e)
-        {
 
 
-        }
 
         private void dataGridViewMovies_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -1122,11 +994,11 @@ namespace ChildrenDeffenderForm
                 errorMessage = "Movie Link is too long";
                 return false;
             }
-            else if (!(inputText.IndexOf("\\") > -1) && 
-                    !(inputText.IndexOf("http:\\") > -1) &&
-                    !(inputText.IndexOf("https:\\") > -1) )
+            else if (!(inputText.IndexOf(@"/") > -1) && 
+                    !(inputText.IndexOf(@"http://") > -1) &&
+                    !(inputText.IndexOf(@"https://") > -1) )
             {
-                errorMessage = "There is no \\ for local link or http:\\\\ / http:\\\\ for internet link";
+                errorMessage = @"There is no / for local link or http://  https:// for internet link";
                 return false;              
             }
             else
@@ -1185,6 +1057,11 @@ namespace ChildrenDeffenderForm
         }
 
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
         private void textBoxMovieUploadMovieNameEnglish_Validating(object sender, CancelEventArgs e)
         {
             string errorMsg;
@@ -1200,6 +1077,12 @@ namespace ChildrenDeffenderForm
         }
 
 
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
         private void textBoxMovieUploadMovieNameEnglish_Validated(object sender, EventArgs e)
         {
             // If all conditions have been met, clear the ErrorProvider of errors.
@@ -1292,12 +1175,6 @@ namespace ChildrenDeffenderForm
         }
 
 
-         /*
-         private void comboBoxMovieParentLanguage_SelectedValueChanged(object sender, EventArgs e)
-         {
-
-         }
-         */
 
          private void SetLanguage(String language)
          {
@@ -1352,7 +1229,7 @@ namespace ChildrenDeffenderForm
 
          private void buttonMovieImageChange_Click(object sender, EventArgs e)
          {
-
+			 // TODO: megcsinálni
          }
 
          private void listViewMoviesForParent_DoubleClick(object sender, EventArgs e)
@@ -1412,64 +1289,72 @@ namespace ChildrenDeffenderForm
          {
              MoviePlaySound(listViewMoviesForParent.FocusedItem);
          }
-          
 
-        /*
-         private void SetLanguage (CultureInfo language)
-        {
-            if (language.ToString() == "HU")
-            {
-                CultureInfo newCulture = new CultureInfo("de");
-                this.Instance.ChangeCurrentThreadUICulture(newCulture);
-                this.Instance.ChangeLanguage(this);
-            }
-            else if (language.ToString() == "EN")
-            {
-                CultureInfo newCulture = new CultureInfo("de");
-                this.Instance.ChangeCurrentThreadUICulture(newCulture);
-                this.Instance.ChangeLanguage(this);
-            }
-            else if (language.ToString() == "DU")
-            {
-                
-            }
-            else
-            {
+		 private void btUploadCancel_Click(object sender, EventArgs e)
+		 {
+			 // Cancel error
+			 errorProviderMovieUpload.Clear();
+		 }
 
-            }
-        }
-         */
+		 private void pictureBoxSelectedMovieImage_Click(object sender, EventArgs e)
+		 {
+			 MovieImageUpload();
 
-        
+		 }
 
-        ////////////////////////////////////////////////////////////////////////////
+		 private void buttonAddIndexImage_Click(object sender, EventArgs e)
+		 {
+			 MovieImageUpload();
+		 }
 
 
+		 private void MovieImageUpload()
+		 {
+			 String movieName = textBoxMovieModifyMovieNameEnglish.Text;  // Fontos, hogy az angol név alapján mentünk le képeket...
 
-        /*
-        private void dataGridViewMovies_RowEnter(object sender, DataGridViewCellEventArgs e)
-        {
+			 String imageNewDir = Config.MovieIndexImagesDir;
 
-            // EXAMPLE
-            //AdressBokPerson currentObject = (AdressBokPerson)dataGridView1.CurrentRow.DataBoundItem;
+			 String imageFormat = Config.MovieIndexImagesFormat;
 
-            //e.RowIndex;
-            //Movie movie = (Movie)dataGridViewMovies.Tag;  // WRONG
-            //Movie movie = (Movie)dataGridViewMovies.CurrentRow; // WRONG
-            Movie movie = (Movie)dataGridViewMovies.CurrentRow.DataBoundItem;
+			 String imageNewPath = imageNewDir + movieName + imageFormat;
 
-            //String movieID = dataGridViewMovies.CurrentRow.Cells["MovieID"].Value.ToString().Trim();
-            //String movieName = dataGridViewMovies.CurrentRow.Cells["MovieName"].Value.ToString().Trim();
-            String movieID = movie.MovieID.ToString();
-            String movieName = movie.MovieName.Trim();
 
-            String labelText = "MovieID: " + movieID + "\n" +
-                                " MovieName: " + movieName;
+			 // Az eredeti, lementésre kerülő fájl:
 
-            labelSelectedMovie.Text = labelText;
-        }
-        */
+			 OpenFileDialog openFileDialog = new OpenFileDialog();
 
+			 // Példa: „Szövegfájlok (*.txt)|*.txt|Minden fájl (*.*)|*.*”
+			 openFileDialog.Filter = "Jpeg (*" + imageFormat + "|*" + imageFormat;
+
+
+			 if (openFileDialog.ShowDialog() == DialogResult.OK)
+			 {
+				 String imageOriginalPath = openFileDialog.FileName;
+
+				 // átmásolni a saját helyünkre ???
+
+				 try
+				 {
+					 // Másolás
+					 // File.Copy(imageOriginalPath, imageNewPath);    // felülírás nincs engedélyezve
+					 File.Copy(imageOriginalPath, imageNewPath, true);       // felülírás engedélyezve
+
+					 // Ha sikeres, üzenet
+					 MessageForParent("Image has been added.\r\n" +
+									 imageNewPath);
+
+					 // Ha sikeres, kép betöltése ...
+					 pictureBoxSelectedMovieImage.ImageLocation = imageNewPath;
+
+				 }
+				 catch (Exception ex)
+				 {
+					 MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
+					 return;
+				 }
+
+			 }
+		 }
 
     }
 }

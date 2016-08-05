@@ -31,7 +31,6 @@ namespace ChildrenDeffenderForm
                 Log.SendErrorLog("Sound playing has been failed. " + e.Message);
             }
 
-
         }
 
 

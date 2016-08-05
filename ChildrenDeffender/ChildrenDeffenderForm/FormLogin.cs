@@ -68,6 +68,7 @@ namespace ChildrenDeffenderForm
         }
 
 
+
         // TODO: helyette majd más, bejelentkezés
         private void buttonLoginParent_Click(object sender, EventArgs e)
         {
@@ -82,6 +83,9 @@ namespace ChildrenDeffenderForm
 
         }
 
+
+
+		// 
         private void FormLogin_Load(object sender, EventArgs e)
         {
             
@@ -106,6 +110,7 @@ namespace ChildrenDeffenderForm
                 configHandler.SaveConfigsToXML(Config);
             }
 
+
             // Get Users
             GetUsersForLogin();
 
@@ -113,6 +118,7 @@ namespace ChildrenDeffenderForm
             Common.PlaySound(Config.SoundMenuWelcome);
              
         }
+
 
 
         private async void GetUsersForLogin()
@@ -198,13 +204,11 @@ namespace ChildrenDeffenderForm
                 }
                 // end of ListView
 
-
-
             }
 
-
-
         }
+
+
 
         private void listViewUsersForLogin_MouseDoubleClick(object sender, MouseEventArgs e)
         {

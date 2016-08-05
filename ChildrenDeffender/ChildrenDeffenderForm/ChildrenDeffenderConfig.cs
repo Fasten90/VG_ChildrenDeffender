@@ -14,11 +14,14 @@ namespace ChildrenDeffenderForm
         // Standards
 
         public String Language = "en";
+		public bool UseDatabaseQuestion = false;
+
 
         public String ApiLink = "http://childrendeffender.azurewebsites.net/Api/";      // For Azure version
         //public String ApiLink = "http://localhost:3581/api/";                         // For last local version
         //public String ApiLink = "http://localhost:3306/api/";
         //public String ApiLink = "http://localhost:3051/api/"; // old version, For MS SQL
+
 
         // Important - Movie dir, Movie player
         public String MoviesDir = @"D:\Minden\Mese\"; // TODO: ez legyen lista ??

@@ -151,7 +151,7 @@
     <value>NoControl</value>
   </data>
   <data name="btModify.Location" type="System.Drawing.Point, System.Drawing">
-    <value>763, 6</value>
+    <value>275, 6</value>
   </data>
   <data name="btModify.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -172,7 +172,7 @@
     <value>tabPageMovieModify</value>
   </data>
   <data name="&gt;&gt;btModify.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="buttonReadMovieDir.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -202,7 +202,7 @@
     <value>tabPageMovieUpload</value>
   </data>
   <data name="&gt;&gt;buttonReadMovieDir.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="labelMoviesDir.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -238,7 +238,7 @@
     <value>tabPageMovieUpload</value>
   </data>
   <data name="&gt;&gt;labelMoviesDir.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <metadata name="imageListMoviesForParent.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>6, 18</value>
@@ -400,7 +400,7 @@
     <value>NoControl</value>
   </data>
   <data name="btMovieDelete.Location" type="System.Drawing.Point, System.Drawing">
-    <value>763, 35</value>
+    <value>275, 35</value>
   </data>
   <data name="btMovieDelete.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -421,7 +421,7 @@
     <value>tabPageMovieModify</value>
   </data>
   <data name="&gt;&gt;btMovieDelete.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <metadata name="notifyIconForParent.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>201, 18</value>
@@ -527,425 +527,23 @@
   <data name="tabControlMovieParent.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
-  <data name="&gt;&gt;tableLayoutPanel1.Name" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel1.Parent" xml:space="preserve">
-    <value>tabPageMovieModify</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="tableLayoutPanel1.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="textBoxMovieModifyMovieName" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="labelMovieNameText" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="labelMovieNameEnglishText" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="textBoxMovieModifyMovieID" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="textBoxMovieModifyMovieNameEnglish" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="labelMovieIDText" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,47,14829,Percent,52,85171" /&gt;&lt;Rows Styles="Percent,51,16279,Percent,48,83721,Absolute,59" /&gt;&lt;/TableLayoutSettings&gt;</value>
-  </data>
-  <data name="tabPageMovieModify.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <data name="tabPageMovieModify.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="tabPageMovieModify.Size" type="System.Drawing.Size, System.Drawing">
-    <value>844, 267</value>
-  </data>
-  <data name="tabPageMovieModify.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="tabPageMovieModify.Text" xml:space="preserve">
-    <value>Movie modify</value>
-  </data>
-  <data name="&gt;&gt;tabPageMovieModify.Name" xml:space="preserve">
-    <value>tabPageMovieModify</value>
-  </data>
-  <data name="&gt;&gt;tabPageMovieModify.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabPageMovieModify.Parent" xml:space="preserve">
-    <value>tabControlMovieParent</value>
-  </data>
-  <data name="&gt;&gt;tabPageMovieModify.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel2.Name" xml:space="preserve">
-    <value>tableLayoutPanel2</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel2.Parent" xml:space="preserve">
-    <value>tabPageMovieUpload</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel2.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="tableLayoutPanel2.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="labelMovieUploadMovieLinkType" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="textBoxMovieUploadMovieName" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="labelMovieUploadMovieName" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="labelMovieUploadMovieNameEnglish" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="textBox2" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="textBoxMovieUploadMovieNameEnglish" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="labelMovieUploadMovieLink" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="textBoxMovieUploadMovieLink" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="textBoxMovieUploadLinkType" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="labelMovieUploadMovieID" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,47,14829,Percent,52,85171" /&gt;&lt;Rows Styles="Percent,43,28358,Percent,56,71642,Absolute,34,Absolute,34,Absolute,40" /&gt;&lt;/TableLayoutSettings&gt;</value>
-  </data>
-  <data name="&gt;&gt;btUpload.Name" xml:space="preserve">
-    <value>btUpload</value>
-  </data>
-  <data name="&gt;&gt;btUpload.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btUpload.Parent" xml:space="preserve">
-    <value>tabPageMovieUpload</value>
-  </data>
-  <data name="&gt;&gt;btUpload.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="tabPageMovieUpload.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <data name="tabPageMovieUpload.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="tabPageMovieUpload.Size" type="System.Drawing.Size, System.Drawing">
-    <value>844, 267</value>
-  </data>
-  <data name="tabPageMovieUpload.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="tabPageMovieUpload.Text" xml:space="preserve">
-    <value>Movie upload</value>
-  </data>
-  <data name="&gt;&gt;tabPageMovieUpload.Name" xml:space="preserve">
-    <value>tabPageMovieUpload</value>
-  </data>
-  <data name="&gt;&gt;tabPageMovieUpload.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabPageMovieUpload.Parent" xml:space="preserve">
-    <value>tabControlMovieParent</value>
-  </data>
-  <data name="&gt;&gt;tabPageMovieUpload.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="buttonMoviePlaySound.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+  <data name="buttonAddIndexImage.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
-  <data name="buttonMoviePlaySound.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="buttonAddIndexImage.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="buttonMoviePlaySound.Location" type="System.Drawing.Point, System.Drawing">
-    <value>711, 172</value>
+  <data name="buttonAddIndexImage.Location" type="System.Drawing.Point, System.Drawing">
+    <value>607, 9</value>
   </data>
-  <data name="buttonMoviePlaySound.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+  <data name="buttonAddIndexImage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>91, 23</value>
   </data>
-  <data name="buttonMoviePlaySound.TabIndex" type="System.Int32, mscorlib">
-    <value>28</value>
+  <data name="buttonAddIndexImage.TabIndex" type="System.Int32, mscorlib">
+    <value>31</value>
   </data>
-  <data name="buttonMoviePlaySound.Text" xml:space="preserve">
-    <value>Play Sound</value>
-  </data>
-  <data name="&gt;&gt;buttonMoviePlaySound.Name" xml:space="preserve">
-    <value>buttonMoviePlaySound</value>
-  </data>
-  <data name="&gt;&gt;buttonMoviePlaySound.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonMoviePlaySound.Parent" xml:space="preserve">
-    <value>tabPageMovieImage</value>
-  </data>
-  <data name="&gt;&gt;buttonMoviePlaySound.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="buttonPlayMovie.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="buttonPlayMovie.Location" type="System.Drawing.Point, System.Drawing">
-    <value>711, 143</value>
-  </data>
-  <data name="buttonPlayMovie.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <data name="buttonPlayMovie.TabIndex" type="System.Int32, mscorlib">
-    <value>27</value>
-  </data>
-  <data name="buttonPlayMovie.Text" xml:space="preserve">
-    <value>Play Movie</value>
-  </data>
-  <data name="&gt;&gt;buttonPlayMovie.Name" xml:space="preserve">
-    <value>buttonPlayMovie</value>
-  </data>
-  <data name="&gt;&gt;buttonPlayMovie.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonPlayMovie.Parent" xml:space="preserve">
-    <value>tabPageMovieImage</value>
-  </data>
-  <data name="&gt;&gt;buttonPlayMovie.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="buttonMovieImageChange.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="buttonMovieImageChange.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="buttonMovieImageChange.Location" type="System.Drawing.Point, System.Drawing">
-    <value>711, 113</value>
-  </data>
-  <data name="buttonMovieImageChange.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 23</value>
-  </data>
-  <data name="buttonMovieImageChange.TabIndex" type="System.Int32, mscorlib">
-    <value>26</value>
-  </data>
-  <data name="buttonMovieImageChange.Text" xml:space="preserve">
-    <value>Movie Image Change</value>
-  </data>
-  <data name="&gt;&gt;buttonMovieImageChange.Name" xml:space="preserve">
-    <value>buttonMovieImageChange</value>
-  </data>
-  <data name="&gt;&gt;buttonMovieImageChange.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonMovieImageChange.Parent" xml:space="preserve">
-    <value>tabPageMovieImage</value>
-  </data>
-  <data name="&gt;&gt;buttonMovieImageChange.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="tableLayoutPanelMovieParentMovieImage.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="tableLayoutPanelMovieParentMovieImage.ColumnCount" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;labelMovieParentSelectedImageMovieID.Name" xml:space="preserve">
-    <value>labelMovieParentSelectedImageMovieID</value>
-  </data>
-  <data name="&gt;&gt;labelMovieParentSelectedImageMovieID.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelMovieParentSelectedImageMovieID.Parent" xml:space="preserve">
-    <value>tableLayoutPanelMovieParentMovieImage</value>
-  </data>
-  <data name="&gt;&gt;labelMovieParentSelectedImageMovieID.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;labelMovieParentSelectedImageMovieName.Name" xml:space="preserve">
-    <value>labelMovieParentSelectedImageMovieName</value>
-  </data>
-  <data name="&gt;&gt;labelMovieParentSelectedImageMovieName.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelMovieParentSelectedImageMovieName.Parent" xml:space="preserve">
-    <value>tableLayoutPanelMovieParentMovieImage</value>
-  </data>
-  <data name="&gt;&gt;labelMovieParentSelectedImageMovieName.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;labelMovieParentSelectedImageConstSelectedImage.Name" xml:space="preserve">
-    <value>labelMovieParentSelectedImageConstSelectedImage</value>
-  </data>
-  <data name="&gt;&gt;labelMovieParentSelectedImageConstSelectedImage.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelMovieParentSelectedImageConstSelectedImage.Parent" xml:space="preserve">
-    <value>tableLayoutPanelMovieParentMovieImage</value>
-  </data>
-  <data name="&gt;&gt;labelMovieParentSelectedImageConstSelectedImage.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="tableLayoutPanelMovieParentMovieImage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>691, 6</value>
-  </data>
-  <data name="tableLayoutPanelMovieParentMovieImage.RowCount" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="tableLayoutPanelMovieParentMovieImage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>150, 101</value>
-  </data>
-  <data name="tableLayoutPanelMovieParentMovieImage.TabIndex" type="System.Int32, mscorlib">
-    <value>25</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanelMovieParentMovieImage.Name" xml:space="preserve">
-    <value>tableLayoutPanelMovieParentMovieImage</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanelMovieParentMovieImage.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanelMovieParentMovieImage.Parent" xml:space="preserve">
-    <value>tabPageMovieImage</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanelMovieParentMovieImage.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="tableLayoutPanelMovieParentMovieImage.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="labelMovieParentSelectedImageMovieID" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="labelMovieParentSelectedImageMovieName" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="labelMovieParentSelectedImageConstSelectedImage" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,50" /&gt;&lt;Rows Styles="Absolute,20,Absolute,40,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
-  </data>
-  <data name="listViewMoviesForParent.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
-  </data>
-  <data name="listViewMoviesForParent.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 6</value>
-  </data>
-  <data name="listViewMoviesForParent.Size" type="System.Drawing.Size, System.Drawing">
-    <value>679, 249</value>
-  </data>
-  <data name="listViewMoviesForParent.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
-  </data>
-  <data name="&gt;&gt;listViewMoviesForParent.Name" xml:space="preserve">
-    <value>listViewMoviesForParent</value>
-  </data>
-  <data name="&gt;&gt;listViewMoviesForParent.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;listViewMoviesForParent.Parent" xml:space="preserve">
-    <value>tabPageMovieImage</value>
-  </data>
-  <data name="&gt;&gt;listViewMoviesForParent.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="tabPageMovieImage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <data name="tabPageMovieImage.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="tabPageMovieImage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>844, 267</value>
-  </data>
-  <data name="tabPageMovieImage.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="tabPageMovieImage.Text" xml:space="preserve">
-    <value>Movie images</value>
-  </data>
-  <data name="&gt;&gt;tabPageMovieImage.Name" xml:space="preserve">
-    <value>tabPageMovieImage</value>
-  </data>
-  <data name="&gt;&gt;tabPageMovieImage.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabPageMovieImage.Parent" xml:space="preserve">
-    <value>tabControlMovieParent</value>
-  </data>
-  <data name="&gt;&gt;tabPageMovieImage.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel3.Name" xml:space="preserve">
-    <value>tableLayoutPanel3</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel3.Parent" xml:space="preserve">
-    <value>tabPageMovieSound</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel3.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="tableLayoutPanel3.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="textBoxMovieSoundMovieName" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="labelMovieSoundMovieNameText" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="labelMovieSoundMovieNameEnglish" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="textBoxMovieSoundMovieID" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="textBoxMovieSoundMovieNameEnglish" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="labelMovieSoundMovidIDText" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,47,14829,Percent,52,85171" /&gt;&lt;Rows Styles="Percent,51,16279,Percent,48,83721,Absolute,59" /&gt;&lt;/TableLayoutSettings&gt;</value>
-  </data>
-  <data name="&gt;&gt;buttonRecordImage.Name" xml:space="preserve">
-    <value>buttonRecordImage</value>
-  </data>
-  <data name="&gt;&gt;buttonRecordImage.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonRecordImage.Parent" xml:space="preserve">
-    <value>tabPageMovieSound</value>
-  </data>
-  <data name="&gt;&gt;buttonRecordImage.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="tabPageMovieSound.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <data name="tabPageMovieSound.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="tabPageMovieSound.Size" type="System.Drawing.Size, System.Drawing">
-    <value>844, 267</value>
-  </data>
-  <data name="tabPageMovieSound.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="tabPageMovieSound.Text" xml:space="preserve">
-    <value>Movie sound</value>
-  </data>
-  <data name="&gt;&gt;tabPageMovieSound.Name" xml:space="preserve">
-    <value>tabPageMovieSound</value>
-  </data>
-  <data name="&gt;&gt;tabPageMovieSound.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabPageMovieSound.Parent" xml:space="preserve">
-    <value>tabControlMovieParent</value>
-  </data>
-  <data name="&gt;&gt;tabPageMovieSound.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;pictureBoxSelectedMovieImage.Name" xml:space="preserve">
-    <value>pictureBoxSelectedMovieImage</value>
-  </data>
-  <data name="&gt;&gt;pictureBoxSelectedMovieImage.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pictureBoxSelectedMovieImage.Parent" xml:space="preserve">
-    <value>tabPageMovieImageAdd</value>
-  </data>
-  <data name="&gt;&gt;pictureBoxSelectedMovieImage.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanelImageAdd.Name" xml:space="preserve">
-    <value>tableLayoutPanelImageAdd</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanelImageAdd.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanelImageAdd.Parent" xml:space="preserve">
-    <value>tabPageMovieImageAdd</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanelImageAdd.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="tableLayoutPanelImageAdd.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="textBoxMovieImageAddMovieName" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="labelImageAddMovieNameText" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="labelImageAddMovieNameEnglish" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="textBoxMovieImageAddMovieID" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="textBoxMovieImageAddMovieNameEnglish" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="labelImageAddMovieIDText" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,47,14829,Percent,52,85171" /&gt;&lt;Rows Styles="Percent,51,16279,Percent,48,83721,Absolute,59" /&gt;&lt;/TableLayoutSettings&gt;</value>
-  </data>
-  <data name="&gt;&gt;buttonIndexImagesReadFromDir.Name" xml:space="preserve">
-    <value>buttonIndexImagesReadFromDir</value>
-  </data>
-  <data name="&gt;&gt;buttonIndexImagesReadFromDir.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonIndexImagesReadFromDir.Parent" xml:space="preserve">
-    <value>tabPageMovieImageAdd</value>
-  </data>
-  <data name="&gt;&gt;buttonIndexImagesReadFromDir.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;buttonMovieIndexImagesDir.Name" xml:space="preserve">
-    <value>buttonMovieIndexImagesDir</value>
-  </data>
-  <data name="&gt;&gt;buttonMovieIndexImagesDir.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonMovieIndexImagesDir.Parent" xml:space="preserve">
-    <value>tabPageMovieImageAdd</value>
-  </data>
-  <data name="&gt;&gt;buttonMovieIndexImagesDir.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;labelMovieIndexImagesDir.Name" xml:space="preserve">
-    <value>labelMovieIndexImagesDir</value>
-  </data>
-  <data name="&gt;&gt;labelMovieIndexImagesDir.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelMovieIndexImagesDir.Parent" xml:space="preserve">
-    <value>tabPageMovieImageAdd</value>
-  </data>
-  <data name="&gt;&gt;labelMovieIndexImagesDir.ZOrder" xml:space="preserve">
-    <value>4</value>
+  <data name="buttonAddIndexImage.Text" xml:space="preserve">
+    <value>Change Image</value>
   </data>
   <data name="&gt;&gt;buttonAddIndexImage.Name" xml:space="preserve">
     <value>buttonAddIndexImage</value>
@@ -954,60 +552,39 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;buttonAddIndexImage.Parent" xml:space="preserve">
-    <value>tabPageMovieImageAdd</value>
+    <value>tabPageMovieModify</value>
   </data>
   <data name="&gt;&gt;buttonAddIndexImage.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>0</value>
   </data>
-  <data name="tabPageMovieImageAdd.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
+  <data name="pictureBoxSelectedMovieImage.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
   </data>
-  <data name="tabPageMovieImageAdd.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
+  <data name="pictureBoxSelectedMovieImage.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="tabPageMovieImageAdd.Size" type="System.Drawing.Size, System.Drawing">
-    <value>844, 267</value>
+  <data name="pictureBoxSelectedMovieImage.Location" type="System.Drawing.Point, System.Drawing">
+    <value>704, 9</value>
   </data>
-  <data name="tabPageMovieImageAdd.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+  <data name="pictureBoxSelectedMovieImage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>128, 128</value>
   </data>
-  <data name="tabPageMovieImageAdd.Text" xml:space="preserve">
-    <value>Movie image add</value>
+  <data name="pictureBoxSelectedMovieImage.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
+    <value>StretchImage</value>
   </data>
-  <data name="&gt;&gt;tabPageMovieImageAdd.Name" xml:space="preserve">
-    <value>tabPageMovieImageAdd</value>
+  <data name="pictureBoxSelectedMovieImage.TabIndex" type="System.Int32, mscorlib">
+    <value>30</value>
   </data>
-  <data name="&gt;&gt;tabPageMovieImageAdd.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;pictureBoxSelectedMovieImage.Name" xml:space="preserve">
+    <value>pictureBoxSelectedMovieImage</value>
   </data>
-  <data name="&gt;&gt;tabPageMovieImageAdd.Parent" xml:space="preserve">
-    <value>tabControlMovieParent</value>
+  <data name="&gt;&gt;pictureBoxSelectedMovieImage.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tabPageMovieImageAdd.ZOrder" xml:space="preserve">
-    <value>4</value>
+  <data name="&gt;&gt;pictureBoxSelectedMovieImage.Parent" xml:space="preserve">
+    <value>tabPageMovieModify</value>
   </data>
-  <data name="tabControlMovieParent.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 217</value>
-  </data>
-  <data name="tabControlMovieParent.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="tabControlMovieParent.Size" type="System.Drawing.Size, System.Drawing">
-    <value>852, 293</value>
-  </data>
-  <data name="tabControlMovieParent.TabIndex" type="System.Int32, mscorlib">
-    <value>26</value>
-  </data>
-  <data name="&gt;&gt;tabControlMovieParent.Name" xml:space="preserve">
-    <value>tabControlMovieParent</value>
-  </data>
-  <data name="&gt;&gt;tabControlMovieParent.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabControlMovieParent.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;tabControlMovieParent.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;pictureBoxSelectedMovieImage.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
   <data name="tableLayoutPanel1.ColumnCount" type="System.Int32, mscorlib">
@@ -1107,10 +684,349 @@
     <value>tabPageMovieModify</value>
   </data>
   <data name="&gt;&gt;tableLayoutPanel1.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
   <data name="tableLayoutPanel1.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
     <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="textBoxMovieModifyMovieName" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="labelMovieNameText" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="labelMovieNameEnglishText" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="textBoxMovieModifyMovieID" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="textBoxMovieModifyMovieNameEnglish" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="labelMovieIDText" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,47,14829,Percent,52,85171" /&gt;&lt;Rows Styles="Percent,51,16279,Percent,48,83721,Absolute,59" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
+  <data name="tabPageMovieModify.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="tabPageMovieModify.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="tabPageMovieModify.Size" type="System.Drawing.Size, System.Drawing">
+    <value>844, 267</value>
+  </data>
+  <data name="tabPageMovieModify.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="tabPageMovieModify.Text" xml:space="preserve">
+    <value>Movie modify</value>
+  </data>
+  <data name="&gt;&gt;tabPageMovieModify.Name" xml:space="preserve">
+    <value>tabPageMovieModify</value>
+  </data>
+  <data name="&gt;&gt;tabPageMovieModify.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPageMovieModify.Parent" xml:space="preserve">
+    <value>tabControlMovieParent</value>
+  </data>
+  <data name="&gt;&gt;tabPageMovieModify.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;btUploadCancel.Name" xml:space="preserve">
+    <value>btUploadCancel</value>
+  </data>
+  <data name="&gt;&gt;btUploadCancel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btUploadCancel.Parent" xml:space="preserve">
+    <value>tabPageMovieUpload</value>
+  </data>
+  <data name="&gt;&gt;btUploadCancel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel2.Name" xml:space="preserve">
+    <value>tableLayoutPanel2</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel2.Parent" xml:space="preserve">
+    <value>tabPageMovieUpload</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="tableLayoutPanel2.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="labelMovieUploadMovieLinkType" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="textBoxMovieUploadMovieName" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="labelMovieUploadMovieName" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="labelMovieUploadMovieNameEnglish" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="textBox2" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="textBoxMovieUploadMovieNameEnglish" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="labelMovieUploadMovieLink" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="textBoxMovieUploadMovieLink" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="textBoxMovieUploadLinkType" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="labelMovieUploadMovieID" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,47,14829,Percent,52,85171" /&gt;&lt;Rows Styles="Percent,43,28358,Percent,56,71642,Absolute,34,Absolute,34,Absolute,40" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
+  <data name="&gt;&gt;btUpload.Name" xml:space="preserve">
+    <value>btUpload</value>
+  </data>
+  <data name="&gt;&gt;btUpload.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btUpload.Parent" xml:space="preserve">
+    <value>tabPageMovieUpload</value>
+  </data>
+  <data name="&gt;&gt;btUpload.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="tabPageMovieUpload.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="tabPageMovieUpload.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="tabPageMovieUpload.Size" type="System.Drawing.Size, System.Drawing">
+    <value>844, 267</value>
+  </data>
+  <data name="tabPageMovieUpload.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="tabPageMovieUpload.Text" xml:space="preserve">
+    <value>Movie add</value>
+  </data>
+  <data name="&gt;&gt;tabPageMovieUpload.Name" xml:space="preserve">
+    <value>tabPageMovieUpload</value>
+  </data>
+  <data name="&gt;&gt;tabPageMovieUpload.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPageMovieUpload.Parent" xml:space="preserve">
+    <value>tabControlMovieParent</value>
+  </data>
+  <data name="&gt;&gt;tabPageMovieUpload.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;buttonMoviePlaySound.Name" xml:space="preserve">
+    <value>buttonMoviePlaySound</value>
+  </data>
+  <data name="&gt;&gt;buttonMoviePlaySound.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonMoviePlaySound.Parent" xml:space="preserve">
+    <value>tabPageMovieImage</value>
+  </data>
+  <data name="&gt;&gt;buttonMoviePlaySound.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;buttonPlayMovie.Name" xml:space="preserve">
+    <value>buttonPlayMovie</value>
+  </data>
+  <data name="&gt;&gt;buttonPlayMovie.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonPlayMovie.Parent" xml:space="preserve">
+    <value>tabPageMovieImage</value>
+  </data>
+  <data name="&gt;&gt;buttonPlayMovie.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;buttonMovieImageChange.Name" xml:space="preserve">
+    <value>buttonMovieImageChange</value>
+  </data>
+  <data name="&gt;&gt;buttonMovieImageChange.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonMovieImageChange.Parent" xml:space="preserve">
+    <value>tabPageMovieImage</value>
+  </data>
+  <data name="&gt;&gt;buttonMovieImageChange.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanelMovieParentMovieImage.Name" xml:space="preserve">
+    <value>tableLayoutPanelMovieParentMovieImage</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanelMovieParentMovieImage.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanelMovieParentMovieImage.Parent" xml:space="preserve">
+    <value>tabPageMovieImage</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanelMovieParentMovieImage.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="tableLayoutPanelMovieParentMovieImage.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="labelMovieParentSelectedImageMovieID" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="labelMovieParentSelectedImageMovieName" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="labelMovieParentSelectedImageConstSelectedImage" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,50" /&gt;&lt;Rows Styles="Absolute,20,Absolute,40,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
+  <data name="&gt;&gt;listViewMoviesForParent.Name" xml:space="preserve">
+    <value>listViewMoviesForParent</value>
+  </data>
+  <data name="&gt;&gt;listViewMoviesForParent.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;listViewMoviesForParent.Parent" xml:space="preserve">
+    <value>tabPageMovieImage</value>
+  </data>
+  <data name="&gt;&gt;listViewMoviesForParent.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="tabPageMovieImage.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="tabPageMovieImage.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="tabPageMovieImage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>844, 267</value>
+  </data>
+  <data name="tabPageMovieImage.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="tabPageMovieImage.Text" xml:space="preserve">
+    <value>Movie images</value>
+  </data>
+  <data name="&gt;&gt;tabPageMovieImage.Name" xml:space="preserve">
+    <value>tabPageMovieImage</value>
+  </data>
+  <data name="&gt;&gt;tabPageMovieImage.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPageMovieImage.Parent" xml:space="preserve">
+    <value>tabControlMovieParent</value>
+  </data>
+  <data name="&gt;&gt;tabPageMovieImage.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel3.Name" xml:space="preserve">
+    <value>tableLayoutPanel3</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel3.Parent" xml:space="preserve">
+    <value>tabPageMovieSound</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel3.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tableLayoutPanel3.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="textBoxMovieSoundMovieName" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="labelMovieSoundMovieNameText" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="labelMovieSoundMovieNameEnglish" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="textBoxMovieSoundMovieID" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="textBoxMovieSoundMovieNameEnglish" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="labelMovieSoundMovidIDText" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,47,14829,Percent,52,85171" /&gt;&lt;Rows Styles="Percent,51,16279,Percent,48,83721,Absolute,59" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
+  <data name="&gt;&gt;buttonRecordImage.Name" xml:space="preserve">
+    <value>buttonRecordImage</value>
+  </data>
+  <data name="&gt;&gt;buttonRecordImage.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonRecordImage.Parent" xml:space="preserve">
+    <value>tabPageMovieSound</value>
+  </data>
+  <data name="&gt;&gt;buttonRecordImage.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="tabPageMovieSound.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="tabPageMovieSound.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="tabPageMovieSound.Size" type="System.Drawing.Size, System.Drawing">
+    <value>844, 267</value>
+  </data>
+  <data name="tabPageMovieSound.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="tabPageMovieSound.Text" xml:space="preserve">
+    <value>Movie sound</value>
+  </data>
+  <data name="&gt;&gt;tabPageMovieSound.Name" xml:space="preserve">
+    <value>tabPageMovieSound</value>
+  </data>
+  <data name="&gt;&gt;tabPageMovieSound.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPageMovieSound.Parent" xml:space="preserve">
+    <value>tabControlMovieParent</value>
+  </data>
+  <data name="&gt;&gt;tabPageMovieSound.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanelImageAdd.Name" xml:space="preserve">
+    <value>tableLayoutPanelImageAdd</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanelImageAdd.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanelImageAdd.Parent" xml:space="preserve">
+    <value>tabPageMovieImageAdd</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanelImageAdd.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tableLayoutPanelImageAdd.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="textBoxMovieImageAddMovieName" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="labelImageAddMovieNameText" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="labelImageAddMovieNameEnglish" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="textBoxMovieImageAddMovieID" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="textBoxMovieImageAddMovieNameEnglish" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="labelImageAddMovieIDText" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,47,14829,Percent,52,85171" /&gt;&lt;Rows Styles="Percent,51,16279,Percent,48,83721,Absolute,59" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
+  <data name="&gt;&gt;buttonIndexImagesReadFromDir.Name" xml:space="preserve">
+    <value>buttonIndexImagesReadFromDir</value>
+  </data>
+  <data name="&gt;&gt;buttonIndexImagesReadFromDir.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonIndexImagesReadFromDir.Parent" xml:space="preserve">
+    <value>tabPageMovieImageAdd</value>
+  </data>
+  <data name="&gt;&gt;buttonIndexImagesReadFromDir.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;buttonMovieIndexImagesDir.Name" xml:space="preserve">
+    <value>buttonMovieIndexImagesDir</value>
+  </data>
+  <data name="&gt;&gt;buttonMovieIndexImagesDir.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonMovieIndexImagesDir.Parent" xml:space="preserve">
+    <value>tabPageMovieImageAdd</value>
+  </data>
+  <data name="&gt;&gt;buttonMovieIndexImagesDir.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;labelMovieIndexImagesDir.Name" xml:space="preserve">
+    <value>labelMovieIndexImagesDir</value>
+  </data>
+  <data name="&gt;&gt;labelMovieIndexImagesDir.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelMovieIndexImagesDir.Parent" xml:space="preserve">
+    <value>tabPageMovieImageAdd</value>
+  </data>
+  <data name="&gt;&gt;labelMovieIndexImagesDir.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="tabPageMovieImageAdd.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="tabPageMovieImageAdd.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="tabPageMovieImageAdd.Size" type="System.Drawing.Size, System.Drawing">
+    <value>844, 267</value>
+  </data>
+  <data name="tabPageMovieImageAdd.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="tabPageMovieImageAdd.Text" xml:space="preserve">
+    <value>Movie image add</value>
+  </data>
+  <data name="&gt;&gt;tabPageMovieImageAdd.Name" xml:space="preserve">
+    <value>tabPageMovieImageAdd</value>
+  </data>
+  <data name="&gt;&gt;tabPageMovieImageAdd.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPageMovieImageAdd.Parent" xml:space="preserve">
+    <value>tabControlMovieParent</value>
+  </data>
+  <data name="&gt;&gt;tabPageMovieImageAdd.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="tabControlMovieParent.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 217</value>
+  </data>
+  <data name="tabControlMovieParent.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="tabControlMovieParent.Size" type="System.Drawing.Size, System.Drawing">
+    <value>852, 293</value>
+  </data>
+  <data name="tabControlMovieParent.TabIndex" type="System.Int32, mscorlib">
+    <value>26</value>
+  </data>
+  <data name="&gt;&gt;tabControlMovieParent.Name" xml:space="preserve">
+    <value>tabControlMovieParent</value>
+  </data>
+  <data name="&gt;&gt;tabControlMovieParent.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabControlMovieParent.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;tabControlMovieParent.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="textBoxMovieModifyMovieName.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
@@ -1449,7 +1365,7 @@
     <value>tabPageMovieUpload</value>
   </data>
   <data name="&gt;&gt;tableLayoutPanel2.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="tableLayoutPanel2.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
     <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="labelMovieUploadMovieLinkType" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="textBoxMovieUploadMovieName" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="labelMovieUploadMovieName" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="labelMovieUploadMovieNameEnglish" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="textBox2" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="textBoxMovieUploadMovieNameEnglish" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="labelMovieUploadMovieLink" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="textBoxMovieUploadMovieLink" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="textBoxMovieUploadLinkType" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="labelMovieUploadMovieID" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,47,14829,Percent,52,85171" /&gt;&lt;Rows Styles="Percent,43,28358,Percent,56,71642,Absolute,34,Absolute,34,Absolute,40" /&gt;&lt;/TableLayoutSettings&gt;</value>
@@ -1773,7 +1689,7 @@
     <value>NoControl</value>
   </data>
   <data name="btUpload.Location" type="System.Drawing.Point, System.Drawing">
-    <value>275, 11</value>
+    <value>320, 11</value>
   </data>
   <data name="btUpload.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -1794,7 +1710,166 @@
     <value>tabPageMovieUpload</value>
   </data>
   <data name="&gt;&gt;btUpload.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="buttonMoviePlaySound.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="buttonMoviePlaySound.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="buttonMoviePlaySound.Location" type="System.Drawing.Point, System.Drawing">
+    <value>690, 172</value>
+  </data>
+  <data name="buttonMoviePlaySound.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="buttonMoviePlaySound.TabIndex" type="System.Int32, mscorlib">
+    <value>28</value>
+  </data>
+  <data name="buttonMoviePlaySound.Text" xml:space="preserve">
+    <value>Play Sound</value>
+  </data>
+  <data name="&gt;&gt;buttonMoviePlaySound.Name" xml:space="preserve">
+    <value>buttonMoviePlaySound</value>
+  </data>
+  <data name="&gt;&gt;buttonMoviePlaySound.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonMoviePlaySound.Parent" xml:space="preserve">
+    <value>tabPageMovieImage</value>
+  </data>
+  <data name="&gt;&gt;buttonMoviePlaySound.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="buttonPlayMovie.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="buttonPlayMovie.Location" type="System.Drawing.Point, System.Drawing">
+    <value>691, 143</value>
+  </data>
+  <data name="buttonPlayMovie.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="buttonPlayMovie.TabIndex" type="System.Int32, mscorlib">
+    <value>27</value>
+  </data>
+  <data name="buttonPlayMovie.Text" xml:space="preserve">
+    <value>Play Movie</value>
+  </data>
+  <data name="&gt;&gt;buttonPlayMovie.Name" xml:space="preserve">
+    <value>buttonPlayMovie</value>
+  </data>
+  <data name="&gt;&gt;buttonPlayMovie.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonPlayMovie.Parent" xml:space="preserve">
+    <value>tabPageMovieImage</value>
+  </data>
+  <data name="&gt;&gt;buttonPlayMovie.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="buttonMovieImageChange.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="buttonMovieImageChange.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="buttonMovieImageChange.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="buttonMovieImageChange.Location" type="System.Drawing.Point, System.Drawing">
+    <value>691, 114</value>
+  </data>
+  <data name="buttonMovieImageChange.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 23</value>
+  </data>
+  <data name="buttonMovieImageChange.TabIndex" type="System.Int32, mscorlib">
+    <value>26</value>
+  </data>
+  <data name="buttonMovieImageChange.Text" xml:space="preserve">
+    <value>Movie Image Change</value>
+  </data>
+  <data name="&gt;&gt;buttonMovieImageChange.Name" xml:space="preserve">
+    <value>buttonMovieImageChange</value>
+  </data>
+  <data name="&gt;&gt;buttonMovieImageChange.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonMovieImageChange.Parent" xml:space="preserve">
+    <value>tabPageMovieImage</value>
+  </data>
+  <data name="&gt;&gt;buttonMovieImageChange.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="tableLayoutPanelMovieParentMovieImage.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="tableLayoutPanelMovieParentMovieImage.ColumnCount" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;labelMovieParentSelectedImageMovieID.Name" xml:space="preserve">
+    <value>labelMovieParentSelectedImageMovieID</value>
+  </data>
+  <data name="&gt;&gt;labelMovieParentSelectedImageMovieID.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelMovieParentSelectedImageMovieID.Parent" xml:space="preserve">
+    <value>tableLayoutPanelMovieParentMovieImage</value>
+  </data>
+  <data name="&gt;&gt;labelMovieParentSelectedImageMovieID.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;labelMovieParentSelectedImageMovieName.Name" xml:space="preserve">
+    <value>labelMovieParentSelectedImageMovieName</value>
+  </data>
+  <data name="&gt;&gt;labelMovieParentSelectedImageMovieName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelMovieParentSelectedImageMovieName.Parent" xml:space="preserve">
+    <value>tableLayoutPanelMovieParentMovieImage</value>
+  </data>
+  <data name="&gt;&gt;labelMovieParentSelectedImageMovieName.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;labelMovieParentSelectedImageConstSelectedImage.Name" xml:space="preserve">
+    <value>labelMovieParentSelectedImageConstSelectedImage</value>
+  </data>
+  <data name="&gt;&gt;labelMovieParentSelectedImageConstSelectedImage.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelMovieParentSelectedImageConstSelectedImage.Parent" xml:space="preserve">
+    <value>tableLayoutPanelMovieParentMovieImage</value>
+  </data>
+  <data name="&gt;&gt;labelMovieParentSelectedImageConstSelectedImage.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="tableLayoutPanelMovieParentMovieImage.Location" type="System.Drawing.Point, System.Drawing">
+    <value>691, 6</value>
+  </data>
+  <data name="tableLayoutPanelMovieParentMovieImage.RowCount" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="tableLayoutPanelMovieParentMovieImage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>150, 101</value>
+  </data>
+  <data name="tableLayoutPanelMovieParentMovieImage.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanelMovieParentMovieImage.Name" xml:space="preserve">
+    <value>tableLayoutPanelMovieParentMovieImage</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanelMovieParentMovieImage.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanelMovieParentMovieImage.Parent" xml:space="preserve">
+    <value>tabPageMovieImage</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanelMovieParentMovieImage.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="tableLayoutPanelMovieParentMovieImage.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="labelMovieParentSelectedImageMovieID" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="labelMovieParentSelectedImageMovieName" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="labelMovieParentSelectedImageConstSelectedImage" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,50" /&gt;&lt;Rows Styles="Absolute,20,Absolute,40,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="labelMovieParentSelectedImageMovieID.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Left</value>
@@ -1903,6 +1978,30 @@
   </data>
   <data name="&gt;&gt;labelMovieParentSelectedImageConstSelectedImage.ZOrder" xml:space="preserve">
     <value>2</value>
+  </data>
+  <data name="listViewMoviesForParent.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="listViewMoviesForParent.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 6</value>
+  </data>
+  <data name="listViewMoviesForParent.Size" type="System.Drawing.Size, System.Drawing">
+    <value>679, 249</value>
+  </data>
+  <data name="listViewMoviesForParent.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="&gt;&gt;listViewMoviesForParent.Name" xml:space="preserve">
+    <value>listViewMoviesForParent</value>
+  </data>
+  <data name="&gt;&gt;listViewMoviesForParent.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;listViewMoviesForParent.Parent" xml:space="preserve">
+    <value>tabPageMovieImage</value>
+  </data>
+  <data name="&gt;&gt;listViewMoviesForParent.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
   <data name="tableLayoutPanel3.ColumnCount" type="System.Int32, mscorlib">
     <value>2</value>
@@ -2195,6 +2294,39 @@
   <data name="&gt;&gt;labelMovieSoundMovidIDText.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
+  <data name="buttonRecordImage.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Stretch</value>
+  </data>
+  <data name="buttonRecordImage.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="buttonRecordImage.Location" type="System.Drawing.Point, System.Drawing">
+    <value>135, 35</value>
+  </data>
+  <data name="buttonRecordImage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>64, 64</value>
+  </data>
+  <data name="buttonRecordImage.TabIndex" type="System.Int32, mscorlib">
+    <value>26</value>
+  </data>
+  <data name="buttonRecordImage.Text" xml:space="preserve">
+    <value>Record...</value>
+  </data>
+  <data name="buttonRecordImage.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;buttonRecordImage.Name" xml:space="preserve">
+    <value>buttonRecordImage</value>
+  </data>
+  <data name="&gt;&gt;buttonRecordImage.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonRecordImage.Parent" xml:space="preserve">
+    <value>tabPageMovieSound</value>
+  </data>
+  <data name="&gt;&gt;buttonRecordImage.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
   <data name="tableLayoutPanelImageAdd.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
@@ -2295,7 +2427,7 @@
     <value>tabPageMovieImageAdd</value>
   </data>
   <data name="&gt;&gt;tableLayoutPanelImageAdd.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>0</value>
   </data>
   <data name="tableLayoutPanelImageAdd.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
     <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="textBoxMovieImageAddMovieName" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="labelImageAddMovieNameText" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="labelImageAddMovieNameEnglish" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="textBoxMovieImageAddMovieID" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="textBoxMovieImageAddMovieNameEnglish" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="labelImageAddMovieIDText" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,47,14829,Percent,52,85171" /&gt;&lt;Rows Styles="Percent,51,16279,Percent,48,83721,Absolute,59" /&gt;&lt;/TableLayoutSettings&gt;</value>
@@ -2489,6 +2621,9 @@
   <data name="&gt;&gt;labelImageAddMovieIDText.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
+  <data name="buttonIndexImagesReadFromDir.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="buttonIndexImagesReadFromDir.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -2514,7 +2649,10 @@
     <value>tabPageMovieImageAdd</value>
   </data>
   <data name="&gt;&gt;buttonIndexImagesReadFromDir.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>1</value>
+  </data>
+  <data name="buttonMovieIndexImagesDir.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="buttonMovieIndexImagesDir.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -2541,7 +2679,7 @@
     <value>tabPageMovieImageAdd</value>
   </data>
   <data name="&gt;&gt;buttonMovieIndexImagesDir.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>2</value>
   </data>
   <data name="labelMovieIndexImagesDir.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2571,34 +2709,7 @@
     <value>tabPageMovieImageAdd</value>
   </data>
   <data name="&gt;&gt;labelMovieIndexImagesDir.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="buttonAddIndexImage.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="buttonAddIndexImage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>11, 6</value>
-  </data>
-  <data name="buttonAddIndexImage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <data name="buttonAddIndexImage.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
-  </data>
-  <data name="buttonAddIndexImage.Text" xml:space="preserve">
-    <value>Add Image</value>
-  </data>
-  <data name="&gt;&gt;buttonAddIndexImage.Name" xml:space="preserve">
-    <value>buttonAddIndexImage</value>
-  </data>
-  <data name="&gt;&gt;buttonAddIndexImage.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonAddIndexImage.Parent" xml:space="preserve">
-    <value>tabPageMovieImageAdd</value>
-  </data>
-  <data name="&gt;&gt;buttonAddIndexImage.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>3</value>
   </data>
   <metadata name="errorProviderMovieUpload.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>360, 18</value>
@@ -4459,9 +4570,6 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==
 </value>
   </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
     <value>512, 512</value>
   </data>
@@ -4492,67 +4600,28 @@
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="buttonRecordImage.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
-    <value>Stretch</value>
+  <data name="btUploadCancel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>320, 59</value>
   </data>
-  <data name="buttonRecordImage.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="btUploadCancel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
   </data>
-  <data name="buttonRecordImage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>135, 35</value>
+  <data name="btUploadCancel.TabIndex" type="System.Int32, mscorlib">
+    <value>28</value>
   </data>
-  <data name="buttonRecordImage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>64, 64</value>
+  <data name="btUploadCancel.Text" xml:space="preserve">
+    <value>Cancel</value>
   </data>
-  <data name="buttonRecordImage.TabIndex" type="System.Int32, mscorlib">
-    <value>26</value>
+  <data name="&gt;&gt;btUploadCancel.Name" xml:space="preserve">
+    <value>btUploadCancel</value>
   </data>
-  <data name="buttonRecordImage.Text" xml:space="preserve">
-    <value>Record...</value>
-  </data>
-  <data name="buttonRecordImage.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;buttonRecordImage.Name" xml:space="preserve">
-    <value>buttonRecordImage</value>
-  </data>
-  <data name="&gt;&gt;buttonRecordImage.Type" xml:space="preserve">
+  <data name="&gt;&gt;btUploadCancel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;buttonRecordImage.Parent" xml:space="preserve">
-    <value>tabPageMovieSound</value>
+  <data name="&gt;&gt;btUploadCancel.Parent" xml:space="preserve">
+    <value>tabPageMovieUpload</value>
   </data>
-  <data name="&gt;&gt;buttonRecordImage.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="pictureBoxSelectedMovieImage.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="pictureBoxSelectedMovieImage.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="pictureBoxSelectedMovieImage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>435, 6</value>
-  </data>
-  <data name="pictureBoxSelectedMovieImage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>128, 128</value>
-  </data>
-  <data name="pictureBoxSelectedMovieImage.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
-    <value>StretchImage</value>
-  </data>
-  <data name="pictureBoxSelectedMovieImage.TabIndex" type="System.Int32, mscorlib">
-    <value>29</value>
-  </data>
-  <data name="&gt;&gt;pictureBoxSelectedMovieImage.Name" xml:space="preserve">
-    <value>pictureBoxSelectedMovieImage</value>
-  </data>
-  <data name="&gt;&gt;pictureBoxSelectedMovieImage.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pictureBoxSelectedMovieImage.Parent" xml:space="preserve">
-    <value>tabPageMovieImageAdd</value>
-  </data>
-  <data name="&gt;&gt;pictureBoxSelectedMovieImage.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;btUploadCancel.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
 </root>
